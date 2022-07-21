@@ -1,24 +1,62 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
+import { PageTemplate } from "../styles/template";
+import LogoImgSrc from "../asset/logo-snplab.png";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
 const Landing = (props: Props) => {
-  return <div>Landing</div>;
+  return (
+    <PageTemplate>
+      <LandingContainer>
+        <LogoImg src={LogoImgSrc} alt="SNPLab logo" />
+        <Title>AI 학습용 데이터 크라우드 워커 모집 페이지</Title>
+        <Link to="/form">
+          <GoToFormButton>지원하러 가기</GoToFormButton>
+        </Link>
+      </LandingContainer>
+    </PageTemplate>
+  );
 };
 
 export default Landing;
 
-// id : number,
-// name : string,
-// gender : string,
-// birthday : string,
-// region: [
-//   string,
-//   string
-// ],
-// contact : number | string,
-// email : string,
-// transportation: string[],
-// agreement: boolean,
-// pass: boolean
-// submitdate: string,
+const LandingContainer = styled.div`
+  position: fixed;
+  top: 140px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const LogoImg = styled.img`
+  width: 300px;
+`;
+
+const Title = styled.h1`
+  font-size: 40px;
+  margin-top: 2rem;
+  text-align: center;
+  padding: 10px;
+`;
+
+const GoToFormButton = styled.button`
+  width: 170px;
+  height: 60px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 3rem;
+  font-size: 20px;
+  background: #1cc5f7;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
