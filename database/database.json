@@ -1,0 +1,47 @@
+{
+  "1st-recruitment": [
+    {
+      "id": 1,
+      "name": "김연진",
+      "gender": "female",
+      "birthday": "1992.11.09",
+      "region": ["경기도", "용인시"],
+      "contact": "01012345678",
+      "email": "yunjink@naver.com",
+      "transportation": ["bus", "subway"],
+      "agreement": true,
+      "pass": true,
+      "submitdate": "2022-07-21"
+    }
+  ],
+  "2nd-recruitment": [
+    {
+      "id": 1,
+      "name": "김연진",
+      "gender": "female",
+      "birthday": "1992.11.09",
+      "region": ["경기도", "용인시"],
+      "contact": "01012345678",
+      "email": "yunjink@naver.com",
+      "transportation": ["bus", "subway"],
+      "agreement": true,
+      "pass": false,
+      "submitdate": "2022-08-21"
+    }
+  ],
+  "3rd-recruitment": [
+    {
+      "id": 1,
+      "name": "김연진",
+      "gender": "female",
+      "birthday": "1992.11.09",
+      "region": ["경기도", "용인시"],
+      "contact": "01012345678",
+      "email": "yunjink@naver.com",
+      "transportation": ["bus", "subway"],
+      "agreement": true,
+      "pass": false,
+      "submitdate": "2022-09-21"
+    }
+  ]
+}
