@@ -26,8 +26,9 @@ const LandingContainer = styled.div`
   position: fixed;
   top: 140px;
   width: 100%;
+  height: 50%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 `;
@@ -38,7 +39,6 @@ const LogoImg = styled.img`
 
 const Title = styled.h1`
   font-size: 40px;
-  margin-top: 2rem;
   text-align: center;
   padding: 10px;
 `;
@@ -48,7 +48,6 @@ const GoToFormButton = styled.button`
   height: 60px;
   border: none;
   border-radius: 8px;
-  margin-top: 3rem;
   font-size: 20px;
   background: #1cc5f7;
   color: white;
