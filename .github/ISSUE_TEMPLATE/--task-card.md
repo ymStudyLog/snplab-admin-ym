@@ -1,7 +1,7 @@
 ---
 name: "✅ Task Card"
 about: 각자 맡은 태스크를 정리합니다.
-title: "[ToDo] YYYY.MM.DD 이름"
+title: "[To Do] YYYY.MM.DD 이름"
 labels: task
 assignees: ''
 
