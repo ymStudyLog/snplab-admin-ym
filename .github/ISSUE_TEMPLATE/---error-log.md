@@ -1,7 +1,7 @@
 ---
 name: "\U0001F47E Error Log"
 about: 개발하면서 만난 에러의 원인와 해결방법을 정리합니다.
-title: "[Error Log] YYYY.MM.DD 이름"
+title: "[이름] yyyy.mm.dd Error Log"
 labels: error
 assignees: ''
 
