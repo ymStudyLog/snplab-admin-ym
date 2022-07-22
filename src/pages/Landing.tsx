@@ -24,9 +24,9 @@ export default Landing;
 
 const LandingContainer = styled.div`
   position: fixed;
-  top: 140px;
+  top: 130px;
   width: 100%;
-  height: 50%;
+  height: 54%;
   display: flex;
   justify-content: space-between;
   align-items: center;
