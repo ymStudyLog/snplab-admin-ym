@@ -13,7 +13,7 @@ export const Body = styled.div`
 
 export const ParentContainer = styled.div`
   border: 1px solid #dbdbdb;
-  height: 80vh;
+  height: 70vh;
   width: 350px;
   margin: 35px 0 10px 0;
   min-height: auto;
@@ -38,7 +38,7 @@ export const ModalBackground = styled.div`
 export const RegionContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: 40vh;
   border: 1px solid #dbdbdb;
   background-color: #ffffff;
   display: flex;
@@ -48,7 +48,7 @@ export const RegionContainer = styled.div`
 export const RegionHeader = styled.div`
   position: relative;
   width: 100%;
-  height: 13%;
+  height: 20%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -60,6 +60,7 @@ export const RegionTitle = styled.div`
   left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
+  font-weight: bold;
 `;
 
 export const CloseIconWrapper = styled.button`
@@ -71,28 +72,55 @@ export const CloseIconWrapper = styled.button`
 export const RegionContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  margin: 30px 0;
+  margin-top: 15px;
 `;
 
-export const MenuHeaderContainer = styled.div`
+export const DropdownTitleContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 15%;
+  height: 20%;
 `;
 
-export const MenuHeader = styled.div``;
+export const DropdownTitle = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+`;
 
-export const MenuContainer = styled.div`
+export const DropdownContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  position: relative;
 `;
 
-export const MenuList = styled.div``;
+export const Dropdown = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 60%;
+  min-width: 18%;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  gap: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #f7f6fb;
+    transition: background 0.3s ease-in;
+  }
+`;
+
+export const DropdownList = styled.li`
+  list-style: none;
+  flex-direction: row;
+  font-size: 18px;
+`;
