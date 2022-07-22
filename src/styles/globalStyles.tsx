@@ -21,7 +21,7 @@ body {
   height: 100%;
 }
 
-button { /* 연진이 추가한 속성 */
+input, button { /* 연진이 추가한 속성 */
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
