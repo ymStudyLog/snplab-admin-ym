@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { BsCheckCircle, BsCheck } from "react-icons/bs";
 import * as FormStyle from "./Form.styled";
+import ValidationInput from "../ValidationInput";
+import regex from "../../utils/Regex";
 
 type Props = {};
 type RadioType = {
@@ -30,10 +32,24 @@ const Form = (props: Props) => {
     male: "",
   });
 
+  const [nickInput, setNickInput] = useState("");
+  const [emailInput, setEmailInput] = useState("");
+  const [phoneInput, setPhoneInput] = useState("");
+  const [dateInput, setDateInput] = useState("");
+
+  console.log(dateInput)
   return (
     <form>
       <FormStyle.DataTitle>이름</FormStyle.DataTitle>
-      <FormStyle.DataInput type="text" name="name" placeholder="홍길동" />
+      <ValidationInput
+      type="text" name="name" placeholder="홍길동"
+    value={nickInput}
+    setValue={setNickInput}
+    maxValue={10}
+    regexCheck={regex.nickname}
+    defaultText="닉네임을 입력해주세요!"
+    errorText="한글로 3자 이상 입력해주세요."
+  />
       <FormStyle.DataTitle>성별</FormStyle.DataTitle>
       <FormStyle.RadioContainer>
         <FormStyle.RadioLabel
@@ -60,7 +76,11 @@ const Form = (props: Props) => {
         </FormStyle.RadioLabel>
       </FormStyle.RadioContainer>
       <FormStyle.DataTitle>생년월일</FormStyle.DataTitle>
-      <FormStyle.DataInput type="datetime" name="birthday" placeholder="YYYY.MM.DD" />
+      <ValidationInput type="text" name="birthday" placeholder="YYYY.MM.DD" 
+       value={dateInput}
+      setValue={setDateInput}  maxValue={10} regexCheck={regex.date} defaultText="생년월일을 입력해주세요!"
+      errorText="YYYY.MM.DD 형태로 입력해주세요!"
+      />
       <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
       {/* 거주지역 value 부분에 모달에서 저장한 recoil값 저장예정 = 지금은 임시값 */}
       <FormStyle.DataInput
@@ -72,13 +92,26 @@ const Form = (props: Props) => {
         }}
       />
       <FormStyle.DataTitle>연락처</FormStyle.DataTitle>
-      <FormStyle.DataInput
+      <ValidationInput
         type="tel"
         name="contact"
         placeholder="'-'없이 입력해 주세요"
+        value={phoneInput}
+    setValue={setPhoneInput}
+    regexCheck={regex.phone}
+    maxValue={11}
+    defaultText="연락처를 입력해주세요!"
+    errorText="연락처 01012345678 형태로 입력해주세요!"
+
       />
       <FormStyle.DataTitle>이메일</FormStyle.DataTitle>
-      <FormStyle.DataInput type="email" name="email" placeholder="MYD@snplab.com" />
+      <ValidationInput type="email" name="email" placeholder="MYD@snplab.com"
+      value={emailInput}
+      setValue={setEmailInput}
+      regexCheck={regex.email}
+      defaultText="이메일을 입력해주세요!"
+      errorText="이메일 양식을 맞춰주세요!" maxValue={undefined}
+       />
       <FormStyle.DataTitle>
         주로 이용하는 교통수단
         <FormStyle.SubTitle>주로 이용하는 교통수단을 모두 선택해주세요</FormStyle.SubTitle>
