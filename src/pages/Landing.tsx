@@ -1,9 +1,12 @@
 import React from 'react';
+import Regexp from '../components/Regexp';
 
 type Props = {};
 
 const Landing = (props: Props) => {
-  return <div>Landing</div>;
+  return <div>
+    <Regexp/>
+  </div>;
 };
 
 export default Landing;
