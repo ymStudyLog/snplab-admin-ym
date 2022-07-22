@@ -137,11 +137,7 @@ const Form = () => {
 
       />
       <FormStyle.DataTitle>이메일</FormStyle.DataTitle>
-      <FormStyle.DataInput
-        type="email"
-        name="email"
-        placeholder="MYD@snplab.com"
-      />
+     
       <ValidationInput type="email" name="email" placeholder="MYD@snplab.com"
       value={emailInput}
       setValue={setEmailInput}
