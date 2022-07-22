@@ -104,10 +104,7 @@ const Form = () => {
       </FormStyle.RadioContainer>
       <FormStyle.DataTitle>생년월일</FormStyle.DataTitle>
 
-      <FormStyle.DataInput
-        type="datetime"
-        name="birthday"
-        placeholder="YYYY.MM.DD"
+   
       <ValidationInput type="text" name="birthday" placeholder="YYYY.MM.DD" 
        value={dateInput}
       setValue={setDateInput}  maxValue={10} regexCheck={regex.date} defaultText="생년월일을 입력해주세요!"
@@ -239,7 +236,7 @@ const Form = () => {
       </FormStyle.Positioner>
 
       {/* disabled = true 일때는 회색 바탕 */}
-      <FormStyle.SubmitButton
+      <SubmitButton
         type="submit"
         onClick={()=>{console.log("submit click")}}
 
