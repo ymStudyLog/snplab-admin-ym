@@ -1,9 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
-
 #root,
 html {
   * { /* 연진이 추가한 속성 */
@@ -14,7 +13,8 @@ html {
         display: none; /* Chrome, Safari, Opera*/
       }
     }
-},
+}
+
 body {
   box-sizing: border-box;
   width: 100%;
