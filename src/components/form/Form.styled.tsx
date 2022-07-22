@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 export const DataTitle = styled.div`
@@ -68,9 +68,7 @@ type RadioProps = {
   onClick: () => void;
 };
 
-export const RadioLabel = (props: RadioProps) => (
-  <StyledLabel {...props}>{props.children}</StyledLabel>
-);
+export const RadioLabel = (props: RadioProps) => <StyledLabel {...props}>{props.children}</StyledLabel>;
 
 //checkbox 컨테이너와 label
 export const CheckBoxContainer = styled.div`
@@ -145,13 +143,5 @@ export const LinkButton = styled(Link)`
   align-items: center;
 `;
 
-export const SubmitButton = styled.button`
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #1cc5f7;
-  color: white;
-  border-radius: 12px;
-  font-weight: bold;
-`;
+
+

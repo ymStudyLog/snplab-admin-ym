@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../common/Button.styled';
 import { MdClose } from 'react-icons/md';
 import {
   Body,
@@ -10,11 +9,13 @@ import {
   CloseIconWrapper,
   RegionTitle,
   RegionContent,
-  MenuHeaderContainer,
-  MenuHeader,
-  MenuContainer,
-  MenuList,
+  DropdownTitleContainer,
+  DropdownTitle,
+  DropdownContainer,
+  Dropdown,
+  DropdownList,
 } from './Region.styled';
+import { SubmitButton } from '../../styles/SubmitButton.styled';
 
 const Region = (props: any) => {
   return (
@@ -30,16 +31,24 @@ const Region = (props: any) => {
               <RegionTitle>거주지역 선택</RegionTitle>
             </RegionHeader>
             <RegionContent>
-              <MenuHeaderContainer>
-                <MenuHeader>시/도</MenuHeader>
-                <MenuHeader>시/구/군</MenuHeader>
-              </MenuHeaderContainer>
-              <MenuContainer>
-                <MenuList>서울</MenuList>
-                <MenuList>강동구</MenuList>
-              </MenuContainer>
+              <DropdownTitleContainer>
+                <DropdownTitle>시/도</DropdownTitle>
+                <DropdownTitle>시/구/군</DropdownTitle>
+              </DropdownTitleContainer>
+              <DropdownContainer>
+                <Dropdown>
+                  <DropdownList>경기</DropdownList>
+                  <DropdownList>서울</DropdownList>
+                  <DropdownList>강원</DropdownList>
+                </Dropdown>
+                <Dropdown>
+                  <DropdownList>강남구</DropdownList>
+                  <DropdownList>강동구</DropdownList>
+                  <DropdownList>강북구</DropdownList>
+                </Dropdown>
+              </DropdownContainer>
             </RegionContent>
-            {/* <Button /> */}
+            <SubmitButton>확인</SubmitButton>
           </RegionContainer>
         </ModalBackground>
       </ParentContainer>
