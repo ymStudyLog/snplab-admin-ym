@@ -44,7 +44,7 @@ export const NoneDisplayInput = styled.input`
 `;
 
 //radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<{selected: boolean}>`
   width: 4rem;
   margin-right: 3rem;
   padding: 8px;
@@ -55,14 +55,14 @@ const StyledLabel = styled.label`
   cursor: pointer;
 
   ${(props) =>
-    props.color &&
+    props.selected &&
     css`
-      color: ${props.color};
+      color: black;
     `};
 `;
 
 type RadioProps = {
-  color: string;
+  selected: boolean;
   children: React.ReactNode;
   htmlFor: string;
   onClick: () => void;
@@ -97,11 +97,29 @@ export const DataToggleContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const DataToggle = styled.div`
+const StyledDiv = styled.div<{agreement:boolean}>`
   display: flex;
   align-items: center;
   padding-right: 8px;
+  color: #c4c4c4;
+  cursor: pointer;
+
+  ${(props) =>
+    props.agreement &&
+    css`
+      color: black;
+    `};
 `;
+
+type ToggleProps = {
+  agreement: boolean;
+  children: JSX.Element;
+  onClick: () => void;
+};
+
+export const DataToggle = (props: ToggleProps) => (
+  <StyledDiv {...props}>{props.children}</StyledDiv>
+);
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`
@@ -124,3 +142,6 @@ export const LinkButton = styled(Link)`
   display: flex;
   align-items: center;
 `;
+
+
+
