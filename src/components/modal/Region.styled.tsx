@@ -12,7 +12,7 @@ export const Body = styled.div`
 `;
 
 export const ParentContainer = styled.div`
-  border: 1px solid #dbdbdb;
+  //border: 1px solid #dbdbdb;
   height: 70vh;
   width: 350px;
   margin: 35px 0 10px 0;
@@ -90,6 +90,7 @@ export const DropdownTitleContainer = styled.div`
 export const DropdownTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
+  padding-left: 10px;
 `;
 
 export const DropdownContainer = styled.div`
@@ -106,12 +107,12 @@ export const Dropdown = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 60%;
+  height: 20vh;
   min-width: 18%;
   border: none;
   border-radius: 5px;
-  padding: 15px;
-  gap: 0.5rem;
+  //padding: 15px;
+  //gap: 0.5rem;
   cursor: pointer;
   &:hover {
     background-color: #f7f6fb;
