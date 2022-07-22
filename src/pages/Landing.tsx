@@ -47,7 +47,7 @@ const GoToFormButton = styled.button`
   width: 170px;
   height: 60px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 20px;
   background: #1cc5f7;
   color: white;
