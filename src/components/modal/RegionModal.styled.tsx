@@ -35,7 +35,7 @@ export const ModalBackground = styled.div`
   align-items: flex-end;
 `;
 
-export const RegionContainer = styled.div`
+export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 40vh;
@@ -45,7 +45,7 @@ export const RegionContainer = styled.div`
   flex-direction: column;
 `;
 
-export const RegionHeader = styled.div`
+export const HeaderContainer = styled.div`
   position: relative;
   width: 100%;
   height: 20%;
@@ -55,7 +55,7 @@ export const RegionHeader = styled.div`
   border-bottom: 1px solid #dbdbdb;
 `;
 
-export const RegionTitle = styled.div`
+export const Header = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -69,7 +69,7 @@ export const CloseIconWrapper = styled.button`
   margin-left: 10px;
 `;
 
-export const RegionContent = styled.div`
+export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,7 +79,7 @@ export const RegionContent = styled.div`
   margin-top: 15px;
 `;
 
-export const DropdownTitleContainer = styled.div`
+export const MenuTitleContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -87,13 +87,13 @@ export const DropdownTitleContainer = styled.div`
   height: 20%;
 `;
 
-export const DropdownTitle = styled.div`
+export const MenuTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   padding-left: 10px;
 `;
 
-export const DropdownContainer = styled.div`
+export const MenuListContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -102,7 +102,7 @@ export const DropdownContainer = styled.div`
   position: relative;
 `;
 
-export const Dropdown = styled.ul`
+export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -120,7 +120,7 @@ export const Dropdown = styled.ul`
   }
 `;
 
-export const DropdownList = styled.li`
+export const MenuList = styled.li`
   list-style: none;
   flex-direction: row;
   font-size: 18px;
