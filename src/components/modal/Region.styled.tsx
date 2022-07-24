@@ -1,39 +1,38 @@
 import styled from 'styled-components';
 
-export const Body = styled.div`
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  display: flex;
-  justify-content: center;
-  background-color: #fafafa;
-`;
+// export const Body = styled.div`
+//   position: fixed;
+//   top: 0px;
+//   bottom: 0px;
+//   right: 0px;
+//   left: 0px;
+//   display: flex;
+//   justify-content: center;
+//   background-color: #fafafa;
+// `;
 
-export const ParentContainer = styled.div`
-  //border: 1px solid #dbdbdb;
-  height: 70vh;
-  width: 350px;
-  margin: 35px 0 10px 0;
-  min-height: auto;
-  min-width: auto;
-  background-color: #ffffff;
-`;
+// export const ParentContainer = styled.div`
+//   height: 70vh;
+//   width: 350px;
+//   margin: 35px 0 10px 0;
+//   min-height: auto;
+//   min-width: auto;
+//   background-color: #ffffff;
+// `;
 
-export const ModalBackground = styled.div`
-  position: relative;
-  height: 80vh;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-`;
+// export const ModalBackground = styled.div`
+//   position: relative;
+//   height: 80vh;
+//   z-index: 999;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   justify-content: center;
+//   align-items: flex-end;
+// `;
 
 export const Container = styled.div`
   position: relative;
@@ -63,7 +62,7 @@ export const Header = styled.div`
   font-weight: bold;
 `;
 
-export const CloseIconWrapper = styled.button`
+export const CloseButton = styled.button`
   font-size: 25px;
   color: #c0c0c0;
   margin-left: 10px;
