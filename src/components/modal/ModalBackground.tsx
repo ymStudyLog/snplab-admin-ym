@@ -14,8 +14,9 @@ const ModalBackground = ({ children }: ModalProps) => {
 export default ModalBackground;
 
 const Background = styled.div`
-  position: relative;
-  height: 80vh;
+  position: absolute;
+  width: 350px;
+  height: 100%;
   z-index: 999;
   top: 0;
   left: 0;

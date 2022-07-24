@@ -8,6 +8,7 @@ import regex from '../../utils/Regex';
 import { SubmitButton } from '../../styles/SubmitButton.styled';
 import ModalBackground from '../modal/ModalBackground';
 import Region from '../modal/Region';
+import styled from 'styled-components';
 
 type RadioType = {
   female: boolean;
@@ -51,6 +52,7 @@ const Form = () => {
   const [dateInput, setDateInput] = useState('');
 
   //console.log(dateInput);
+
   return (
     <form>
       <FormStyle.DataTitle>이름</FormStyle.DataTitle>
