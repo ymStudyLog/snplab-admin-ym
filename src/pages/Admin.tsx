@@ -1,5 +1,6 @@
-import React from "react";
-import Search from "../components/admin/Search";
+import React from 'react';
+import Search from '../components/admin/Search';
+import styled from 'styled-components';
 
 type Props = {};
 
@@ -9,11 +10,15 @@ type Props = {};
 
 const Admin = (props: Props) => {
   return (
-    <div>
-      Admin
+    <AdminContainer>
       <Search />
-    </div>
+    </AdminContainer>
   );
 };
 
 export default Admin;
+
+const AdminContainer = styled.div`
+  width: 100%;
+  height: auto;
+`;
