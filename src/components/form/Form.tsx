@@ -1,7 +1,6 @@
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { BsCheckCircle, BsCheck } from "react-icons/bs";
-// import axios from "axios";
 import * as FormStyle from './Form.styled';
 import ValidationInput from '../ValidationInput';
 import regex from '../../utils/Regex';
@@ -43,7 +42,7 @@ const Form = () => {
   // console.log(dateInput)
 
   return (
-    <FormStyle.Container>
+    <FormStyle.StyledForm>
       <FormStyle.DataTitle>이름</FormStyle.DataTitle>
 
       <ValidationInput
@@ -109,7 +108,6 @@ const Form = () => {
       />
 
       <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
-      {/* 거주지역 value 부분에 모달에서 저장한 recoil값 저장예정 = 지금은 임시값 */}
 
       <FormStyle.DataInput
         type='text'
@@ -174,7 +172,7 @@ const Form = () => {
                 id={transportation}
                 value={transportation}
                 onClick={(event)=>{
-                  event.stopPropagation(); //이벤트 버블링 방지용
+                  event.stopPropagation();
                 }}
               />
               {transportation}
@@ -237,11 +235,11 @@ const Form = () => {
       <SubmitButton
         type="submit"
         onClick={()=>{console.log("submit click")}}
-        disabled
+        disabled={false}
       >
         지원하기
       </SubmitButton>
-    </FormStyle.Container>
+    </FormStyle.StyledForm>
   );
 };
 

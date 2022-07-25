@@ -8,7 +8,7 @@ import {
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 
-export const Container = styled.div`
+export const StyledForm = styled.div`
   position: relative;
   //height: 100vh;
   //display: flex;
@@ -37,19 +37,19 @@ export const SubTitle = styled.p`
   display: flex;
   justify-content: flex-start;
   font-size: 12px;
-  color: #9a9a9a;
+  color: var(--color-subtitle);
   margin-top: 8px;
 `;
 
 //form의 input들에 사용한 컴포넌트
 export const DataInput = styled.input`
   width: 90%;
-  border-bottom: 1.5px solid #c4c4c4;
+  border-bottom: 1.5px solid var(--color-gray);
   padding-top: 12px;
   padding-bottom: 12px;
 
   &::placeholder {
-    color: #c4c4c4;
+    color: var(--color-gray);
   }
 `;
 
@@ -58,24 +58,20 @@ export const NoneDisplayInput = styled.input`
 `;
 
 //radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
-
-
-
 const StyledRadioLabel = styled.label<{ selected: boolean }>`
-
   width: 4rem;
   margin-right: 3rem;
   padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #c4c4c4;
+  color: var(--color-gray);
   cursor: pointer;
 
   ${(props) =>
     props.selected &&
     css`
-      color: black;
+      color: var(--color-black);
     `};
 `;
 
@@ -98,14 +94,14 @@ export const StyledCheckboxLabel = styled.label<{ selected: boolean }>`
   border-radius: 20px;
   padding: 8px 10px;
   margin-left: 8px;
-  color: #c4c4c4;
+  color: var(--color-gray);
   font-size: 13px;
   cursor: pointer;
 
   ${(props) =>
     props.selected &&
     css`
-      color: black;
+      color: var(--color-black);
     `};
 `;
 
@@ -124,13 +120,13 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
-  color: #c4c4c4;
+  color: var(--color-gray);
   cursor: pointer;
 
   ${(props) =>
     props.agreement &&
     css`
-      color: black;
+      color: var(--color-black);
     `};
 `;
 
@@ -145,7 +141,7 @@ export const Positioner = styled.div`
   width: 90%;
   padding: 15px 0;
   margin: 0 auto;
-  border-top: 2px solid black;
+  border-top: 2px solid var(--color-black);
 `;
 
 export const Stretcher = styled.div`

@@ -7,7 +7,7 @@ export const SubmitButton = styled.button<{ disabled: boolean }>`
   padding: 15px;
   background-color: ${(props) =>
     props.disabled ? css`var(--color-gray)` : css`var(--color-dark-gray)`};
-  color: white;
+  color: var(--color-white);
   border-radius: 12px;
   font-weight: bold;
 `;
