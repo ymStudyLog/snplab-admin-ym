@@ -1,14 +1,22 @@
-import React from 'react';
-import Search from '../components/admin/Search';
 import styled from 'styled-components';
+import React from "react";
+import Search from "../components/admin/Search";
+import { regionService, getRegionData } from "../api/api";
+// import { applyService,getApplicantsData } from "../api/api";
 
 type Props = {};
 
-//1차모집 : 2022-07-01 ~ 2022-07-31
-//2차모집 : 2022-08-01 ~ 2022-08-31
-//3차모집 : 2022-09-01 ~ 2022-09-30
+type DataType = {
+  [key:string]:string;
+}
 
 const Admin = (props: Props) => {
+  const [temp, setTemp] = React.useState([]);
+  // React.useEffect(()=>{
+  //   getRegionData(regionService).then((data)=>{setTemp(data)});
+  // },[]);
+  // console.log(temp[0].인천광역시);
+
   return (
     <AdminContainer>
       <Search />

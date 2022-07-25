@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -35,7 +35,7 @@ button {
 
 /* 유미가 추가한 색상 */
 :root {
-    --color-border: #c4c4c4;
+    --color-border: #d4d4d4;
     --color-placehloder:#c4c4c4;
     --color-gray: #c4c4c4; // Form인풋 색상, 비활성화 색상
     --color-dark-gray: #31393d; //활성화 색상(어두운 회색)으로 어떨지... snplab 웹사이트에서 뽑은 색상
@@ -45,6 +45,7 @@ button {
     --color-privacy: #636363; //개인정보 메인 내용 글자색
     --color-black: #000000;
     --color-white: #ffffff;
+    --color-red: #fd8397; // 지원 완료 확인 모달의 확인 버튼
   }
 `;
 

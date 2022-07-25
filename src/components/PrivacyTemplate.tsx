@@ -21,8 +21,8 @@ const PrivacyTemplate = (props: Props) => {
         <Title>서비스 이용약관</Title>
       </PrivacyHeader>
       {props.children}
-      <PrivacyMain color="#9a9a9a">{introduction}</PrivacyMain>
-      <PrivacyMain color="#636363">{mainContent}</PrivacyMain>
+      <PrivacyIntro>{introduction}</PrivacyIntro>
+      <PrivacyMain>{mainContent}</PrivacyMain>
     </MobileSizeContainer>
   );
 };
@@ -32,7 +32,7 @@ export default PrivacyTemplate;
 const PrivacyHeader = styled.div`
   display: flex;
   padding: 10px;
-  border-bottom: 1.5px solid #c4c4c4;
+  border-bottom: 1.5px solid var(--color-border);
 `;
 
 const Title = styled.h1`
@@ -44,13 +44,16 @@ const GoBackButton = styled.button`
   background: none;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 `;
 
-const PrivacyMain = styled.div`
+const PrivacyIntro = styled.div`
   white-space: pre-line;
   text-align: start;
   line-height: 20px;
   padding: 15px;
-  color: ${(props) => props.color || "black"};
+  color: var(--color-subtitle);
 `;
+
+const PrivacyMain = styled(PrivacyIntro)`
+  color: var(--color-privacy);
+`
