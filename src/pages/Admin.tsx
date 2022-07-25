@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Search from "../components/admin/Search";
 
 type Props = {};
 
@@ -7,7 +8,12 @@ type Props = {};
 //3차모집 : 2022-09-01 ~ 2022-09-30
 
 const Admin = (props: Props) => {
-  return <div>Admin</div>;
+  return (
+    <div>
+      Admin
+      <Search />
+    </div>
+  );
 };
 
 export default Admin;

@@ -48,7 +48,7 @@ const Region = (props: any) => {
                 </Dropdown>
               </DropdownContainer>
             </RegionContent>
-            <SubmitButton>확인</SubmitButton>
+            <SubmitButton disabled={false}>확인</SubmitButton>
           </RegionContainer>
         </ModalBackground>
       </ParentContainer>
