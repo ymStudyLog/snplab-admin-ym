@@ -35,7 +35,7 @@ const RegionModal = ({ setShowModal }: any) => {
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
-      <SubmitButton>확인</SubmitButton>
+      <SubmitButton disabled={false}>확인</SubmitButton>
     </R.Container>
   );
 };
