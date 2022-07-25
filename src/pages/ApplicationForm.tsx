@@ -21,21 +21,6 @@ const ApplicationForm = (props: Props) => {
 
 export default ApplicationForm;
 
-// id : number,
-// name : string,
-// gender : string,
-// birthday : string,
-// region: [
-//   string,
-//   string
-// ],
-// contact : number | string,
-// email : string,
-// transportation: string[],
-// agreement: boolean,
-// pass: boolean
-// submitdate: string,
-
 const FormHeader = styled.p`
   padding: 20px;
   display: flex;
