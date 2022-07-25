@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 // export const SubmitButton = styled.button<{ disabled: boolean }>`
 //   width: 90%;
@@ -18,8 +18,11 @@ export const SubmitButton = styled.button`
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 15px;
-  background-color: black;
+  background-color: #fd8397;
   color: white;
   border-radius: 12px;
   font-weight: bold;
+  :disabled {
+    background-color: #31393d;
+  }
 `;
