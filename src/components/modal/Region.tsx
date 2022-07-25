@@ -5,10 +5,6 @@ import { SubmitButton } from '../../styles/SubmitButton.styled';
 
 const RegionModal = ({ setShowModal }: any) => {
   return (
-    // Body, ParentContainer는 없어질 부분
-    // <R.Body>
-    //   <R.ParentContainer>
-    // <R.ModalBackground>
     <R.Container>
       <R.HeaderContainer>
         <R.CloseButton
@@ -41,9 +37,6 @@ const RegionModal = ({ setShowModal }: any) => {
       </R.ContentContainer>
       <SubmitButton>확인</SubmitButton>
     </R.Container>
-    // </R.ModalBackground>
-    //   </R.ParentContainer>
-    // </R.Body>
   );
 };
 

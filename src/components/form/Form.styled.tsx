@@ -1,5 +1,10 @@
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import {
+  RadioStyledProps,
+  ToggleStyledProps,
+  CheckboxStyledProps,
+} from "./Form.type";
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 
@@ -53,7 +58,11 @@ export const NoneDisplayInput = styled.input`
 `;
 
 //radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
-const StyledLabel = styled.label<{ selected: boolean }>`
+
+
+
+const StyledRadioLabel = styled.label<{ selected: boolean }>`
+
   width: 4rem;
   margin-right: 3rem;
   padding: 8px;
@@ -70,14 +79,9 @@ const StyledLabel = styled.label<{ selected: boolean }>`
     `};
 `;
 
-type RadioProps = {
-  selected: boolean;
-  children: React.ReactNode;
-  htmlFor: string;
-  onClick: () => void;
-};
-
-export const RadioLabel = (props: RadioProps) => <StyledLabel {...props}>{props.children}</StyledLabel>;
+export const RadioLabel = (props: RadioStyledProps) => (
+  <StyledRadioLabel {...props}>{props.children}</StyledRadioLabel>
+);
 
 //checkbox 컨테이너와 label
 export const CheckBoxContainer = styled.div`
@@ -89,7 +93,7 @@ export const CheckBoxContainer = styled.div`
   align-content: space-between;
 `;
 
-export const CheckBoxLabel = styled.label`
+export const StyledCheckboxLabel = styled.label<{ selected: boolean }>`
   border: 2px solid;
   border-radius: 20px;
   padding: 8px 10px;
@@ -97,7 +101,17 @@ export const CheckBoxLabel = styled.label`
   color: #c4c4c4;
   font-size: 13px;
   cursor: pointer;
+
+  ${(props) =>
+    props.selected &&
+    css`
+      color: black;
+    `};
 `;
+
+export const CheckBoxLabel = (props: CheckboxStyledProps) => (
+  <StyledCheckboxLabel {...props}>{props.children}</StyledCheckboxLabel>
+);
 
 //개인정보 토글 컨테이너와 버튼
 export const DataToggleContainer = styled.div`
@@ -120,13 +134,11 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
     `};
 `;
 
-type ToggleProps = {
-  agreement: boolean;
-  children: JSX.Element;
-  onClick: () => void;
-};
 
-export const DataToggle = (props: ToggleProps) => <StyledDiv {...props}>{props.children}</StyledDiv>;
+export const DataToggle = (props: ToggleStyledProps) => (
+  <StyledDiv {...props}>{props.children}</StyledDiv>
+);
+
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`

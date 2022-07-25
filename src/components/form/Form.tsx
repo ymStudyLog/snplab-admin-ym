@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { MdArrowForwardIos } from 'react-icons/md';
-import { BsCheckCircle, BsCheck } from 'react-icons/bs';
+import React from "react";
+import { MdArrowForwardIos } from "react-icons/md";
+import { BsCheckCircle, BsCheck } from "react-icons/bs";
 // import axios from "axios";
 import * as FormStyle from './Form.styled';
 import ValidationInput from '../ValidationInput';
@@ -8,49 +8,39 @@ import regex from '../../utils/Regex';
 import { SubmitButton } from '../../styles/SubmitButton.styled';
 import ModalBackground from '../modal/ModalBackground';
 import Region from '../modal/Region';
+import { RadioState, PolicyState, CheckboxState } from "./Form.type";
 
-type RadioType = {
-  female: boolean;
-  male: boolean;
-};
-
-type PolicyType = {
-  privacy: boolean;
-  thirdparty: boolean;
-};
-
+//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들
 const transportations = [
-  ['bus', '버스'],
-  ['subway', '지하철'],
-  ['taxi', '택시'],
-  ['KTX/train', 'KTX/기차'],
-  ['walk', '도보'],
-  ['bicycle', '자전거'],
-  ['electric scooter', '전동킥보드'],
-  ['automobile', '자가용'],
+ "버스", "지하철", "택시", "KTX/기차", "도보", "자전거", "전동킥보드", "자가용" //위치 옮기기
 ];
 
-//TODO : checkbox 클릭시 색상 변환 설정
-//TODO : onSubmit 이벤트 axios로 form 데이터 전송 바로 안되고 FormData 라이브러리 필요 - button disabled 속성 핸들 처리
 const Form = () => {
-  const [radio, setRadio] = React.useState<RadioType>({
+  const [radio, setRadio] = React.useState<RadioState>({
     female: false,
     male: false,
   });
 
-  const [policy, setPolicy] = React.useState<PolicyType>({
+  const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
   });
 
+
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
-  const [nickInput, setNickInput] = useState('');
-  const [emailInput, setEmailInput] = useState('');
-  const [phoneInput, setPhoneInput] = useState('');
-  const [dateInput, setDateInput] = useState('');
+  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
+  const handleClick = (checkbox: CheckboxState, index: number) => {
+      checkbox.splice(index,1,!checkbox[index]);
+      setCheckbox(checkbox.splice(0,8).concat(checkbox));
+    }
 
-  //console.log(dateInput);
+  const [nickInput, setNickInput] = React.useState("");
+  const [emailInput, setEmailInput] = React.useState("");
+  const [phoneInput, setPhoneInput] = React.useState("");
+  const [dateInput, setDateInput] = React.useState("");
+
+  // console.log(dateInput)
 
   return (
     <FormStyle.Container>
@@ -73,10 +63,16 @@ const Form = () => {
           htmlFor='female'
           selected={radio.female}
           onClick={() => {
-            setRadio({ ...radio, female: true, male: false });
+            setRadio((prevState : RadioState)=>{return {...prevState, female: true, male: false}});
           }}
         >
-          <FormStyle.NoneDisplayInput type='radio' name='gender' id='female' value='female' />
+          <FormStyle.NoneDisplayInput
+            type="radio"
+            name="gender"
+            id="female"
+            value="여"
+          />
+
           <BsCheckCircle size={24} />
           여자
         </FormStyle.RadioLabel>
@@ -84,10 +80,16 @@ const Form = () => {
           htmlFor='male'
           selected={radio.male}
           onClick={() => {
-            setRadio({ ...radio, male: true, female: false });
+            setRadio((prevState : RadioState)=>{return {...prevState, male: true, female: false}});
           }}
         >
-          <FormStyle.NoneDisplayInput type='radio' name='gender' id='male' value='male' />
+          <FormStyle.NoneDisplayInput
+            type="radio"
+            name="gender"
+            id="male"
+            value="남"
+          />
+
           <BsCheckCircle size={24} />
           남자
         </FormStyle.RadioLabel>
@@ -156,18 +158,27 @@ const Form = () => {
         <FormStyle.SubTitle>주로 이용하는 교통수단을 모두 선택해주세요</FormStyle.SubTitle>
       </FormStyle.DataTitle>
       <FormStyle.CheckBoxContainer>
-        {transportations.map((transportation: string[]): JSX.Element => {
+        {transportations.map((transportation: string, index: number): JSX.Element => {
           return (
             <FormStyle.CheckBoxLabel
-              htmlFor={transportation[0]}
-              onClick={() => {
-                console.log(transportation[0]);
+              htmlFor={transportation}
+              key={index}
+              selected={checkbox[index]}
+              onClick={()=>{
+                handleClick(checkbox, index);
               }}
-              key={transportation[0]}
             >
-              <FormStyle.NoneDisplayInput type='checkbox' name='transportation' id={transportation[0]} value={transportation[0]} />
+              <FormStyle.NoneDisplayInput
+                type="checkbox"
+                name="transportation"
+                id={transportation}
+                value={transportation}
+                onClick={(event)=>{
+                  event.stopPropagation(); //이벤트 버블링 방지용
+                }}
+              />
+              {transportation}
 
-              {transportation[1]}
             </FormStyle.CheckBoxLabel>
           );
         })}
@@ -178,7 +189,7 @@ const Form = () => {
           <FormStyle.DataToggle
             agreement={policy.privacy && policy.thirdparty}
             onClick={() => {
-              setPolicy({ ...policy, privacy: true, thirdparty: true });
+              setPolicy((prevState : PolicyState)=>{return{...prevState, privacy: !policy.privacy, thirdparty: !policy.thirdparty}});
             }}
           >
             <BsCheckCircle size={24} />
@@ -193,7 +204,7 @@ const Form = () => {
             <FormStyle.DataToggle
               agreement={policy.privacy}
               onClick={() => {
-                setPolicy({ ...policy, privacy: !policy.privacy });
+                setPolicy((prevState : PolicyState)=>{return{ ...prevState, privacy: !policy.privacy }});
               }}
             >
               <BsCheck size={24} />
@@ -209,7 +220,7 @@ const Form = () => {
             <FormStyle.DataToggle
               agreement={policy.thirdparty}
               onClick={() => {
-                setPolicy({ ...policy, thirdparty: !policy.thirdparty });
+                setPolicy((prevState : PolicyState) =>{return{ ...prevState, thirdparty: !policy.thirdparty }});
               }}
             >
               <BsCheck size={24} />
@@ -222,12 +233,11 @@ const Form = () => {
         </FormStyle.Stretcher>
       </FormStyle.Positioner>
 
-      {/* disabled = true 일때는 회색 바탕 */}
+      {/* submit버튼 disabled = true 일때는 --color-gray, false --color-dark-gray */}
       <SubmitButton
-        type='submit'
-        onClick={() => {
-          console.log('submit click');
-        }}
+        type="submit"
+        onClick={()=>{console.log("submit click")}}
+        disabled
       >
         지원하기
       </SubmitButton>
