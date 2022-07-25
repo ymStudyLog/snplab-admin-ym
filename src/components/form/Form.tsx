@@ -4,14 +4,22 @@ import { BsCheckCircle, BsCheck } from "react-icons/bs";
 import * as FormStyle from './Form.styled';
 import ValidationInput from '../ValidationInput';
 import regex from '../../utils/Regex';
-import { SubmitButton } from '../../styles/SubmitButton.styled';
 import ModalBackground from '../modal/ModalBackground';
 import Region from '../modal/Region';
-import { RadioState, PolicyState, CheckboxState } from "./Form.type";
+import Confirm from '../modal/Confirm';
+import { SubmitButton } from '../../styles/SubmitButton.styled';
+import { RadioState, PolicyState, CheckboxState } from './Form.type';
 
 //TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들
 const transportations = [
- "버스", "지하철", "택시", "KTX/기차", "도보", "자전거", "전동킥보드", "자가용" //위치 옮기기
+  '버스',
+  '지하철',
+  '택시',
+  'KTX/기차',
+  '도보',
+  '자전거',
+  '전동킥보드',
+  '자가용', //위치 옮기기
 ];
 
 const Form = () => {
@@ -25,19 +33,19 @@ const Form = () => {
     thirdparty: false,
   });
 
-
-  const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
 
   const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
   const handleClick = (checkbox: CheckboxState, index: number) => {
-      checkbox.splice(index,1,!checkbox[index]);
-      setCheckbox(checkbox.splice(0,8).concat(checkbox));
-    }
+    checkbox.splice(index, 1, !checkbox[index]);
+    setCheckbox(checkbox.splice(0, 8).concat(checkbox));
+  };
 
-  const [nickInput, setNickInput] = React.useState("");
-  const [emailInput, setEmailInput] = React.useState("");
-  const [phoneInput, setPhoneInput] = React.useState("");
-  const [dateInput, setDateInput] = React.useState("");
+  const [nickInput, setNickInput] = React.useState('');
+  const [emailInput, setEmailInput] = React.useState('');
+  const [phoneInput, setPhoneInput] = React.useState('');
+  const [dateInput, setDateInput] = React.useState('');
 
   // console.log(dateInput)
 
@@ -62,16 +70,12 @@ const Form = () => {
           htmlFor='female'
           selected={radio.female}
           onClick={() => {
-            setRadio((prevState : RadioState)=>{return {...prevState, female: true, male: false}});
+            setRadio((prevState: RadioState) => {
+              return { ...prevState, female: true, male: false };
+            });
           }}
         >
-          <FormStyle.NoneDisplayInput
-            type="radio"
-            name="gender"
-            id="female"
-            value="여"
-          />
-
+          <FormStyle.NoneDisplayInput type='radio' name='gender' id='female' value='여' />
           <BsCheckCircle size={24} />
           여자
         </FormStyle.RadioLabel>
@@ -79,16 +83,12 @@ const Form = () => {
           htmlFor='male'
           selected={radio.male}
           onClick={() => {
-            setRadio((prevState : RadioState)=>{return {...prevState, male: true, female: false}});
+            setRadio((prevState: RadioState) => {
+              return { ...prevState, male: true, female: false };
+            });
           }}
         >
-          <FormStyle.NoneDisplayInput
-            type="radio"
-            name="gender"
-            id="male"
-            value="남"
-          />
-
+          <FormStyle.NoneDisplayInput type='radio' name='gender' id='male' value='남' />
           <BsCheckCircle size={24} />
           남자
         </FormStyle.RadioLabel>
@@ -114,13 +114,13 @@ const Form = () => {
         name='region'
         placeholder='거주지역 선택'
         onClick={() => {
-          setShowModal(true);
+          setShowRegionModal(true);
           console.log('모달 Open');
         }}
       />
-      {showModal && (
+      {showRegionModal && (
         <ModalBackground>
-          <Region setShowModal={setShowModal} />
+          <Region setShowRegionModal={setShowRegionModal} />
         </ModalBackground>
       )}
 
@@ -162,13 +162,13 @@ const Form = () => {
               htmlFor={transportation}
               key={index}
               selected={checkbox[index]}
-              onClick={()=>{
+              onClick={() => {
                 handleClick(checkbox, index);
               }}
             >
               <FormStyle.NoneDisplayInput
-                type="checkbox"
-                name="transportation"
+                type='checkbox'
+                name='transportation'
                 id={transportation}
                 value={transportation}
                 onClick={(event)=>{
@@ -176,7 +176,6 @@ const Form = () => {
                 }}
               />
               {transportation}
-
             </FormStyle.CheckBoxLabel>
           );
         })}
@@ -187,7 +186,9 @@ const Form = () => {
           <FormStyle.DataToggle
             agreement={policy.privacy && policy.thirdparty}
             onClick={() => {
-              setPolicy((prevState : PolicyState)=>{return{...prevState, privacy: !policy.privacy, thirdparty: !policy.thirdparty}});
+              setPolicy((prevState: PolicyState) => {
+                return { ...prevState, privacy: !policy.privacy, thirdparty: !policy.thirdparty };
+              });
             }}
           >
             <BsCheckCircle size={24} />
@@ -202,7 +203,9 @@ const Form = () => {
             <FormStyle.DataToggle
               agreement={policy.privacy}
               onClick={() => {
-                setPolicy((prevState : PolicyState)=>{return{ ...prevState, privacy: !policy.privacy }});
+                setPolicy((prevState: PolicyState) => {
+                  return { ...prevState, privacy: !policy.privacy };
+                });
               }}
             >
               <BsCheck size={24} />
@@ -218,7 +221,9 @@ const Form = () => {
             <FormStyle.DataToggle
               agreement={policy.thirdparty}
               onClick={() => {
-                setPolicy((prevState : PolicyState) =>{return{ ...prevState, thirdparty: !policy.thirdparty }});
+                setPolicy((prevState: PolicyState) => {
+                  return { ...prevState, thirdparty: !policy.thirdparty };
+                });
               }}
             >
               <BsCheck size={24} />
@@ -233,13 +238,21 @@ const Form = () => {
 
       {/* submit버튼 disabled = true 일때는 --color-gray, false --color-dark-gray */}
       <SubmitButton
-        type="submit"
-        onClick={()=>{console.log("submit click")}}
-        disabled={false}
+        type='submit'
+        //disabled
+        onClick={() => {
+          setShowConfirmModal(true);
+          console.log('submit click');
+        }}
       >
         지원하기
       </SubmitButton>
-    </FormStyle.StyledForm>
+      {showConfirmModal && (
+        <ModalBackground>
+          <Confirm />
+        </ModalBackground>
+      )}
+    </FormStyle.Container>
   );
 };
 

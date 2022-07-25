@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -45,6 +45,7 @@ button {
     --color-privacy: #636363; //개인정보 메인 내용 글자색
     --color-black: #000000;
     --color-white: #ffffff;
+    --color-red: #fd8397; // 지원 완료 확인 모달의 확인 버튼
   }
 `;
 

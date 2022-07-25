@@ -3,13 +3,13 @@ import * as R from './Region.styled';
 import { MdClose } from 'react-icons/md';
 import { SubmitButton } from '../../styles/SubmitButton.styled';
 
-const RegionModal = ({ setShowModal }: any) => {
+const Region = ({ setShowRegionModal }: any) => {
   return (
     <R.Container>
       <R.HeaderContainer>
         <R.CloseButton
           onClick={() => {
-            setShowModal(false);
+            setShowRegionModal(false);
             console.log('모달 Close');
           }}
         >
@@ -40,4 +40,4 @@ const RegionModal = ({ setShowModal }: any) => {
   );
 };
 
-export default RegionModal;
+export default Region;
