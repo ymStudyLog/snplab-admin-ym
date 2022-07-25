@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from './Region.styled';
 import { MdClose } from 'react-icons/md';
-import { SubmitButton } from '../../styles/SubmitButton.styled';
+import { SubmitButton } from "../../styles/template";
 
 const Region = ({ setShowRegionModal }: any) => {
   return (

@@ -1,21 +1,14 @@
-import styled from 'styled-components';
 import React from "react";
+import styled from 'styled-components';
 import Search from "../components/admin/Search";
-import { regionService, getRegionData } from "../api/api";
-// import { applyService,getApplicantsData } from "../api/api";
+import { useRecoilValue } from "recoil";
+import { searchQuery } from "../store/atom";
 
 type Props = {};
 
-type DataType = {
-  [key:string]:string;
-}
-
 const Admin = (props: Props) => {
-  const [temp, setTemp] = React.useState([]);
-  // React.useEffect(()=>{
-  //   getRegionData(regionService).then((data)=>{setTemp(data)});
-  // },[]);
-  // console.log(temp[0].인천광역시);
+  const search = useRecoilValue(searchQuery); //getApplicationData에 넣을 search 인자값
+  console.log(search);
 
   return (
     <AdminContainer>

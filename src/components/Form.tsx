@@ -1,16 +1,18 @@
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { BsCheckCircle, BsCheck } from "react-icons/bs";
-import * as FormStyle from './Form.styled';
-import ValidationInput from '../ValidationInput';
-import regex from '../../utils/Regex';
-import ModalBackground from '../modal/ModalBackground';
-import Region from '../modal/Region';
-import Confirm from '../modal/Confirm';
-import { SubmitButton } from '../../styles/SubmitButton.styled';
-import { RadioState, PolicyState, CheckboxState } from './Form.type';
+import * as FormStyle from "../styles/Form.styled";
+import ValidationInput from './ValidationInput';
+import regex from '../utils/Regex';
+import ModalBackground from './modal/ModalBackground';
+import Region from './modal/Region';
+import Confirm from './modal/Confirm';
+import { SubmitButton } from "../styles/template";
+import { RadioState, PolicyState, CheckboxState } from '../types/Form.type';
 
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들
+//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리
+//TODO : typescript 처리
+//TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게 
 const transportations = [
   '버스',
   '지하철',
@@ -19,7 +21,7 @@ const transportations = [
   '도보',
   '자전거',
   '전동킥보드',
-  '자가용', //위치 옮기기
+  '자가용',
 ];
 
 const Form = () => {
@@ -252,7 +254,7 @@ const Form = () => {
           <Confirm />
         </ModalBackground>
       )}
-    </FormStyle.Container>
+    </FormStyle.StyledForm>
   );
 };
 
