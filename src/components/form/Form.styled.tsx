@@ -2,6 +2,15 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
+
+export const Container = styled.div`
+  position: relative;
+  //height: 100vh;
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+`;
+
 export const DataTitle = styled.div`
   padding: 20px;
   font-weight: bold;
@@ -44,7 +53,7 @@ export const NoneDisplayInput = styled.input`
 `;
 
 //radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
-const StyledLabel = styled.label<{selected: boolean}>`
+const StyledLabel = styled.label<{ selected: boolean }>`
   width: 4rem;
   margin-right: 3rem;
   padding: 8px;
@@ -97,7 +106,7 @@ export const DataToggleContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledDiv = styled.div<{agreement:boolean}>`
+const StyledDiv = styled.div<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
@@ -117,9 +126,7 @@ type ToggleProps = {
   onClick: () => void;
 };
 
-export const DataToggle = (props: ToggleProps) => (
-  <StyledDiv {...props}>{props.children}</StyledDiv>
-);
+export const DataToggle = (props: ToggleProps) => <StyledDiv {...props}>{props.children}</StyledDiv>;
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`
@@ -142,6 +149,3 @@ export const LinkButton = styled(Link)`
   display: flex;
   align-items: center;
 `;
-
-
-

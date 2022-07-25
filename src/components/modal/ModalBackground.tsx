@@ -15,15 +15,14 @@ export default ModalBackground;
 
 const Background = styled.div`
   position: absolute;
-  width: 350px;
-  height: 100%;
-  z-index: 999;
+  left: 50%;
+  transform: translateX(-50%);
   top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width: 350px;
+  height: 1070px;
+  z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 `;

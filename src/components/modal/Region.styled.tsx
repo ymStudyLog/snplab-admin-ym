@@ -20,22 +20,23 @@ export const ParentContainer = styled.div`
   background-color: #ffffff;
 `;
 
-export const ModalBackground = styled.div`
-  position: relative;
-  height: 80vh;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-`;
+//! 컴포넌트 분리
+// export const ModalBackground = styled.div`
+//   position: relative;
+//   height: 80vh;
+//   z-index: 999;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   justify-content: center;
+//   align-items: flex-end;
+// `;
 
 export const Container = styled.div`
-  position: relative;
+  //position: absolute;
   width: 100%;
   height: 40vh;
   border: 1px solid #dbdbdb;
