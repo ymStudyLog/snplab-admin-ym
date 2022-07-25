@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import React from "react";
 import Search from "../components/admin/Search";
 import { regionService, getRegionData } from "../api/api";
@@ -17,11 +18,15 @@ const Admin = (props: Props) => {
   // console.log(temp[0].인천광역시);
 
   return (
-    <div>
-      Admin
+    <AdminContainer>
       <Search />
-    </div>
+    </AdminContainer>
   );
 };
 
 export default Admin;
+
+const AdminContainer = styled.div`
+  width: 100%;
+  height: auto;
+`;
