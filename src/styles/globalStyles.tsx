@@ -3,10 +3,9 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
-#root,
+
 html {
-  * { /* 연진이 추가한 속성 */
-      /* 스크롤 바 제거 */
+  * {/* 스크롤 바 제거 */
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
       ::-webkit-scrollbar {
@@ -21,7 +20,8 @@ body {
   height: 100%;
 }
 
-input, button { /* 연진이 추가한 속성 */
+
+input, button { 
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;

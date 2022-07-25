@@ -8,7 +8,6 @@ const App = () => {
     <>
       <GlobalStyle />
       <Router />
-      <Region />
     </>
   );
 };

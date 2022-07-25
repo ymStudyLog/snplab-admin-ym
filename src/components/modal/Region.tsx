@@ -1,59 +1,43 @@
 import React from 'react';
+import * as R from './Region.styled';
 import { MdClose } from 'react-icons/md';
-import {
-  Body,
-  ParentContainer,
-  ModalBackground,
-  RegionContainer,
-  RegionHeader,
-  CloseIconWrapper,
-  RegionTitle,
-  RegionContent,
-  DropdownTitleContainer,
-  DropdownTitle,
-  DropdownContainer,
-  Dropdown,
-  DropdownList,
-} from './Region.styled';
 import { SubmitButton } from '../../styles/SubmitButton.styled';
 
-const Region = (props: any) => {
+const RegionModal = ({ setShowModal }: any) => {
   return (
-    // Body, ParentContainer는 없어질 부분
-    <Body>
-      <ParentContainer>
-        <ModalBackground>
-          <RegionContainer>
-            <RegionHeader>
-              <CloseIconWrapper>
-                <MdClose />
-              </CloseIconWrapper>
-              <RegionTitle>거주지역 선택</RegionTitle>
-            </RegionHeader>
-            <RegionContent>
-              <DropdownTitleContainer>
-                <DropdownTitle>시/도</DropdownTitle>
-                <DropdownTitle>시/구/군</DropdownTitle>
-              </DropdownTitleContainer>
-              <DropdownContainer>
-                <Dropdown>
-                  <DropdownList>경기</DropdownList>
-                  <DropdownList>서울</DropdownList>
-                  <DropdownList>강원</DropdownList>
-                </Dropdown>
-                <Dropdown>
-                  <DropdownList>강남구</DropdownList>
-                  <DropdownList>강동구</DropdownList>
-                  <DropdownList>강북구</DropdownList>
-                </Dropdown>
-              </DropdownContainer>
-            </RegionContent>
-            <SubmitButton disabled={false}>확인</SubmitButton>
-          </RegionContainer>
-        </ModalBackground>
-      </ParentContainer>
-    </Body>
+    <R.Container>
+      <R.HeaderContainer>
+        <R.CloseButton
+          onClick={() => {
+            setShowModal(false);
+            console.log('모달 Close');
+          }}
+        >
+          <MdClose />
+        </R.CloseButton>
+        <R.Header>거주지역 선택</R.Header>
+      </R.HeaderContainer>
+      <R.ContentContainer>
+        <R.MenuTitleContainer>
+          <R.MenuTitle>시/도</R.MenuTitle>
+          <R.MenuTitle>시/구/군</R.MenuTitle>
+        </R.MenuTitleContainer>
+        <R.MenuListContainer>
+          <R.Menu>
+            <R.MenuList>경기</R.MenuList>
+            <R.MenuList>서울</R.MenuList>
+            <R.MenuList>강원</R.MenuList>
+          </R.Menu>
+          <R.Menu>
+            <R.MenuList>강남구</R.MenuList>
+            <R.MenuList>강동구</R.MenuList>
+            <R.MenuList>강북구</R.MenuList>
+          </R.Menu>
+        </R.MenuListContainer>
+      </R.ContentContainer>
+      <SubmitButton>확인</SubmitButton>
+    </R.Container>
   );
 };
 
-export default Region;
+export default RegionModal;

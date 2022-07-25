@@ -7,6 +7,15 @@ import {
 } from "./Form.type";
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
+
+export const Container = styled.div`
+  position: relative;
+  //height: 100vh;
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+`;
+
 export const DataTitle = styled.div`
   padding: 20px;
   font-weight: bold;
@@ -49,7 +58,11 @@ export const NoneDisplayInput = styled.input`
 `;
 
 //radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
+
+
+
 const StyledRadioLabel = styled.label<{ selected: boolean }>`
+
   width: 4rem;
   margin-right: 3rem;
   padding: 8px;
@@ -121,9 +134,11 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
     `};
 `;
 
+
 export const DataToggle = (props: ToggleStyledProps) => (
   <StyledDiv {...props}>{props.children}</StyledDiv>
 );
+
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`

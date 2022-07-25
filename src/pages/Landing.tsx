@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { PageTemplate } from "../styles/template";
-import LogoImgSrc from "../asset/logo-snplab.png";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { PageTemplate } from '../styles/template';
+import LogoImgSrc from '../asset/logo-snplab.png';
+import { Link } from 'react-router-dom';
 
 type Props = {};
 
@@ -10,10 +10,10 @@ const Landing = (props: Props) => {
   return (
     <PageTemplate>
       <LandingContainer>
-        <LogoImg src={LogoImgSrc} alt="SNPLab logo" />
+        <LogoImg src={LogoImgSrc} alt='SNPLab logo' />
         <Title>AI 학습용 데이터 크라우드 워커 모집 페이지</Title>
-        <Link to="/form">
-          <GoToFormButton>지원하러 가기</GoToFormButton>
+        <Link to='/form'>
+          <GoToFormButton>지원하기</GoToFormButton>
         </Link>
       </LandingContainer>
     </PageTemplate>
