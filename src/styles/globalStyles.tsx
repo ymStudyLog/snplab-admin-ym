@@ -35,7 +35,7 @@ button {
 
 /* 유미가 추가한 색상 */
 :root {
-    --color-border: #c4c4c4;
+    --color-border: #d4d4d4;
     --color-placehloder:#c4c4c4;
     --color-gray: #c4c4c4; // Form인풋 색상, 비활성화 색상
     --color-dark-gray: #31393d; //활성화 색상(어두운 회색)으로 어떨지... snplab 웹사이트에서 뽑은 색상

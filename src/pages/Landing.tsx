@@ -49,8 +49,8 @@ const GoToFormButton = styled.button`
   border: none;
   border-radius: 12px;
   font-size: 20px;
-  background: #1cc5f7;
-  color: white;
+  background: var(--color-main);
+  color: var(--color-white);
   cursor: pointer;
   transition: all 0.3s;
   font-weight: bold;
