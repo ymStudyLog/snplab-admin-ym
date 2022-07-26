@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as C from './Confirm.styled';
+import * as C from '../../styles/Confirm.styled';
 
 const Confirm = ({ setShowConfirmModal }: any) => {
   const navigate = useNavigate();

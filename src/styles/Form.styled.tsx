@@ -9,10 +9,6 @@ import {
 
 export const StyledForm = styled.form`
   position: relative;
-  //height: 100vh;
-  //display: flex;
-  //flex-direction: column;
-  //align-items: center;
 `;
 
 export const DataTitle = styled.div`

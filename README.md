@@ -1,46 +1,145 @@
-# Getting Started with Create React App
+## 목차 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 1. 프로젝트 설치 및 실행
 
-In the project directory, you can run:
+```
+git clone https://github.com/Wanted-Pre-Onboarding-FE-Team5/snplab-admin.git
+npm i
+npm start 
+npm run server //json-server 실행 명령어 
+```
 
-### `npm start`
+## 2. 프로젝트 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+원티드 프리온보딩 프론트엔드 코스 기업과제 첫번째, (주)에스앤피랩 기업 과제 수행 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 3. 프로젝트 목표
 
-### `npm test`
+기업에서 제공한 기획안을 정확히 이해하고 구현한다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 4. 프로젝트 진행 방향
 
-### `npm run build`
+**기획안 분석**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 레이아웃, 스타일
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+전부 기획안을 베이스로 구현
+메인 컬러는 (주)에스앤피랩 웹사이트를 참고
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. 페이지 구분
 
-### `npm run eject`
+ - (home)랜딩 페이지 : 지원하기 버튼 click시 지원 폼 페이지 이동
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ - 지원 폼 페이지 : 웹 브라우저 기준 중앙에 모바일 사이즈로 구현
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ - '개인정보 처리방침', '제3자 정보제공 동의 안내' 페이지 : 동일한 contents로 확인되어 제목만 바꿔서 하나의 컴포넌트 재사용,  router로 페이지 이동 예정
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ - admin 페이지 : 랜딩페이지와 더불어 웹 브라우저 크기로 레이아웃 구현
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**각자 코드 작업 들어가기 전 프로젝트 기본 작업**
 
-## Learn More
+- git organization에 new repository 생성
+- git 컨벤션, issue 카드 template 생성
+- CRA (npx create-react-app "project name" —template typescript)
+- 임시 database 구현
+- 임시 디렉토리 구조 나누기
+- 라우터 설정 
+- styled-components의 globalstyle 생성 및 reset 적용
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**기획안을 두 파트로 나눠서 각각 task를 분배하여 구현**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. 지원 폼
+
+ - 폼은 <form>과 <input>으로 구현
+ - 거주지역 선택 정보입력과 지원완료 후 뜨는 메세지는 모달로 구현
+ - 유효성 검사 및 폼데이터 제출은 react-hook-form 사용
+ - 제출 버튼은 disabled 속성을 사용해서 유효성 검사 모두 통과시 true, 통과하지 못하면 false 값을 주어 활성화 여부 구현
+
+2. 지원 현황 admin 페이지
+
+ - 각각의 탭에 렌더링 할 데이터는 특정 기간을 임의로 정해서 각각의 탭에 할당된 기간동안의 데이터를 불러오기로 정함.
+
+## 5. 기술스택
+typescript json-server recoil styled-components styled-reset react-hook-form react-router-dom mui
+
+## 6. 역할 분담
+
+1. 지원 폼
+
+| 팀원 이름                               | 기능                                                                                                     |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [김슬기](https://github.com/sgsg9447)   | 지원 폼 유효성 검사, 지원하기 버튼 활성화 로직 |
+| [이유미](https://github.com/ymStudyLog) | 페이지 레이아웃(admin 제외), 지원 폼 레이아웃 및 각종 스타일링 |
+| [김연진](https://github.com/yunjink)    | 모달 2개 구현, 선택된 거주지 데이터는 리코일로 상태관리 |
+
+2. 지원 현황 admin 페이지 
+
+| 팀원 이름                               | 기능                                                                                                     |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [김슬기](https://github.com/sgsg9447)   | database에서 각 탭에 할당된 기간에 맞는 데이터를 불러와 테이블 형식으로 렌더링, 엑셀 다운로드 버튼 구현 |
+| [이유미](https://github.com/ymStudyLog) | 검색 창 구현, 검색어 입력할 filter 드롭다운 구현 |
+| [김연진](https://github.com/yunjink)    | admin 페이지 레이아웃, 탭과 페이지네이션은 mui 사용 |
+
+## 7. 프로젝트 구조
+
+```
+📦database
+ ┣ 📜database.json
+📦src
+ ┣ 📂api
+ ┃ ┗ 📜api.ts
+ ┣ 📂asset
+ ┃ ┣ 📜logo-snplab.png
+ ┃ ┣ 📜privacypolicy.ts
+ ┃ ┗ 📜transportations.ts
+ ┣ 📂components
+ ┃ ┣ 📂admin
+ ┃ ┃ ┣ 📜CSV.tsx
+ ┃ ┃ ┣ 📜Header.tsx
+ ┃ ┃ ┣ 📜Pagination.tsx
+ ┃ ┃ ┣ 📜Search.tsx
+ ┃ ┃ ┣ 📜Sidebar.tsx
+ ┃ ┃ ┗ 📜Title.tsx
+ ┃ ┣ 📂form
+ ┃ ┃ ┣ 📜Form.tsx
+ ┃ ┃ ┗ 📜FormInput.tsx
+ ┃ ┣ 📂modal
+ ┃ ┃ ┣ 📜Confirm.tsx
+ ┃ ┃ ┣ 📜ModalBackground.tsx
+ ┃ ┃ ┣ 📜ModalPortal.tsx
+ ┃ ┃ ┗ 📜Region.tsx
+ ┃ ┣ 📂privacy
+ ┃ ┃ ┗ 📜PrivacyTemplate.tsx
+ ┣ 📂hooks
+ ┃ ┣ 📜useSiDoList.tsx
+ ┃ ┗ 📜useSiGuGunList.tsx
+ ┣ 📂pages
+ ┃ ┣ 📜Admin.tsx
+ ┃ ┣ 📜ApplicationForm.tsx
+ ┃ ┣ 📜Landing.tsx
+ ┃ ┗ 📜PrivacyPolicy.tsx
+ ┣ 📂router
+ ┃ ┗ 📜Router.tsx
+ ┣ 📂store
+ ┃ ┣ 📜atom.tsx
+ ┃ ┗ 📜radioAtom.tsx
+ ┣ 📂styles
+ ┃ ┣ 📜Confirm.styled.tsx
+ ┃ ┣ 📜Form.styled.tsx
+ ┃ ┣ 📜globalStyles.tsx
+ ┃ ┣ 📜Region.styled.tsx
+ ┃ ┣ 📜Search.styled.tsx
+ ┃ ┗ 📜template.tsx
+ ┣ 📂types
+ ┃ ┣ 📜Form.type.tsx
+ ┃ ┣ 📜ModalProps.type.tsx
+ ┃ ┗ 📜Region.type.tsx
+ ┣ 📂utils
+ ┃ ┣ 📜Regex.tsx
+ ┃ ┗ 📜ScrollToTop.tsx
+ ┗ 📜index.tsx
+```
+
+## 8. 제작과정 
+=> 딱히 없으니 각자 트러블 슈팅 이라던지 간단하게 작성하기 

@@ -10,19 +10,9 @@ import Region from "../modal/Region";
 import Confirm from "../modal/Confirm";
 import { SubmitButton } from "../../styles/template";
 import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
-
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리 + typescipt
-//TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게
-const transportations = [
-  "버스",
-  "지하철",
-  "택시",
-  "KTX/기차",
-  "도보",
-  "자전거",
-  "전동킥보드",
-  "자가용",
-];
+import transportations from "../../asset/transportaions";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { radioState, radioInitialState } from "../../store/radioAtom";
 
 interface IFormInputs {
   name: string;
@@ -56,21 +46,16 @@ const Form = () => {
   //  React.useEffect(()=>{
   //   postApplicantsData(applyService)
   //  })
-
-  const [radio, setRadio] = React.useState<RadioState>({
-    female: false,
-    male: false,
-  });
-
-  const [policy, setPolicy] = React.useState<PolicyState>({
-    privacy: false,
-    thirdparty: false,
-  });
-
   const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] =
     React.useState<boolean>(false);
 
+  const setRadio = useSetRecoilState(radioInitialState);
+  const radio = useRecoilValue<RadioState>(radioState);
+  const [policy, setPolicy] = React.useState<PolicyState>({
+    privacy: false,
+    thirdparty: false,
+  });
   const [checkbox, setCheckbox] = React.useState<CheckboxState>(
     new Array(8).fill(false)
   );
@@ -100,11 +85,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor="female"
             selected={radio.female}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, female: true, male: false };
-              });
-            }}
+            onClick={() => setRadio("female")}
           >
             <FormStyle.NoneDisplayInput
               {...register("gender")}
@@ -119,11 +100,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor="male"
             selected={radio.male}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, male: true, female: false };
-              });
-            }}
+            onClick={() => setRadio("male")}
           >
             <FormStyle.NoneDisplayInput
               {...register("gender")}
