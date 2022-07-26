@@ -18,11 +18,11 @@ export const SubmitButton = styled.button`
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #fd8397;
+  background-color: var(--color-main);
   color: white;
   border-radius: 12px;
   font-weight: bold;
   :disabled {
-    background-color: #31393d;
+    background-color: var(--color-gray);
   }
 `;

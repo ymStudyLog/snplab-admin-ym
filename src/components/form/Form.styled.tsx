@@ -5,6 +5,7 @@ import {
   ToggleStyledProps,
   CheckboxStyledProps,
 } from "./Form.type";
+import { useFormContext } from "react-hook-form";
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 
@@ -116,7 +117,7 @@ export const DataToggleContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledDiv = styled.div<{ agreement: boolean }>`
+const StyledBtn = styled.button<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
@@ -130,9 +131,16 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
     `};
 `;
 
-export const DataToggle = (props: ToggleStyledProps) => (
-  <StyledDiv  {...props}>{props.children}</StyledDiv>
-);
+export const DataToggle = (props: ToggleStyledProps) => {
+  const { register } = useFormContext();
+  return (
+    <>
+      <StyledBtn {...register(props.name, props.options)} {...props}>
+        {props.children}
+      </StyledBtn>
+    </>
+  );
+};
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`

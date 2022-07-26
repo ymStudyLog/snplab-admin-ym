@@ -23,14 +23,13 @@ const transportations = [
 ];
 
 interface IFormInputs {
-  username: string;
-  birth: number;
-  phone: number;
+  name: string;
+  birthday: number;
+  contact: number;
   email: string;
   gender: string;
   transportation: any;
-  checkbox: boolean;
-  checkbox2: boolean;
+  agreement: boolean;
 }
 
 const Form = () => {
@@ -38,17 +37,17 @@ const Form = () => {
     defaultValues: {
       gender: "femail",
       transportation: "",
-      checkbox: false,
-      checkbox2: false,
+      agreement: false,
     },
     mode: "onBlur",
   });
   const {
     register,
-    formState: { errors, isSubmitting, isDirty, isValid },
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
   } = methods;
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: IFormInputs) => console.log(data);
 
   const [radio, setRadio] = React.useState<RadioState>({
     female: false,
@@ -79,14 +78,14 @@ const Form = () => {
 
         <FormInput
           placeholder="홍길동"
-          name="username"
+          name="name"
           options={{
             required: true,
             pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,5}$/,
           }}
         />
-        {errors?.username?.type === "required" && <p>이름을 입력해주세요</p>}
-        {errors?.username?.type === "pattern" && <p>한글을 입력해주세요</p>}
+        {errors?.name?.type === "required" && <p>이름을 입력해주세요</p>}
+        {errors?.name?.type === "pattern" && <p>한글을 입력해주세요</p>}
 
         <FormStyle.DataTitle>성별</FormStyle.DataTitle>
         <FormStyle.RadioContainer>
@@ -134,15 +133,17 @@ const Form = () => {
 
         <FormInput
           placeholder="YYYY.MM.DD"
-          name="birth"
+          name="birthday"
           options={{
             required: true,
             maxLength: 10,
             pattern: /^(([0-9]+).{4}([0-9]+).{2}([0-9]+){2})/g,
           }}
         />
-        {errors?.birth?.type === "required" && <p>생년월일을 입력해주세요</p>}
-        {errors?.birth?.type === "pattern" && (
+        {errors?.birthday?.type === "required" && (
+          <p>생년월일을 입력해주세요</p>
+        )}
+        {errors?.birthday?.type === "pattern" && (
           <p>YYYY.MM.DD형식으로 입력해주세요</p>
         )}
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
@@ -166,11 +167,11 @@ const Form = () => {
 
         <FormInput
           placeholder="'-'제외하고입력"
-          name={"phone"}
+          name={"contact"}
           options={{ required: true, maxLength: 11, pattern: /^[0-9]{11}/g }}
         />
-        {errors?.phone?.type === "required" && <p>연락처를 입력해주세요</p>}
-        {errors?.phone?.type === "pattern" && (
+        {errors?.contact?.type === "required" && <p>연락처를 입력해주세요</p>}
+        {errors?.contact?.type === "pattern" && (
           <p>'-'제외하고 숫자만 입력해주세요</p>
         )}
 
@@ -227,11 +228,19 @@ const Form = () => {
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
             <FormStyle.DataToggle
+              // {...register("agreement", {
+              //   required: true,
+              // })}
+              name={"agreement"}
+              options={{ required: true }}
+              type="button"
               agreement={policy.privacy && policy.thirdparty}
               onClick={() => {
                 setPolicy((prevState: PolicyState) => {
                   return {
                     ...prevState,
+                    // privacy: !policy.privacy,
+                    // thirdparty: !policy.thirdparty,
                     privacy: !policy.privacy,
                     thirdparty: !policy.thirdparty,
                   };
@@ -248,6 +257,9 @@ const Form = () => {
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
+                name={"agreement"}
+                options={{ required: true }}
+                type="button"
                 agreement={policy.privacy}
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
@@ -255,6 +267,12 @@ const Form = () => {
                   });
                 }}
               >
+                {/* <input
+                  type="checkbox"
+                  {...register("agreement", {
+                    required: true,
+                  })}
+                /> */}
                 <BsCheck size={24} />
               </FormStyle.DataToggle>
               개인정보 처리방침 고지(필수)
@@ -266,6 +284,9 @@ const Form = () => {
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
+                name={"agreement"}
+                options={{ required: true }}
+                type="button"
                 agreement={policy.thirdparty}
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
@@ -283,7 +304,6 @@ const Form = () => {
           </FormStyle.Stretcher>
         </FormStyle.Positioner>
 
-        {/* submit버튼 disabled = true 일때는 --color-gray, false --color-dark-gray */}
         <SubmitButton
           type="submit"
           disabled={!isDirty || !isValid}

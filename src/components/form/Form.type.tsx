@@ -26,7 +26,10 @@ export type CheckboxStyledProps = {
 };
 
 export type ToggleStyledProps = {
+  type: "button" | "submit" | "reset" | undefined;
   agreement: boolean;
   children: JSX.Element;
   onClick: () => void;
+  name : string;
+  options: any;
 };
