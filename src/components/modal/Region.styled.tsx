@@ -69,13 +69,13 @@ export const MenuListContainer = styled.div`
 export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  height: 20vh;
-  min-width: 18%;
+  height: 200px;
+  min-width: 80px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  overflow-y: auto;
 
   &:hover {
     background-color: #f7f6fb;

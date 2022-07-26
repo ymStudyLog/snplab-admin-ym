@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import Search from "../components/admin/Search";
-import { useRecoilValue } from "recoil";
-import { searchQuery } from "../store/atom";
+import Search from '../components/admin/Search';
+import { useRecoilValue } from 'recoil';
+import { searchQuery } from '../store/atom';
 
 type Props = {};
 
