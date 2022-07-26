@@ -238,8 +238,7 @@ const Form = () => {
               // {...register("agreement", {
               //   required: true,
               // })}
-              name={"agreement"}
-              options={{ required: true }}
+              
               type="button"
               agreement={policy.privacy && policy.thirdparty}
               onClick={() => {
@@ -262,8 +261,6 @@ const Form = () => {
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
-                name={"agreement"}
-                options={{ required: true }}
                 type="button"
                 agreement={policy.privacy}
                 onClick={() => {
@@ -289,8 +286,7 @@ const Form = () => {
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
-                name={"agreement"}
-                options={{ required: true }}
+
                 type="button"
                 agreement={policy.thirdparty}
                 onClick={() => {
