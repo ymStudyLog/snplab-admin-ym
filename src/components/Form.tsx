@@ -10,8 +10,7 @@ import Confirm from './modal/Confirm';
 import { SubmitButton } from "../styles/template";
 import { RadioState, PolicyState, CheckboxState } from '../types/Form.type';
 
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리
-//TODO : typescript 처리
+//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리 + typescript 처리
 //TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게 
 const transportations = [
   '버스',
@@ -186,6 +185,8 @@ const Form = () => {
       <FormStyle.DataTitleRow>
         <FormStyle.DataToggleContainer>
           <FormStyle.DataToggle
+            type="button"
+            value="true"
             agreement={policy.privacy && policy.thirdparty}
             onClick={() => {
               setPolicy((prevState: PolicyState) => {
@@ -203,6 +204,7 @@ const Form = () => {
         <FormStyle.Stretcher>
           <FormStyle.DataToggleContainer>
             <FormStyle.DataToggle
+              type="button"
               agreement={policy.privacy}
               onClick={() => {
                 setPolicy((prevState: PolicyState) => {
@@ -221,6 +223,7 @@ const Form = () => {
         <FormStyle.Stretcher>
           <FormStyle.DataToggleContainer>
             <FormStyle.DataToggle
+              type="button"
               agreement={policy.thirdparty}
               onClick={() => {
                 setPolicy((prevState: PolicyState) => {
@@ -238,13 +241,12 @@ const Form = () => {
         </FormStyle.Stretcher>
       </FormStyle.Positioner>
 
-      {/* submit버튼 disabled = true 일때는 --color-gray, false --color-dark-gray */}
+      {/* submit버튼 disabled = policy 상태까지 전부 true 일때는 --color-gray, false --color-dark-gray */}
       <SubmitButton
         type='submit'
         //disabled
         onClick={() => {
           setShowConfirmModal(true);
-          console.log('submit click');
         }}
       >
         지원하기

@@ -107,7 +107,7 @@ export const DataToggleContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledDiv = styled.div<{ agreement: boolean }>`
+const StyledInput = styled.input<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
@@ -121,7 +121,7 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
     `};
 `;
 
-export const DataToggle = (props: ToggleStyledProps) => <StyledDiv {...props}>{props.children}</StyledDiv>;
+export const DataToggle = (props: ToggleStyledProps) => <StyledInput {...props}>{props.children}</StyledInput>;
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`
