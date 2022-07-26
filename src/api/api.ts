@@ -53,6 +53,6 @@ export const postApplicantsData = async <T>(service: AxiosInstance, data: any): 
  * data 형식 = { pass : !pass }
  */
 export const patchApplicantsById = async <T>(service: AxiosInstance, id: number, data: { pass: boolean }): Promise<T> => {
-  const response: AxiosResponse<T> = await service.patch(`?id=${id}`, data);
+  const response: AxiosResponse<T> = await service.patch(`/${id}`, data);
   return response.data; //필요함?
 };
