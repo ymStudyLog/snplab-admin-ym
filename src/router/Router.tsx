@@ -4,9 +4,7 @@ import ApplicationForm from '../pages/ApplicationForm';
 import Landing from '../pages/Landing';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
 
-type Props = {};
-
-const Router = (props: Props) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>

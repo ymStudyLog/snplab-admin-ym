@@ -5,6 +5,7 @@ const BASE_URL = "http://localhost:8000";
 export const applyService = axios.create({ baseURL: `${BASE_URL}/applicants` });
 export const regionService = axios.create({ baseURL: `${BASE_URL}/region` });
 
+//TODO : typescript 
 /* regionService, get
  */
 export const getRegionData = async <T>(service: AxiosInstance): Promise<T> => {
@@ -51,7 +52,7 @@ export const postApplicantsData = async <T>(
 };
 
 /* applyService, patch
- * data 형식 = { pass : 토글처리 } => 토글처리 어케?
+ * data 형식 = { pass : !pass }
  */
 export const patchApplicantsById = async <T>(
   service: AxiosInstance,

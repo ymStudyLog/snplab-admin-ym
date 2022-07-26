@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { RadioStyledProps, ToggleStyledProps, CheckboxStyledProps } from './Form.type';
+import { RadioStyledProps, ToggleStyledProps, CheckboxStyledProps } from '../types/Form.type';
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
-
 export const StyledForm = styled.div`
   position: relative;
   //height: 100vh;

@@ -1,12 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import { PageTemplate } from '../styles/template';
 import LogoImgSrc from '../asset/logo-snplab.png';
 import { Link } from 'react-router-dom';
 
-type Props = {};
-
-const Landing = (props: Props) => {
+const Landing = () => {
   return (
     <PageTemplate>
       <LandingContainer>

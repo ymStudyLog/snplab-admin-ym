@@ -33,7 +33,6 @@ button {
   cursor: pointer;
 }
 
-/* 유미가 추가한 색상 */
 :root {
     --color-border: #d4d4d4;
     --color-placehloder:#c4c4c4;
