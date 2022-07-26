@@ -4,8 +4,7 @@ import {
   RadioStyledProps,
   ToggleStyledProps,
   CheckboxStyledProps,
-} from "./Form.type";
-import { useFormContext } from "react-hook-form";
+} from "../types/Form.type";
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 
