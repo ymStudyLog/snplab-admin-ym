@@ -30,5 +30,4 @@ export type ToggleStyledProps = {
   agreement : boolean;
   children: JSX.Element;
   onClick: () => void;
-  value?: string | number | readonly string[] | undefined;
 };
