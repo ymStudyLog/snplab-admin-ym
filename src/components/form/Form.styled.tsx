@@ -133,14 +133,13 @@ const StyledBtn = styled.button<{ agreement: boolean }>`
 
 export const DataToggle = (props: ToggleStyledProps) => {
   const { register } = useFormContext();
-  return (
-    <>
-      <StyledBtn {...register(props.name, props.options)} {...props}>
-        {props.children}
-      </StyledBtn>
-    </>
-  );
-};
+  return(
+<>  
+<StyledBtn {...register(props.name, props.options)} {...props}>{props.children}</StyledBtn>
+</>
+)
+}
+
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`

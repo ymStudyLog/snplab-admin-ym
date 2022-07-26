@@ -9,6 +9,7 @@ import { SubmitButton } from "../../styles/SubmitButton.styled";
 import { RadioState, PolicyState, CheckboxState } from "./Form.type";
 import FormInput from "./FormInput";
 import { useForm, FormProvider } from "react-hook-form";
+import { applyService, postApplicantsData } from "../../api/api";
 
 //TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들
 const transportations = [
@@ -43,11 +44,17 @@ const Form = () => {
   });
   const {
     register,
-    handleSubmit,
     formState: { errors, isDirty, isValid },
   } = methods;
 
-  const onSubmit = (data: IFormInputs) => console.log(data);
+  const onSubmit = (data: IFormInputs) => {
+    console.log(data);
+    postApplicantsData(applyService, data);
+  };
+
+  //  React.useEffect(()=>{
+  //   postApplicantsData(applyService)
+  //  })
 
   const [radio, setRadio] = React.useState<RadioState>({
     female: false,
@@ -241,8 +248,6 @@ const Form = () => {
                     ...prevState,
                     // privacy: !policy.privacy,
                     // thirdparty: !policy.thirdparty,
-                    privacy: !policy.privacy,
-                    thirdparty: !policy.thirdparty,
                   };
                 });
               }}
