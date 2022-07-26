@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { MdArrowBackIos } from "react-icons/md";
-import { introduction, mainContent } from "../asset/privacypolicy";
-import { Link } from "react-router-dom";
-import { MobileSizeContainer } from "../styles/template";
+import React from 'react';
+import styled from 'styled-components';
+import { MdArrowBackIos } from 'react-icons/md';
+import { introduction, mainContent } from '../../asset/privacypolicy';
+import { Link } from 'react-router-dom';
+import { MobileSizeContainer } from '../../styles/template';
 
 type Props = {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ const PrivacyTemplate = (props: Props) => {
   return (
     <MobileSizeContainer>
       <PrivacyHeader>
-        <Link to="/form">
+        <Link to='/form'>
           <GoBackButton>
             <MdArrowBackIos />
           </GoBackButton>
@@ -56,4 +56,4 @@ const PrivacyIntro = styled.div`
 
 const PrivacyMain = styled(PrivacyIntro)`
   color: var(--color-privacy);
-`
+`;

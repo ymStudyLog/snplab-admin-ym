@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import PrivacyTemplate from "../components/PrivacyTemplate";
-import { PageTemplate } from "../styles/template";
+import styled from 'styled-components';
+import PrivacyTemplate from '../components/privacy/PrivacyTemplate';
+import { PageTemplate } from '../styles/template';
 
 const PrivacyPolicy = () => {
   const url: string = window.location.href;
@@ -8,19 +8,19 @@ const PrivacyPolicy = () => {
   return (
     <PageTemplate>
       <PrivacyTemplate>
-        {url.includes("/privacypolicy") && (
+        {url.includes('/privacypolicy') && (
           <>
             <PrivacyTitleBold>개인(신용)정보</PrivacyTitleBold>
             <PrivacyTitle>처리방침에 대한 동의 안내</PrivacyTitle>
           </>
         )}
-        {url.includes("/agreement") && (
+        {url.includes('/agreement') && (
           <>
             <PrivacyTitleBold>제3자</PrivacyTitleBold>
             <PrivacyTitle>정보제공에 대한 동의 안내</PrivacyTitle>
           </>
         )}
-       </PrivacyTemplate>
+      </PrivacyTemplate>
     </PageTemplate>
   );
 };
@@ -38,5 +38,3 @@ const PrivacyTitleBold = styled(PrivacyTitle)`
   margin-top: 45px;
   font-weight: bold;
 `;
-
-

@@ -1,6 +1,6 @@
-import React from "react";
-import { useFormContext } from "react-hook-form";
-import * as FormStyle from "../styles/Form.styled";
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+import * as FormStyle from '../../styles/Form.styled';
 
 type Props = {
   placeholder: string;
@@ -13,10 +13,7 @@ const FormInput = ({ placeholder, name, options }: Props) => {
 
   return (
     <>
-      <FormStyle.DataInput
-        placeholder={placeholder}
-        {...register(name, options)}
-      />
+      <FormStyle.DataInput placeholder={placeholder} {...register(name, options)} />
     </>
   );
 };
@@ -25,7 +22,7 @@ export default FormInput;
 
 //TODO! 수정해야함
 FormInput.defaultProps = {
-  type: "text",
-  label: "",
-  value: "",
+  type: 'text',
+  label: '',
+  value: '',
 };
