@@ -1,5 +1,6 @@
 import React from "react";
 import { CSVLink } from "react-csv";
+import styled from "styled-components";
 import { applyService, getApplicantsData } from "../../api/api";
 
 type Props = {};
@@ -38,9 +39,17 @@ const CSV = (props: Props) => {
   }, []);
   return (
     <CSVLink data={temp} headers={headers}>
-      <button>다운로드</button>
+      <CsvBtn>엑셀 다운로드</CsvBtn>
     </CSVLink>
   );
 };
 
 export default CSV;
+
+const CsvBtn = styled.button`
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #cecece;
+  font-weight: bold;
+`;

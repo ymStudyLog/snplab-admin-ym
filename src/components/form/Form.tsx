@@ -62,19 +62,7 @@ const Form = () => {
     submitdate: "",
   });
 
-  const {
-    id,
-    name,
-    gender,
-    birthday,
-    region,
-    contact,
-    email,
-    transportation,
-    agreement,
-    pass,
-    submitdate,
-  } = formData;
+  const { id } = formData;
 
   const onSubmit = (data: IFormInputs) => {
     console.log(data);
@@ -87,7 +75,7 @@ const Form = () => {
       contact: data.contact,
       email: data.email,
       transportation: data.transportation,
-      agreement: data.agreement,
+      agreement: true,
       pass: "",
       submitdate: new Date().toLocaleDateString(),
     });
@@ -275,8 +263,8 @@ const Form = () => {
             >
               {/* input의 value값으로는 boolean을 줄수 없음 */}
               <FormStyle.NoneDisplayInput
-                {...register("agreement")}
                 type="button"
+                {...register("agreement")}
                 name="agreement"
                 value="true"
                 onClick={() => {

@@ -14,6 +14,7 @@ import {
 
 import { ApplyProps } from "../../types/Apply.type";
 import CSV from "./CSV";
+import { GrCheckbox, GrCheckboxSelected } from "react-icons/gr";
 
 type Props = {};
 
@@ -37,7 +38,6 @@ const GetItem = (props: Props) => {
   return (
     <div>
       <CSV />
-      {/* // <GetData item={item} key={item.id} />*/}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -72,7 +72,7 @@ const GetItem = (props: Props) => {
                       handleClickCheckBtn(item.id);
                     }}
                   >
-                    {item.pass ? "true" : "false"}
+                    {item.pass ? <GrCheckboxSelected /> : <GrCheckbox />}
                   </button>
                 </TableCell>
               </TableRow>
