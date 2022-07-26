@@ -48,15 +48,47 @@ const Form = () => {
     formState: { errors, isDirty, isValid },
   } = methods;
 
+  const [formData, setFormData] = React.useState({
+    id: 0,
+    name: "",
+    gender: "",
+    birthday: "",
+    contact: 0,
+    email: "",
+    transportation: [],
+    agreement: false,
+    pass: false,
+    submitdate: "",
+  });
+
+  const {
+    id,
+    name,
+    gender,
+    birthday,
+    contact,
+    email,
+    transportation,
+    agreement,
+    pass,
+    submitdate,
+  } = formData;
+
   const onSubmit = (data: IFormInputs) => {
     console.log(data);
-    postApplicantsData(applyService, data);
+    postApplicantsData(applyService, {
+      id: id,
+      name: data.name,
+      gender: data.gender,
+      birthday: data.birthday,
+      contact: data.contact,
+      email: data.email,
+      transportation: data.transportation,
+      agreement: data.agreement,
+      pass: "",
+      submitdate: new Date().toLocaleDateString(),
+    });
   };
-
-  //  React.useEffect(()=>{
-  //   postApplicantsData(applyService)
-  //  })
-
   const [radio, setRadio] = React.useState<RadioState>({
     female: false,
     male: false,
@@ -236,13 +268,11 @@ const Form = () => {
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
             <FormStyle.ButtonLabel
-              // {...register("agreement", {
-              //   required: true,
-              // })}
               agreement={policy.privacy && policy.thirdparty}
             >
               {/* input의 value값으로는 boolean을 줄수 없음 */}
               <FormStyle.NoneDisplayInput
+                {...register("agreement")}
                 type="button"
                 name="agreement"
                 value="true"
