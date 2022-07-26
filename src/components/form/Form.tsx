@@ -1,20 +1,28 @@
-import React from 'react';
-import { MdArrowForwardIos } from 'react-icons/md';
-import { BsCheckCircle, BsCheck } from 'react-icons/bs';
-import ModalBackground from '../modal/ModalBackground';
-import FormInput from './FormInput';
-import { useForm, FormProvider } from 'react-hook-form';
-import { applyService, postApplicantsData } from '../../api/api';
-import * as FormStyle from '../../styles/Form.styled';
-import Region from '../modal/Region';
-import Confirm from '../modal/Confirm';
-import { SubmitButton } from '../../styles/template';
-import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
+import React from "react";
+import { MdArrowForwardIos } from "react-icons/md";
+import { BsCheckCircle, BsCheck } from "react-icons/bs";
+import ModalBackground from "../modal/ModalBackground";
+import FormInput from "./FormInput";
+import { useForm, FormProvider } from "react-hook-form";
+import { applyService, postApplicantsData } from "../../api/api";
+import * as FormStyle from "../../styles/Form.styled";
+import Region from "../modal/Region";
+import Confirm from "../modal/Confirm";
+import { SubmitButton } from "../../styles/template";
+import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
 
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리
-//TODO : typescript 처리
+//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리 + typescipt
 //TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게
-const transportations = ['버스', '지하철', '택시', 'KTX/기차', '도보', '자전거', '전동킥보드', '자가용'];
+const transportations = [
+  "버스",
+  "지하철",
+  "택시",
+  "KTX/기차",
+  "도보",
+  "자전거",
+  "전동킥보드",
+  "자가용",
+];
 
 interface IFormInputs {
   name: string;
@@ -29,11 +37,11 @@ interface IFormInputs {
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
-      gender: 'femail',
-      transportation: '',
+      gender: "femail",
+      transportation: "",
       agreement: false,
     },
-    mode: 'onBlur',
+    mode: "onBlur",
   });
   const {
     register,
@@ -60,9 +68,12 @@ const Form = () => {
   });
 
   const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
-  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] =
+    React.useState<boolean>(false);
 
-  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
+  const [checkbox, setCheckbox] = React.useState<CheckboxState>(
+    new Array(8).fill(false)
+  );
   const handleClick = (checkbox: CheckboxState, index: number) => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
@@ -74,20 +85,20 @@ const Form = () => {
         <FormStyle.DataTitle>이름</FormStyle.DataTitle>
 
         <FormInput
-          placeholder='홍길동'
-          name='name'
+          placeholder="홍길동"
+          name="name"
           options={{
             required: true,
             pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,5}$/,
           }}
         />
-        {errors?.name?.type === 'required' && <p>이름을 입력해주세요</p>}
-        {errors?.name?.type === 'pattern' && <p>한글을 입력해주세요</p>}
+        {errors?.name?.type === "required" && <p>이름을 입력해주세요</p>}
+        {errors?.name?.type === "pattern" && <p>한글을 입력해주세요</p>}
 
         <FormStyle.DataTitle>성별</FormStyle.DataTitle>
         <FormStyle.RadioContainer>
           <FormStyle.RadioLabel
-            htmlFor='female'
+            htmlFor="female"
             selected={radio.female}
             onClick={() => {
               setRadio((prevState: RadioState) => {
@@ -95,12 +106,18 @@ const Form = () => {
               });
             }}
           >
-            <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='female' value='여' />
+            <FormStyle.NoneDisplayInput
+              {...register("gender")}
+              type="radio"
+              name="gender"
+              id="female"
+              value="여"
+            />
             <BsCheckCircle size={24} />
             여자
           </FormStyle.RadioLabel>
           <FormStyle.RadioLabel
-            htmlFor='male'
+            htmlFor="male"
             selected={radio.male}
             onClick={() => {
               setRadio((prevState: RadioState) => {
@@ -108,7 +125,13 @@ const Form = () => {
               });
             }}
           >
-            <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='male' value='남' />
+            <FormStyle.NoneDisplayInput
+              {...register("gender")}
+              type="radio"
+              name="gender"
+              id="male"
+              value="남"
+            />
             <BsCheckCircle size={24} />
             남자
           </FormStyle.RadioLabel>
@@ -117,25 +140,29 @@ const Form = () => {
         <FormStyle.DataTitle>생년월일</FormStyle.DataTitle>
 
         <FormInput
-          placeholder='YYYY.MM.DD'
-          name='birthday'
+          placeholder="YYYY.MM.DD"
+          name="birthday"
           options={{
             required: true,
             maxLength: 10,
             pattern: /^(([0-9]+).{4}([0-9]+).{2}([0-9]+){2})/g,
           }}
         />
-        {errors?.birthday?.type === 'required' && <p>생년월일을 입력해주세요</p>}
-        {errors?.birthday?.type === 'pattern' && <p>YYYY.MM.DD형식으로 입력해주세요</p>}
+        {errors?.birthday?.type === "required" && (
+          <p>생년월일을 입력해주세요</p>
+        )}
+        {errors?.birthday?.type === "pattern" && (
+          <p>YYYY.MM.DD형식으로 입력해주세요</p>
+        )}
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
 
         <FormStyle.DataInput
-          type='text'
-          name='region'
-          placeholder='거주지역 선택'
+          type="text"
+          name="region"
+          placeholder="거주지역 선택"
           onClick={() => {
             setShowRegionModal(true);
-            console.log('모달 Open');
+            console.log("모달 Open");
           }}
         />
         {showRegionModal && (
@@ -146,75 +173,91 @@ const Form = () => {
 
         <FormStyle.DataTitle>연락처</FormStyle.DataTitle>
 
-        <FormInput placeholder="'-'제외하고입력" name={'contact'} options={{ required: true, maxLength: 11, pattern: /^[0-9]{11}/g }} />
-        {errors?.contact?.type === 'required' && <p>연락처를 입력해주세요</p>}
-        {errors?.contact?.type === 'pattern' && <p>'-'제외하고 숫자만 입력해주세요</p>}
+        <FormInput
+          placeholder="'-'제외하고입력"
+          name={"contact"}
+          options={{ required: true, maxLength: 11, pattern: /^[0-9]{11}/g }}
+        />
+        {errors?.contact?.type === "required" && <p>연락처를 입력해주세요</p>}
+        {errors?.contact?.type === "pattern" && (
+          <p>'-'제외하고 숫자만 입력해주세요</p>
+        )}
 
         <FormStyle.DataTitle>이메일</FormStyle.DataTitle>
 
         <FormInput
           placeholder="'@', '.com'포함해주세요"
-          name={'email'}
+          name={"email"}
           options={{
             required: true,
             maxLength: undefined,
             pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
           }}
         />
-        {errors?.email?.type === 'required' && <p>이메일을 입력해주세요</p>}
-        {errors?.email?.type === 'pattern' && <p>'@', '.com'을 포함하여 입력해주세요</p>}
+        {errors?.email?.type === "required" && <p>이메일을 입력해주세요</p>}
+        {errors?.email?.type === "pattern" && (
+          <p>'@', '.com'을 포함하여 입력해주세요</p>
+        )}
         <FormStyle.DataTitle>
           주로 이용하는 교통수단
-          <FormStyle.SubTitle>주로 이용하는 교통수단을 모두 선택해주세요</FormStyle.SubTitle>
+          <FormStyle.SubTitle>
+            주로 이용하는 교통수단을 모두 선택해주세요
+          </FormStyle.SubTitle>
         </FormStyle.DataTitle>
         <FormStyle.CheckBoxContainer>
-          {transportations.map((transportation: string, index: number): JSX.Element => {
-            return (
-              <FormStyle.CheckBoxLabel
-                htmlFor={transportation}
-                key={index}
-                selected={checkbox[index]}
-                onClick={() => {
-                  handleClick(checkbox, index);
-                }}
-              >
-                <FormStyle.NoneDisplayInput
-                  {...register('transportation')}
-                  type='checkbox'
-                  name='transportation'
-                  id={transportation}
-                  value={transportation}
-                  onClick={(event) => {
-                    event.stopPropagation();
+          {transportations.map(
+            (transportation: string, index: number): JSX.Element => {
+              return (
+                <FormStyle.CheckBoxLabel
+                  htmlFor={transportation}
+                  key={index}
+                  selected={checkbox[index]}
+                  onClick={() => {
+                    handleClick(checkbox, index);
                   }}
-                />
-                {transportation}
-              </FormStyle.CheckBoxLabel>
-            );
-          })}
+                >
+                  <FormStyle.NoneDisplayInput
+                    {...register("transportation")}
+                    type="checkbox"
+                    name="transportation"
+                    id={transportation}
+                    value={transportation}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                    }}
+                  />
+                  {transportation}
+                </FormStyle.CheckBoxLabel>
+              );
+            }
+          )}
         </FormStyle.CheckBoxContainer>
 
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
-            <FormStyle.DataToggle
+            <FormStyle.ButtonLabel
               // {...register("agreement", {
               //   required: true,
               // })}
-
-              type='button'
               agreement={policy.privacy && policy.thirdparty}
-              onClick={() => {
-                setPolicy((prevState: PolicyState) => {
-                  return {
-                    ...prevState,
-                    // privacy: !policy.privacy,
-                    // thirdparty: !policy.thirdparty,
-                  };
-                });
-              }}
             >
+              {/* input의 value값으로는 boolean을 줄수 없음 */}
+              <FormStyle.NoneDisplayInput
+                type="button"
+                name="agreement"
+                value="true"
+                onClick={() => {
+                  setPolicy((prevState: PolicyState) => {
+                    return {
+                      ...prevState,
+                      privacy: !policy.privacy,
+                      thirdparty: !policy.thirdparty,
+                    };
+                  });
+                }}
+              />
               <BsCheckCircle size={24} />
-            </FormStyle.DataToggle>
+            </FormStyle.ButtonLabel>
             이용약관 모두 동의
           </FormStyle.DataToggleContainer>
         </FormStyle.DataTitleRow>
@@ -223,7 +266,6 @@ const Form = () => {
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
-                type='button'
                 agreement={policy.privacy}
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
@@ -241,14 +283,13 @@ const Form = () => {
               </FormStyle.DataToggle>
               개인정보 처리방침 고지(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/privacypolicy'>
+            <FormStyle.LinkButton to="/privacypolicy">
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
               <FormStyle.DataToggle
-                type='button'
                 agreement={policy.thirdparty}
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
@@ -260,14 +301,14 @@ const Form = () => {
               </FormStyle.DataToggle>
               제3자 정보제공 동의(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/agreement'>
+            <FormStyle.LinkButton to="/agreement">
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
         </FormStyle.Positioner>
 
         <SubmitButton
-          type='submit'
+          type="submit"
           disabled={!isDirty || !isValid}
           //disabled
           onClick={() => {

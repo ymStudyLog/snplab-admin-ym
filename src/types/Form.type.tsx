@@ -26,9 +26,12 @@ export type CheckboxStyledProps = {
 };
 
 export type ToggleStyledProps = {
-  type: 'button';
   agreement: boolean;
   children: JSX.Element;
   onClick: () => void;
-  value?: string | number | readonly string[] | undefined;
+};
+
+export type ButtonStyledProps = {
+  agreement: boolean;
+  children: React.ReactNode;
 };
