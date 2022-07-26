@@ -2,10 +2,7 @@ import styled from "styled-components";
 import PrivacyTemplate from "../components/PrivacyTemplate";
 import { PageTemplate } from "../styles/template";
 
-type Props = {};
-
-//TODO : 폼 -> 개인정보 페이지 이동시 스크롤 맨위로 
-const PrivacyPolicy = (props: Props) => {
+const PrivacyPolicy = () => {
   const url: string = window.location.href;
 
   return (

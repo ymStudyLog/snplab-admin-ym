@@ -2,7 +2,7 @@ import React from "react";
 import { BiCaretDown } from "react-icons/bi";
 import { FiSearch } from "react-icons/fi";
 import * as SearchStyle from "../../styles/Search.styled";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { searchQuery } from "../../store/atom";
 
 const SEARCH_QUERY = {
@@ -14,21 +14,24 @@ const SEARCH_QUERY = {
   거주지: "&region_like=",
 };
 
-//TODO : 드롭다운 이외의 부분 클릭시 닫히게
+//TODO : 드롭다운 바깥 클릭시 닫힘 구현
 const Search = () => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const [filter, setFilter] = React.useState<string>("지원날짜");
   const inputEl = React.useRef<HTMLInputElement>(null);
+  // const dropdownEl = React.useRef<HTMLLIElement>(null);
+  const filter = React.useRef("");
+  const query = React.useRef("");
 
-  const [search, setSearch] = useRecoilState<string>(searchQuery);
-  const [value, setValue] = React.useState<string>(""); //TODO : SearchInput useRef로 최적화
-  const handleChange = (event : any) : void => {
+  const setSearchQuery = useSetRecoilState<string>(searchQuery);
+  const [value, setValue] = React.useState<string>("");
+
+  const handleChange = (event: any): void => {
     setValue(event.target.value);
   };
 
-  const handleSearch = () =>{
-    setSearch(search.concat(value));
-    console.log(search) //TODO : 검색 버튼을 누르면 value 값을 temp에 저장했다가 -> 최종 쿼리만 아톰 저장하고 싶음
+  const handleSearch = () => {
+    query.current = query.current.concat(value);
+    setSearchQuery(query.current);
     setValue("");
   };
 
@@ -36,7 +39,7 @@ const Search = () => {
     <SearchStyle.SearchContainer>
       <SearchStyle.SearchDropdown>
         <SearchStyle.SelectedDropdown>
-          <p>{filter}</p>
+          <p>{filter.current}</p>
         </SearchStyle.SelectedDropdown>
         {open &&
           Object.keys(SEARCH_QUERY).map((text, index) => {
@@ -44,9 +47,9 @@ const Search = () => {
               <SearchStyle.UnSelectedDropdown
                 key={index}
                 onClick={() => {
-                  setFilter(text);
+                  filter.current = text;
+                  query.current = Object.values(SEARCH_QUERY)[index];
                   setOpen(!open);
-                  setSearch(Object.values(SEARCH_QUERY)[index]);
                   inputEl.current?.focus();
                 }}
               >
@@ -58,7 +61,12 @@ const Search = () => {
       <SearchStyle.DropdownButton onClick={() => setOpen(!open)}>
         <BiCaretDown style={{ color: `var(--color-main-shade)` }} size={15} />
       </SearchStyle.DropdownButton>
-      <SearchStyle.SearchInput type="text" onChange={handleChange} value={value} ref={inputEl}/>
+      <SearchStyle.SearchInput
+        type="text"
+        onChange={handleChange}
+        value={value}
+        ref={inputEl}
+      />
       <SearchStyle.SearchButton onClick={handleSearch}>
         <FiSearch size={16} />
       </SearchStyle.SearchButton>
