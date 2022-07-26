@@ -2,9 +2,7 @@ import styled from "styled-components";
 import PrivacyTemplate from "../components/PrivacyTemplate";
 import { PageTemplate } from "../styles/template";
 
-type Props = {};
-
-const PrivacyPolicy = (props: Props) => {
+const PrivacyPolicy = () => {
   const url: string = window.location.href;
 
   return (

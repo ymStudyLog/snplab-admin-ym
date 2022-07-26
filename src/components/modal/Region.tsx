@@ -1,10 +1,10 @@
 import React from 'react';
 // import { regionState } from '../../store/atom';
 // import { useRecoilState } from 'recoil';
-import { RegionProps, siDoListProps } from './RegionProps.type';
+import { RegionProps, siDoListProps } from '../../types/Region.type';
 import * as R from './Region.styled';
 import { MdClose } from 'react-icons/md';
-import { SubmitButton } from '../../styles/SubmitButton.styled';
+import { SubmitButton } from '../../styles/template';
 import { regionService, getRegionData, siDoService, getSiDoData } from '../../api/api';
 
 const Region = ({ setShowRegionModal }: any) => {

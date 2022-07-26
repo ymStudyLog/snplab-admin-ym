@@ -3,12 +3,12 @@ import Admin from '../pages/Admin';
 import ApplicationForm from '../pages/ApplicationForm';
 import Landing from '../pages/Landing';
 import PrivacyPolicy from '../pages/PrivacyPolicy';
+import { ScrollToTop } from '../utils/ScrollToTop';
 
-type Props = {};
-
-const Router = (props: Props) => {
+const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/form' element={<ApplicationForm />} />

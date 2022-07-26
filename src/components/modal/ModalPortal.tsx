@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { ModalProps } from './ModalProps.type';
+import { ModalProps } from '../../types/ModalProps.type';
 
 const modalRoot = document.querySelector('#modal-root') as HTMLElement;
 

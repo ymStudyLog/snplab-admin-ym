@@ -50,7 +50,7 @@ export const postApplicantsData = async <T>(service: AxiosInstance, data: any): 
 };
 
 /* applyService, patch
- * data 형식 = { pass : 토글처리 } => 토글처리 어케?
+ * data 형식 = { pass : !pass }
  */
 export const patchApplicantsById = async <T>(service: AxiosInstance, id: number, data: { pass: boolean }): Promise<T> => {
   const response: AxiosResponse<T> = await service.patch(`?id=${id}`, data);

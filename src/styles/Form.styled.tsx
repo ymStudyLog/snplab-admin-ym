@@ -1,10 +1,14 @@
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { RadioStyledProps, ToggleStyledProps, CheckboxStyledProps } from './Form.type';
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import {
+  RadioStyledProps,
+  ToggleStyledProps,
+  CheckboxStyledProps,
+} from "../types/Form.type";
 
 // form의 title들에 사용한 컴포넌트(radioContariner제외)
 
-export const StyledForm = styled.div`
+export const StyledForm = styled.form`
   position: relative;
   //height: 100vh;
   //display: flex;
@@ -71,7 +75,9 @@ const StyledRadioLabel = styled.label<{ selected: boolean }>`
     `};
 `;
 
-export const RadioLabel = (props: RadioStyledProps) => <StyledRadioLabel {...props}>{props.children}</StyledRadioLabel>;
+export const RadioLabel = (props: RadioStyledProps) => (
+  <StyledRadioLabel {...props}>{props.children}</StyledRadioLabel>
+);
 
 //checkbox 컨테이너와 label
 export const CheckBoxContainer = styled.div`
@@ -99,7 +105,9 @@ export const StyledCheckboxLabel = styled.label<{ selected: boolean }>`
     `};
 `;
 
-export const CheckBoxLabel = (props: CheckboxStyledProps) => <StyledCheckboxLabel {...props}>{props.children}</StyledCheckboxLabel>;
+export const CheckBoxLabel = (props: CheckboxStyledProps) => (
+  <StyledCheckboxLabel {...props}>{props.children}</StyledCheckboxLabel>
+);
 
 //개인정보 토글 컨테이너와 버튼
 export const DataToggleContainer = styled.div`
@@ -108,7 +116,7 @@ export const DataToggleContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledDiv = styled.div<{ agreement: boolean }>`
+const StyledBtn = styled.button<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
@@ -122,7 +130,9 @@ const StyledDiv = styled.div<{ agreement: boolean }>`
     `};
 `;
 
-export const DataToggle = (props: ToggleStyledProps) => <StyledDiv {...props}>{props.children}</StyledDiv>;
+export const DataToggle = (props: ToggleStyledProps) => (
+  <StyledBtn {...props}>{props.children}</StyledBtn>
+);
 
 //개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
 export const Positioner = styled.div`
