@@ -1,6 +1,6 @@
-import React from "react";
-import { MdArrowForwardIos } from "react-icons/md";
-import { BsCheckCircle, BsCheck } from "react-icons/bs";
+import React from 'react';
+import { MdArrowForwardIos } from 'react-icons/md';
+import { BsCheckCircle, BsCheck } from 'react-icons/bs';
 import * as FormStyle from './Form.styled';
 import ValidationInput from '../ValidationInput';
 import regex from '../../utils/Regex';
@@ -171,7 +171,7 @@ const Form = () => {
                 name='transportation'
                 id={transportation}
                 value={transportation}
-                onClick={(event)=>{
+                onClick={(event) => {
                   event.stopPropagation();
                 }}
               />
@@ -239,7 +239,7 @@ const Form = () => {
       {/* submit버튼 disabled = true 일때는 --color-gray, false --color-dark-gray */}
       <SubmitButton
         type='submit'
-        //disabled
+        disabled
         onClick={() => {
           setShowConfirmModal(true);
           console.log('submit click');
@@ -252,7 +252,7 @@ const Form = () => {
           <Confirm />
         </ModalBackground>
       )}
-    </FormStyle.Container>
+    </FormStyle.StyledForm>
   );
 };
 
