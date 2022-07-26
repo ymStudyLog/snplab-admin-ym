@@ -19,8 +19,13 @@ const GetData = ({ item }: Props) => {
   };
   return (
     <div>
-      <li>name : {getItem.name}</li>
-      <li>contanct : {getItem.contact}</li>
+      {getItem.submitdate}
+      {getItem.name}
+      {getItem.gender}
+      {getItem.birthday}
+      {getItem.contact}
+      {getItem.email}
+      {getItem.transportation}
       <button onClick={handleClickCheckBtn}>
         {getItem.pass ? "true" : "false"}
       </button>
