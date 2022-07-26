@@ -10,7 +10,10 @@ import { DEFAULT_SIDO } from '../../constants';
 
 const Region = ({ setShowRegionModal }: any) => {
   const [regionData, setRegionData] = React.useState<RegionDataType[]>([]);
-  const [region, setRegion] = React.useState<{ siDo: string; siGuGun: string }>({
+
+  //! 여기서도 siDo를 string으로 하면 에러
+  //! RegionProps를 사용해도 에러
+  const [region, setRegion] = React.useState<{ siDo: any; siGuGun: string }>({
     siDo: DEFAULT_SIDO,
     siGuGun: '',
   });
@@ -51,19 +54,19 @@ const Region = ({ setShowRegionModal }: any) => {
         </R.MenuTitleContainer>
         <R.MenuListContainer>
           <R.Menu>
-            {Object.keys(regionData).map((siDo) => (
-              <R.MenuList key={siDo} onClick={() => onClickSiDo(siDo)}>
+            {Object.keys(regionData).map((siDo: string, index: number) => (
+              <R.MenuList key={index} onClick={() => onClickSiDo(siDo)}>
                 {siDo}
               </R.MenuList>
             ))}
           </R.Menu>
 
           <R.Menu>
-            {/* {regionData[region.siDo].map(({siGuGun}: any) => (
-              <R.MenuList key={siGuGun} onClick={() => onClickSiGuGun(siGuGun)}>
+            {regionData[region.siDo].map((siGuGun: string, index: number) => (
+              <R.MenuList key={index} onClick={() => onClickSiGuGun(siGuGun)}>
                 {siGuGun}
               </R.MenuList>
-            ))} */}
+            ))}
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
