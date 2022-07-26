@@ -26,7 +26,8 @@ export type CheckboxStyledProps = {
 };
 
 export type ToggleStyledProps = {
-  agreement: boolean;
+  type:"button";
+  agreement : boolean;
   children: JSX.Element;
   onClick: () => void;
 };
