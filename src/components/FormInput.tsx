@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import * as FormStyle from "./Form.styled";
+import * as FormStyle from "../styles/Form.styled";
 
 type Props = {
   placeholder: string;
