@@ -1,3 +1,5 @@
+//삭제될 컴포넌트
+
 import React from "react";
 import { applyService, patchApplicantsById } from "../../api/api";
 import { ApplyProps } from "../../types/Apply.type";

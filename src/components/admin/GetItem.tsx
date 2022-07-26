@@ -13,6 +13,7 @@ import {
 } from "../../api/api";
 
 import { ApplyProps } from "../../types/Apply.type";
+import CSV from "./CSV";
 
 type Props = {};
 
@@ -35,6 +36,7 @@ const GetItem = (props: Props) => {
   };
   return (
     <div>
+      <CSV />
       {/* // <GetData item={item} key={item.id} />*/}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
