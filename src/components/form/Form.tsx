@@ -37,11 +37,11 @@ interface IFormInputs {
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
-      gender: "femail",
+      gender: "",
       transportation: "",
       agreement: false,
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
   const {
     register,
@@ -101,7 +101,7 @@ const Form = () => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
-
+  console.log(methods.formState.isValid);
   return (
     <FormProvider {...methods}>
       <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
@@ -240,7 +240,7 @@ const Form = () => {
                   }}
                 >
                   <FormStyle.NoneDisplayInput
-                    {...register("transportation")}
+                    {...register("transportation", { required: true })}
                     type="checkbox"
                     name="transportation"
                     id={transportation}
@@ -262,9 +262,25 @@ const Form = () => {
               agreement={policy.privacy && policy.thirdparty}
             >
               {/* input의 value값으로는 boolean을 줄수 없음 */}
-              <FormStyle.NoneDisplayInput
-                type="button"
+              {/* <input
+                style={{ display: "none" }}
+                type="checkbox"
                 {...register("agreement")}
+                name="agreement"
+                value="true"
+                onClick={() => {
+                  setPolicy((prevState: PolicyState) => {
+                    return {
+                      ...prevState,
+                      privacy: !policy.privacy,
+                      thirdparty: !policy.thirdparty,
+                    };
+                  });
+                }}
+              /> */}
+              <FormStyle.NoneDisplayInput
+                type="checkbox"
+                {...register("agreement", { required: true })}
                 name="agreement"
                 value="true"
                 onClick={() => {
