@@ -36,6 +36,7 @@ button {
 :root {
     --color-border: #d4d4d4;
     --color-placehloder:#c4c4c4;
+    --color-hover: #f7f6fb;
     --color-gray: #c4c4c4; // Form인풋 색상, 비활성화 색상
     --color-dark-gray: #31393d; //활성화 색상(어두운 회색)으로 어떨지... snplab 웹사이트에서 뽑은 색상
     --color-main: #1cc5f7; //snplab 메인 하늘색 컬러
