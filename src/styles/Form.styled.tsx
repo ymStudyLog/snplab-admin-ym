@@ -3,16 +3,11 @@ import {
   RadioStyledProps,
   ToggleStyledProps,
   CheckboxStyledProps,
+  ButtonStyledProps,
 } from "../types/Form.type";
-
-// form의 title들에 사용한 컴포넌트(radioContariner제외)
 
 export const StyledForm = styled.form`
   position: relative;
-  //height: 100vh;
-  //display: flex;
-  //flex-direction: column;
-  //align-items: center;
 `;
 
 export const DataTitle = styled.div`
@@ -30,7 +25,7 @@ export const DataTitleRow = styled(DataTitle)`
 export const RadioContainer = styled(DataTitleRow)`
   padding: 0;
   padding-left: 12px;
-`; //form의 title에 사용한건 아니지만 DataTitle로 만든 컴포넌트라 여기에 넣음!
+`;
 
 export const SubTitle = styled.p`
   display: flex;
@@ -40,7 +35,6 @@ export const SubTitle = styled.p`
   margin-top: 8px;
 `;
 
-//form의 input들에 사용한 컴포넌트
 export const DataInput = styled.input`
   width: 90%;
   border-bottom: 1.5px solid var(--color-gray);
@@ -56,7 +50,6 @@ export const NoneDisplayInput = styled.input`
   display: none;
 `;
 
-//radio에 사용한 label(RadioContainer는 맨 처음부분에 위치함)
 const StyledRadioLabel = styled.label<{ selected: boolean }>`
   width: 4rem;
   margin-right: 3rem;
@@ -78,7 +71,6 @@ export const RadioLabel = (props: RadioStyledProps) => (
   <StyledRadioLabel {...props}>{props.children}</StyledRadioLabel>
 );
 
-//checkbox 컨테이너와 label
 export const CheckBoxContainer = styled.div`
   height: 74px;
   padding: 5px 10px;
@@ -108,14 +100,13 @@ export const CheckBoxLabel = (props: CheckboxStyledProps) => (
   <StyledCheckboxLabel {...props}>{props.children}</StyledCheckboxLabel>
 );
 
-//개인정보 토글 컨테이너와 버튼
 export const DataToggleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const StyledBtn = styled.button<{ agreement: boolean }>`
+const StyledDiv = styled.div<{ agreement: boolean }>`
   display: flex;
   align-items: center;
   padding-right: 8px;
@@ -130,10 +121,29 @@ const StyledBtn = styled.button<{ agreement: boolean }>`
 `;
 
 export const DataToggle = (props: ToggleStyledProps) => (
-  <StyledBtn {...props}>{props.children}</StyledBtn>
+  <StyledDiv {...props}>{props.children}</StyledDiv>
 );
 
-//개인정보 토글 컨테이너와 버튼 포지셔닝 컴포넌트
+const StyledPrivacyButtonLabel = styled.label<{ agreement: boolean }>`
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  color: var(--color-gray);
+  cursor: pointer;
+
+  ${(props) =>
+    props.agreement &&
+    css`
+      color: var(--color-black);
+    `};
+`;
+
+export const ButtonLabel = (props: ButtonStyledProps) => (
+  <StyledPrivacyButtonLabel {...props}>
+    {props.children}
+  </StyledPrivacyButtonLabel>
+);
+
 export const Positioner = styled.div`
   width: 90%;
   padding: 15px 0;
