@@ -12,24 +12,30 @@ const Admin = (props: Props) => {
   console.log(search);
 
   return (
-    <AdminContainer>
+    // <AdminContainer>
+    <>
       <Header>메인</Header>
       <ContentsContainer>
         <Sidebar />
         <Contents>
           <Title>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</Title>
+          {/* <SearchCSVContainer>
+            <Search />
+
+          </SearchCSVContainer> */}
         </Contents>
       </ContentsContainer>
-    </AdminContainer>
+    </>
+    // </AdminContainer>
   );
 };
 
 export default Admin;
 
-const AdminContainer = styled.div`
-  //width: 100%;
-  //height: 1200px;
-`;
+// const AdminContainer = styled.div`
+//   width: 100%;
+//   height: 1200px;
+// `;
 
 const Header = styled.nav`
   width: 100%;
@@ -38,28 +44,36 @@ const Header = styled.nav`
   color: var(--color-white);
   display: flex;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   padding-left: 20px;
 `;
 
 const ContentsContainer = styled.div`
   display: flex;
-  border: 5px solid red;
+  width: 100%;
+  height: 100vh;
 `;
 
 const Sidebar = styled.div`
-  position: fixed;
-  justify-content: flex-start;
-  z-index: 999;
-  width: 200px;
+  position: relative;
+  flex: 1;
+  min-width: 200px;
   height: 100%;
   background: var(--color-gray);
-  //top: 0;
-  left: 0;
 `;
 
-const Contents = styled.div``;
+const Contents = styled.div`
+  position: relative;
+  flex: 9;
+  width: 100%;
+  height: 100%;
+  //display: flex;
+`;
 
 const Title = styled.div`
-  z-index: 990;
+  //justify-content: flex-start;
+  margin-top: 50px;
+  margin-left: 30px;
+  font-size: 30px;
+  font-weight: bold;
 `;
