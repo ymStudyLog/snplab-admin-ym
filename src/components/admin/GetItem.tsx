@@ -15,16 +15,24 @@ import {
 import { ApplyProps } from "../../types/Apply.type";
 import CSV from "./CSV";
 import { GrCheckbox, GrCheckboxSelected } from "react-icons/gr";
+import { useRecoilValue } from "recoil";
+import { searchQuery } from "../../store/atom";
 
 type Props = {};
 
 const GetItem = (props: Props) => {
+  const search = useRecoilValue(searchQuery); //getApplicationData에 넣을 search 인자값
+  console.log(search);
   const [clientData, setClientData] = React.useState<ApplyProps[]>([]);
   React.useEffect(() => {
-    getApplicantsData<ApplyProps[]>(applyService).then((data) => {
+    getApplicantsData<ApplyProps[]>(
+      applyService,
+      "?submitdate_gte=2022. 7. 01.&submitdate_lte=2022. 7. 31.",
+      search
+    ).then((data) => {
       setClientData(data);
     });
-  }, []);
+  }, [search]);
   const handleClickCheckBtn = (id: number | undefined) => {
     setClientData(
       clientData.map((item) => {
