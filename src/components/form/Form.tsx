@@ -276,7 +276,7 @@ const Form = () => {
               </FormStyle.DataToggle>
               개인정보 처리방침 고지(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/privacypolicy'>
+            <FormStyle.LinkButton>
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
@@ -294,7 +294,7 @@ const Form = () => {
               </FormStyle.DataToggle>
               제3자 정보제공 동의(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/agreement'>
+            <FormStyle.LinkButton>
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
