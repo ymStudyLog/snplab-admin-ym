@@ -6,8 +6,6 @@ import FormInput from './FormInput';
 import { useForm, FormProvider } from 'react-hook-form';
 import { applyService, postApplicantsData } from '../../api/api';
 import * as FormStyle from '../../styles/Form.styled';
-import RegionModal from '../modal/RegionModal';
-import ConfirmModal from '../modal/ConfirmModal';
 import { SubmitButton } from '../../styles/template';
 import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
 import transportations from '../../asset/transportaions';
@@ -15,8 +13,10 @@ import { useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { radioState, radioInitialState } from '../../store/radioAtom';
 import { regionState } from '../../store/atom';
 import { RegionAtomType } from '../../types/Region.type';
-import PrivacyModal from '../../components/modal/PrivacyModal';
-import ThirdPartyModal from '../../components/modal/ThirdPartyModal';
+import RegionModal from '../modal/RegionModal';
+import PrivacyModal from '../modal/PrivacyModal';
+import ThirdPartyModal from '../modal/ThirdPartyModal';
+import ConfirmModal from '../modal/ConfirmModal';
 import { IFormInputs } from "../../types/FormInput.type";
 
 const Form = () => {
