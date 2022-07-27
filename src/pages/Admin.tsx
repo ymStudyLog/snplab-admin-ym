@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Search from '../components/admin/Search';
 import { useRecoilValue } from 'recoil';
 import { searchQuery } from '../store/atom';
+import GetItem from '../components/admin/GetItem';
 //import Header from '../components/admin/Header';
 
 type Props = {};

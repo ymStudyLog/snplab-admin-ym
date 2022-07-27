@@ -1,19 +1,18 @@
-import React from 'react';
-import { MdArrowForwardIos } from 'react-icons/md';
-import { BsCheckCircle, BsCheck } from 'react-icons/bs';
-import ModalBackground from '../modal/ModalBackground';
-import FormInput from './FormInput';
-import { useForm, FormProvider } from 'react-hook-form';
-import { applyService, postApplicantsData } from '../../api/api';
-import * as FormStyle from '../../styles/Form.styled';
-import Region from '../modal/Region';
-import Confirm from '../modal/Confirm';
-import { SubmitButton } from '../../styles/template';
-import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
-
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리 + typescipt
-//TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게
-const transportations = ['버스', '지하철', '택시', 'KTX/기차', '도보', '자전거', '전동킥보드', '자가용'];
+import React from "react";
+import { MdArrowForwardIos } from "react-icons/md";
+import { BsCheckCircle, BsCheck } from "react-icons/bs";
+import ModalBackground from "../modal/ModalBackground";
+import FormInput from "./FormInput";
+import { useForm, FormProvider } from "react-hook-form";
+import { applyService, postApplicantsData } from "../../api/api";
+import * as FormStyle from "../../styles/Form.styled";
+import Region from "../modal/Region";
+import Confirm from "../modal/Confirm";
+import { SubmitButton } from "../../styles/template";
+import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
+import transportations from "../../asset/transportaions";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { radioState, radioInitialState } from "../../store/radioAtom";
 
 interface IFormInputs {
   name: string;
@@ -28,45 +27,70 @@ interface IFormInputs {
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
-      gender: 'femail',
-      transportation: '',
+      gender: "",
+      transportation: "",
       agreement: false,
     },
-    mode: 'onBlur',
+    mode: "onChange",
+
   });
   const {
     register,
     formState: { errors, isDirty, isValid },
   } = methods;
 
-  const onSubmit = (data: IFormInputs) => {
-    console.log(data);
-    postApplicantsData(applyService, data);
-  };
-
-  //  React.useEffect(()=>{
-  //   postApplicantsData(applyService)
-  //  })
-
-  const [radio, setRadio] = React.useState<RadioState>({
-    female: false,
-    male: false,
+  const [formData, setFormData] = React.useState({
+    id: 0,
+    name: "",
+    gender: "",
+    birthday: "",
+    region: [],
+    contact: 0,
+    email: "",
+    transportation: [],
+    agreement: false,
+    pass: false,
+    submitdate: "",
   });
 
+  const { id } = formData;
+
+  const onSubmit = (data: IFormInputs) => {
+    console.log(data);
+    postApplicantsData(applyService, {
+      id: id,
+      name: data.name,
+      gender: data.gender,
+      birthday: data.birthday,
+      region: "",
+      contact: data.contact,
+      email: data.email,
+      transportation: data.transportation,
+      agreement: true,
+      pass: "",
+      submitdate: new Date().toLocaleDateString(),
+    });
+  };
+
+  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] =
+    React.useState<boolean>(false);
+
+  const setRadio = useSetRecoilState(radioInitialState);
+  const radio = useRecoilValue<RadioState>(radioState);
+  
   const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
   });
-
-  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
-  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
-
-  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
+  const [checkbox, setCheckbox] = React.useState<CheckboxState>(
+    new Array(8).fill(false)
+  );
   const handleClick = (checkbox: CheckboxState, index: number) => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
-
+  console.log(methods.formState.isValid);
   return (
     <FormProvider {...methods}>
       <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
@@ -88,11 +112,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor='female'
             selected={radio.female}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, female: true, male: false };
-              });
-            }}
+            onClick={() => setRadio("female")}
           >
             <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='female' value='여' />
             <BsCheckCircle size={24} />
@@ -101,11 +121,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor='male'
             selected={radio.male}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, male: true, female: false };
-              });
-            }}
+            onClick={() => setRadio("male")}
           >
             <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='male' value='남' />
             <BsCheckCircle size={24} />
@@ -176,35 +192,53 @@ const Form = () => {
                   handleClick(checkbox, index);
                 }}
               >
-                <FormStyle.NoneDisplayInput
-                  {...register('transportation')}
-                  type='checkbox'
-                  name='transportation'
-                  id={transportation}
-                  value={transportation}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                  }}
-                />
-                {transportation}
-              </FormStyle.CheckBoxLabel>
-            );
-          })}
+                
+                  <FormStyle.NoneDisplayInput
+                    {...register("transportation", { required: true })}
+                    type="checkbox"
+                    name="transportation"
+                    id={transportation}
+                    value={transportation}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                    }}
+                  />
+                  {transportation}
+                </FormStyle.CheckBoxLabel>
+              );
+            }
+          )}
+
         </FormStyle.CheckBoxContainer>
 
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
             <FormStyle.ButtonLabel
-              // {...register("agreement", {
-              //   required: true,
-              // })}
               agreement={policy.privacy && policy.thirdparty}
             >
               {/* input의 value값으로는 boolean을 줄수 없음 */}
+              {/* <input
+                style={{ display: "none" }}
+                type="checkbox"
+                {...register("agreement")}
+                name="agreement"
+                value="true"
+                onClick={() => {
+                  setPolicy((prevState: PolicyState) => {
+                    return {
+                      ...prevState,
+                      privacy: !policy.privacy,
+                      thirdparty: !policy.thirdparty,
+                    };
+                  });
+                }}
+              /> */}
               <FormStyle.NoneDisplayInput
-                type='button'
-                name='agreement'
-                value='true'
+                type="checkbox"
+                {...register("agreement", { required: true })}
+                name="agreement"
+                value="true"
+
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
                     return {
