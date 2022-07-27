@@ -4,39 +4,30 @@ import Search from '../components/admin/Search';
 import { useRecoilValue } from 'recoil';
 import { searchQuery } from '../store/atom';
 import GetItem from '../components/admin/GetItem';
-//import Header from '../components/admin/Header';
+import CSV from '../components/admin/CSV';
 
-type Props = {};
-
-const Admin = (props: Props) => {
+const Admin = () => {
   const search = useRecoilValue(searchQuery); //getApplicationData에 넣을 search 인자값
   console.log(search);
 
   return (
-    // <AdminContainer>
     <>
       <Header>메인</Header>
       <ContentsContainer>
         <Sidebar />
         <Contents>
           <Title>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</Title>
-          {/* <SearchCSVContainer>
+          <SearchCSVContainer>
             <Search />
-
-          </SearchCSVContainer> */}
+            <CSV />
+          </SearchCSVContainer>
         </Contents>
       </ContentsContainer>
     </>
-    // </AdminContainer>
   );
 };
 
 export default Admin;
-
-// const AdminContainer = styled.div`
-//   width: 100%;
-//   height: 1200px;
-// `;
 
 const Header = styled.nav`
   width: 100%;
@@ -77,4 +68,9 @@ const Title = styled.div`
   margin-left: 30px;
   font-size: 30px;
   font-weight: bold;
+`;
+
+const SearchCSVContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
