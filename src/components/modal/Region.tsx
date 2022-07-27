@@ -1,41 +1,44 @@
 import React from 'react';
 // import { regionState } from '../../store/atom';
 // import { useRecoilState } from 'recoil';
-import { RegionProps, siDoListProps } from '../../types/Region.type';
+import { RegionDataType, SiDoDataType } from '../../types/Region.type';
 import * as R from '../../styles/Region.styled';
 import { MdClose } from 'react-icons/md';
 import { SubmitButton } from '../../styles/template';
-import { regionService, getRegionData, siDoService, getSiDoData } from '../../api/api';
+import { regionService, getRegionData } from '../../api/api';
+//import { DEFAULT_SIDO } from '../../constants';
 
 const Region = ({ setShowRegionModal }: any) => {
-  // const [region, setRegion] = useRecoilState<RegionProps[]>(regionState);
-  // React.useEffect(() => {
-  //   getRegionData(regionService).then((data) => {
-  //     setRegion(data);
-  //   });
-  // }, []);
-  // console.log(region[0].인천광역시);
+  const [regionData, setRegionData] = React.useState<RegionDataType[]>([]);
 
-  const [siDo, setSiDo] = React.useState<siDoListProps[]>([]);
+  //! 여기서도 siDo를 string으로 하면 에러
+  //! RegionProps를 사용해도 에러
+  const [region, setRegion] = React.useState<{ siDo: string; siGuGun: string }>({
+    siDo: '',
+    siGuGun: '',
+  });
+
+  const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
+
+  const onClickSiDo = (siDo: string, index: number) => {
+    //if (region.siDo === siDo) return;
+    setRegion((prevRegion) => ({ ...prevRegion, siDo }));
+    console.log(regionData);
+    // setSiGuGun(Object.values(regionData)[index]);
+    //console.log(region);
+  };
+
+  const onClickSiGuGun = (siGuGun: string) => {
+    //if (region.siGuGun === siGuGun) return;
+    setRegion((prevRegion) => ({ ...prevRegion, siGuGun }));
+  };
+
   React.useEffect(() => {
-    getSiDoData<siDoListProps[]>(siDoService).then((data) => {
-      setSiDo(data);
+    getRegionData<RegionDataType[]>(regionService).then((data) => {
+      setRegionData(data);
     });
   }, []);
-  // console.log(siDo);
-
-  // const [region, setRegion] = React.useState<RegionProps[]>([]);
-  // React.useEffect(() => {
-  //   getRegionData<RegionProps[]>(regionService).then((data) => {
-  //     setRegion(data);
-  //   });
-  // }, []);
-  // console.log(region);
-
-  // 시/도 선택하면
-  // const handleRegionData = () => {
-  //   setRegion((event) => {region.push(event.target.value)})
-  // }
+  console.log(regionData);
 
   return (
     <R.Container>
@@ -43,12 +46,11 @@ const Region = ({ setShowRegionModal }: any) => {
         <R.CloseButton
           onClick={() => {
             setShowRegionModal(false);
-            console.log('모달 Close');
           }}
         >
           <MdClose />
         </R.CloseButton>
-        <R.Header>거주지역 선택</R.Header>
+        <R.HeaderText>거주지역 선택</R.HeaderText>
       </R.HeaderContainer>
       <R.ContentContainer>
         <R.MenuTitleContainer>
@@ -57,21 +59,19 @@ const Region = ({ setShowRegionModal }: any) => {
         </R.MenuTitleContainer>
         <R.MenuListContainer>
           <R.Menu>
-            {/* siDoList 데이터 가져오기 -> 기본으로 3개만 보이고 스크롤 가능하게 */}
-            {siDo.map((data: siDoListProps, index: number) => (
-              <R.MenuList key={index}>{data}</R.MenuList>
+            {Object.keys(regionData).map((siDo: string, index: number) => (
+              <R.MenuList key={index} onClick={() => onClickSiDo(siDo, index)}>
+                {siDo}
+              </R.MenuList>
             ))}
-            {/* {siDo.map((data: siDoListProps, index: number) => console.log(data))} */}
-
-            {/* <R.MenuList>경기</R.MenuList>
-            <R.MenuList>서울</R.MenuList>
-            <R.MenuList>강원</R.MenuList> */}
           </R.Menu>
+
           <R.Menu>
-            {/* siDo 선택에 따라 값이 바뀜 -> 바뀐 값 3개 보이고 스크롤 */}
-            <R.MenuList>강남구</R.MenuList>
-            <R.MenuList>강동구</R.MenuList>
-            <R.MenuList>강북구</R.MenuList>
+            {siGuGun.map((siGuGun: string, index: number) => (
+              <R.MenuList key={index} onClick={() => onClickSiGuGun(siGuGun)}>
+                {siGuGun}
+              </R.MenuList>
+            ))}
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
