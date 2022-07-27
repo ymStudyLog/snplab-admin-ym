@@ -17,8 +17,8 @@ const SEARCH_QUERY = {
 const Search = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const inputEl = React.useRef<HTMLInputElement>(null);
-  const filter = React.useRef("");
-  const query = React.useRef("");
+  const filter = React.useRef<string>("");
+  const query = React.useRef<string>("");
 
   const setSearchQuery = useSetRecoilState<string>(searchQuery);
   const [value, setValue] = React.useState<string>("");

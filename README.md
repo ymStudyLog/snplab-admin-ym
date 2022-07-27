@@ -5,10 +5,18 @@
 
 ```
 git clone https://github.com/Wanted-Pre-Onboarding-FE-Team5/snplab-admin.git
+
 npm i
+
 npm start 
-npm run server //json-server 실행 명령어 
+
+//windows 운영체제에서 npm start 명령어로 json-server 실행이 안될 경우 추가로 아래 명령어 사용
+npm run server 
+
 ```
+
+> 랜딩페이지 = path="/" = 시작(홈) 페이지 <br>
+> 지원 현황 페이지 = path="/admin" -> 주소창에 url 파라미터로 수동 입력해서 이동 <br>
 
 ## 2. 프로젝트 소개
 
@@ -142,4 +150,12 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
 ```
 
 ## 8. 제작과정 
-=> 딱히 없으니 각자 트러블 슈팅 이라던지 간단하게 작성하기 
+
+<슬기>
+제작 과정을 기록한 블로그 링크 : https://velog.io/@sgsg9447/Admin-Project-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A2%85%EB%A3%8C-%ED%9A%8C%EA%B3%A0 (추후 블로그 내용은 정리 예정)
+
+<연진>
+제작 과정을 기록한 노션 링크 : https://yunjink-studylog.notion.site/Error-Log-SNP-LAB-6923ce73b8bb459f840dc2c24fa1fab5 (추후 블로그 내용은 정리 예정)
+
+<유미>
+제작 과정을 날짜 별로 기록한 블로그 링크 : https://velog.io/@zldzhd9292/wanted-fe-team5 (추후 블로그 내용은 정리 예정)

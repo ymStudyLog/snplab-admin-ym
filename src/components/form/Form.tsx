@@ -11,8 +11,10 @@ import Confirm from "../modal/Confirm";
 import { SubmitButton } from "../../styles/template";
 import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
 import transportations from "../../asset/transportaions";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
 import { radioState, radioInitialState } from "../../store/radioAtom";
+import { regionState } from "../../store/atom";
+import { RegionAtomType } from "../../types/Region.type";
 import PrivacyTemplate from "../privacy/Privacy";
 import ModalAgreeBackground from "../modal/ModalAgreeBackground";
 import ThirdPartyTemplate from "../privacy/ThirdParty";
@@ -27,6 +29,7 @@ interface IFormInputs {
   agreement: boolean;
 }
 
+//TODO : interface 정리, 주석 정리, 코드 순서 정리 
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
@@ -96,7 +99,13 @@ const Form = () => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
-  console.log(methods.formState.isValid);
+
+  // 거주지역 정보 
+  const region = useRecoilValue<RegionAtomType>(regionState);
+  console.log(region);
+  //거주지 리코일 리셋 함수
+  const resetRegionData = useResetRecoilState(regionState);
+  
   return (
     <FormProvider {...methods}>
       <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
@@ -158,21 +167,20 @@ const Form = () => {
             pattern: /^(([0-9]+).{4}([0-9]+).{2}([0-9]+){2})/g,
           }}
         />
-        {errors?.birthday?.type === "required" && (
-          <p>생년월일을 입력해주세요</p>
-        )}
-        {errors?.birthday?.type === "pattern" && (
-          <p>YYYY.MM.DD형식으로 입력해주세요</p>
-        )}
+        {errors?.birthday?.type === 'required' && <p>생년월일을 입력해주세요</p>}
+        {errors?.birthday?.type === 'pattern' && <p>YYYY.MM.DD형식으로 입력해주세요</p>}
+
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
 
         <FormStyle.DataInput
-          type="text"
-          name="region"
-          placeholder="거주지역 선택"
+          type='text'
+          name='region'
+          placeholder='거주지역 선택'
+          value={`${region.siDo}, ${region.siGuGun}`}
           onClick={() => {
             setShowRegionModal(true);
           }}
+          readOnly
         />
         {showRegionModal && (
           <ModalBackground>
@@ -330,9 +338,9 @@ const Form = () => {
         <SubmitButton
           type="submit"
           disabled={!isDirty || !isValid}
-          //disabled
           onClick={() => {
             setShowConfirmModal(true);
+            resetRegionData();
           }}
         >
           지원하기
