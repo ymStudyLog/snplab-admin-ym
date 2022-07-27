@@ -2,23 +2,9 @@ import React from "react";
 import { CSVLink } from "react-csv";
 import styled from "styled-components";
 import { applyService, getApplicantsData } from "../../api/api";
+import { CSVStateType } from "../../types/CSV.type";
 
-type Props = {};
-type TEMP = {
-  id: number;
-  name: string;
-  gender: string;
-  birthday: string;
-  region: [string, string];
-  contact: string;
-  email: string;
-  transportation: string[];
-  agreement: boolean;
-  pass: boolean;
-  submitdate: string;
-};
-
-const CSV = (props: Props) => {
+const CSV = () => {
   const headers = [
     { label: "Num.", key: "id" },
     { label: "지원날짜", key: "submitdate" },
@@ -31,14 +17,14 @@ const CSV = (props: Props) => {
     { label: "거주지", key: "region" },
     { label: "당첨여부", key: "pass" },
   ];
-  const [temp, setTemp] = React.useState<TEMP[]>([]);
+  const [csvData, setCsvData] = React.useState<CSVStateType[]>([]);
   React.useEffect(() => {
-    getApplicantsData<TEMP[]>(applyService).then((data) => {
-      setTemp(data);
+    getApplicantsData<CSVStateType[]>(applyService).then((data) => {
+      setCsvData(data);
     });
   }, []);
   return (
-    <CSVLink data={temp} headers={headers}>
+    <CSVLink data={csvData} headers={headers}>
       <CsvBtn>엑셀 다운로드</CsvBtn>
     </CSVLink>
   );

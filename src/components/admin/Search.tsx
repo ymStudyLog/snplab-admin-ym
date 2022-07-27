@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import * as SearchStyle from "../../styles/Search.styled";
 import { useSetRecoilState } from "recoil";
 import { searchQuery } from "../../store/atom";
+import { useResetRecoilState } from 'recoil';
 
 const SEARCH_QUERY = {
   지원날짜: `&submitdate_like=`,
@@ -15,6 +16,7 @@ const SEARCH_QUERY = {
 };
 
 const Search = () => {
+  const resetSearchQuery = useResetRecoilState(searchQuery);
   const [open, setOpen] = React.useState<boolean>(false);
   const inputEl = React.useRef<HTMLInputElement>(null);
   const filter = React.useRef<string>("");
@@ -56,7 +58,10 @@ const Search = () => {
             );
           })}
       </SearchStyle.SearchDropdown>
-      <SearchStyle.DropdownButton onClick={() => setOpen(!open)}>
+      <SearchStyle.DropdownButton onClick={() => {
+        setOpen(!open);
+        resetSearchQuery();
+      }}>
         <BiCaretDown style={{ color: `var(--color-main-shade)` }} size={15} />
       </SearchStyle.DropdownButton>
       <SearchStyle.SearchInput
@@ -64,6 +69,7 @@ const Search = () => {
         onChange={handleChange}
         value={value}
         ref={inputEl}
+        onFocus={resetSearchQuery}
       />
       <SearchStyle.SearchButton onClick={handleSearch}>
         <FiSearch size={16} />

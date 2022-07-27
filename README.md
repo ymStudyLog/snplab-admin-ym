@@ -1,6 +1,3 @@
-## 목차 
-
-
 ## 1. 프로젝트 설치 및 실행
 
 ```
@@ -104,48 +101,48 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
  ┣ 📂components
  ┃ ┣ 📂admin
  ┃ ┃ ┣ 📜CSV.tsx
- ┃ ┃ ┣ 📜Header.tsx
- ┃ ┃ ┣ 📜Pagination.tsx
- ┃ ┃ ┣ 📜Search.tsx
- ┃ ┃ ┣ 📜Sidebar.tsx
- ┃ ┃ ┗ 📜Title.tsx
+ ┃ ┃ ┣ 📜FullWidthTabs.tsx
+ ┃ ┃ ┣ 📜GetItem.tsx
+ ┃ ┃ ┣ 📜PaginationRounded.tsx
+ ┃ ┃ ┗ 📜Search.tsx
  ┃ ┣ 📂form
  ┃ ┃ ┣ 📜Form.tsx
  ┃ ┃ ┗ 📜FormInput.tsx
  ┃ ┣ 📂modal
  ┃ ┃ ┣ 📜Confirm.tsx
+ ┃ ┃ ┣ 📜ModalAgreeBackground.tsx
  ┃ ┃ ┣ 📜ModalBackground.tsx
  ┃ ┃ ┣ 📜ModalPortal.tsx
  ┃ ┃ ┗ 📜Region.tsx
  ┃ ┣ 📂privacy
- ┃ ┃ ┗ 📜PrivacyTemplate.tsx
- ┣ 📂hooks
- ┃ ┣ 📜useSiDoList.tsx
- ┃ ┗ 📜useSiGuGunList.tsx
+ ┃ ┃ ┣ 📜Privacy.tsx
+ ┃ ┃ ┗ 📜ThirdParty.tsx
  ┣ 📂pages
  ┃ ┣ 📜Admin.tsx
  ┃ ┣ 📜ApplicationForm.tsx
- ┃ ┣ 📜Landing.tsx
- ┃ ┗ 📜PrivacyPolicy.tsx
+ ┃ ┗ 📜Landing.tsx
  ┣ 📂router
  ┃ ┗ 📜Router.tsx
  ┣ 📂store
  ┃ ┣ 📜atom.tsx
  ┃ ┗ 📜radioAtom.tsx
  ┣ 📂styles
+ ┃ ┣ 📜Admin.styled.tsx
  ┃ ┣ 📜Confirm.styled.tsx
  ┃ ┣ 📜Form.styled.tsx
  ┃ ┣ 📜globalStyles.tsx
+ ┃ ┣ 📜Privacy.styled.tsx
  ┃ ┣ 📜Region.styled.tsx
  ┃ ┣ 📜Search.styled.tsx
  ┃ ┗ 📜template.tsx
  ┣ 📂types
+ ┃ ┣ 📜Apply.type.tsx
+ ┃ ┣ 📜CSV.type.tsx
  ┃ ┣ 📜Form.type.tsx
+ ┃ ┣ 📜FormInput.type.tsx
  ┃ ┣ 📜ModalProps.type.tsx
- ┃ ┗ 📜Region.type.tsx
- ┣ 📂utils
- ┃ ┣ 📜Regex.tsx
- ┃ ┗ 📜ScrollToTop.tsx
+ ┃ ┣ 📜Region.type.tsx
+ ┃ ┗ 📜TabPanel.type.tsx
  ┗ 📜index.tsx
 ```
 
