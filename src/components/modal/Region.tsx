@@ -1,30 +1,35 @@
 import React from 'react';
 // import { regionState } from '../../store/atom';
 // import { useRecoilState } from 'recoil';
-import { RegionDataType, RegionProps } from '../../types/Region.type';
+import { RegionDataType, SiDoDataType } from '../../types/Region.type';
 import * as R from './Region.styled';
 import { MdClose } from 'react-icons/md';
 import { SubmitButton } from '../../styles/template';
-import { regionService, getRegionData, siDoService, getSiDoData } from '../../api/api';
-import { DEFAULT_SIDO } from '../../constants';
+import { regionService, getRegionData } from '../../api/api';
+//import { DEFAULT_SIDO } from '../../constants';
 
 const Region = ({ setShowRegionModal }: any) => {
   const [regionData, setRegionData] = React.useState<RegionDataType[]>([]);
 
   //! 여기서도 siDo를 string으로 하면 에러
   //! RegionProps를 사용해도 에러
-  const [region, setRegion] = React.useState<{ siDo: any; siGuGun: string }>({
-    siDo: DEFAULT_SIDO,
+  const [region, setRegion] = React.useState<{ siDo: string; siGuGun: string }>({
+    siDo: '',
     siGuGun: '',
   });
 
-  const onClickSiDo = (siDo: string) => {
-    if (region.siDo === siDo) return;
-    setRegion({ siDo, siGuGun: '' });
+  const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
+
+  const onClickSiDo = (siDo: string, index: number) => {
+    //if (region.siDo === siDo) return;
+    setRegion((prevRegion) => ({ ...prevRegion, siDo }));
+    console.log(regionData);
+    setSiGuGun(Object.values(regionData)[index]);
+    //console.log(region);
   };
 
   const onClickSiGuGun = (siGuGun: string) => {
-    if (region.siGuGun === siGuGun) return;
+    //if (region.siGuGun === siGuGun) return;
     setRegion((prevRegion) => ({ ...prevRegion, siGuGun }));
   };
 
@@ -55,14 +60,14 @@ const Region = ({ setShowRegionModal }: any) => {
         <R.MenuListContainer>
           <R.Menu>
             {Object.keys(regionData).map((siDo: string, index: number) => (
-              <R.MenuList key={index} onClick={() => onClickSiDo(siDo)}>
+              <R.MenuList key={index} onClick={() => onClickSiDo(siDo, index)}>
                 {siDo}
               </R.MenuList>
             ))}
           </R.Menu>
 
           <R.Menu>
-            {regionData[region.siDo].map((siGuGun: string, index: number) => (
+            {siGuGun.map((siGuGun: string, index: number) => (
               <R.MenuList key={index} onClick={() => onClickSiGuGun(siGuGun)}>
                 {siGuGun}
               </R.MenuList>
