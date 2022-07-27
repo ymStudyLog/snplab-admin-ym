@@ -76,7 +76,7 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [김슬기](https://github.com/sgsg9447)   | 지원 폼 유효성 검사, 지원하기 버튼 활성화 로직 |
 | [이유미](https://github.com/ymStudyLog) | 페이지 레이아웃(admin 제외), 지원 폼 레이아웃 및 각종 스타일링 |
-| [김연진](https://github.com/yunjink)    | 모달 2개 구현, 선택된 거주지 데이터는 리코일로 상태관리 |
+| [김연진](https://github.com/yunjink)    | 모달(거주지 선택, 지원 완료, 정보 제공 동의서)구현, 선택된 거주지 데이터는 리코일로 상태관리 |
 
 2. 지원 현황 admin 페이지 
 
