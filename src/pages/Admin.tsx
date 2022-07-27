@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Search from "../components/admin/Search";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { searchQuery } from "../store/atom";
 import GetItem from "../components/admin/GetItem";
 //import Header from '../components/admin/Header';
 
-
 type Props = {};
 
 const Admin = (props: Props) => {
+  const resetSearchQuery = useResetRecoilState(searchQuery); //search 리셋하는 함수. 어디에 달지 봐야됨
   const search = useRecoilValue(searchQuery); //getApplicationData에 넣을 search 인자값
   console.log(search);
 

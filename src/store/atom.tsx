@@ -2,7 +2,10 @@ import { atom, selector } from 'recoil';
 
 export const regionState = atom({
   key: 'regionState',
-  default: [],
+  default: {
+    siDo: '',
+    siGuGun: '',
+  },
 });
 
 export const searchQuery = atom({

@@ -1,53 +1,40 @@
-import React from 'react';
-// import { regionState } from '../../store/atom';
-// import { useRecoilState } from 'recoil';
-import { RegionDataType, SiDoDataType } from '../../types/Region.type';
-import * as R from '../../styles/Region.styled';
-import { MdClose } from 'react-icons/md';
-import { SubmitButton } from '../../styles/template';
-import { regionService, getRegionData } from '../../api/api';
-//import { DEFAULT_SIDO } from '../../constants';
+import React from "react";
+import { regionState } from "../../store/atom";
+import { useRecoilState } from "recoil";
+import { RegionDataType, RegionAtomType } from "../../types/Region.type";
+import * as R from "../../styles/Region.styled";
+import { MdClose } from "react-icons/md";
+import { SubmitButton } from "../../styles/template";
+import { regionService, getRegionData } from "../../api/api";
 
 const Region = ({ setShowRegionModal }: any) => {
-  const [regionData, setRegionData] = React.useState<RegionDataType[]>([]);
-
-  //! 여기서도 siDo를 string으로 하면 에러
-  //! RegionProps를 사용해도 에러
-  const [region, setRegion] = React.useState<{ siDo: string; siGuGun: string }>({
-    siDo: '',
-    siGuGun: '',
-  });
-
+  const [regionData, setRegionData] = React.useState<RegionDataType>({});
+  const [region, setRegion] = useRecoilState<RegionAtomType>(regionState);
   const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
 
   const onClickSiDo = (siDo: string, index: number) => {
-    //if (region.siDo === siDo) return;
     setRegion((prevRegion) => ({ ...prevRegion, siDo }));
-    console.log(regionData);
-    // setSiGuGun(Object.values(regionData)[index]);
-    //console.log(region);
+    setSiGuGun(Object.values(regionData)[index]);
   };
 
   const onClickSiGuGun = (siGuGun: string) => {
-    //if (region.siGuGun === siGuGun) return;
     setRegion((prevRegion) => ({ ...prevRegion, siGuGun }));
   };
 
   React.useEffect(() => {
-    getRegionData<RegionDataType[]>(regionService).then((data) => {
+    getRegionData<RegionDataType>(regionService).then((data) => {
       setRegionData(data);
     });
   }, []);
-  console.log(regionData);
+
+  const goBackToForm = () => {
+    setShowRegionModal(false);
+  };
 
   return (
     <R.Container>
       <R.HeaderContainer>
-        <R.CloseButton
-          onClick={() => {
-            setShowRegionModal(false);
-          }}
-        >
+        <R.CloseButton onClick={goBackToForm}>
           <MdClose />
         </R.CloseButton>
         <R.HeaderText>거주지역 선택</R.HeaderText>
@@ -75,7 +62,13 @@ const Region = ({ setShowRegionModal }: any) => {
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
-      <SubmitButton disabled={false}>확인</SubmitButton>
+      <SubmitButton
+        type="button"
+        onClick={goBackToForm}
+        disabled={region.siGuGun.length === 0 || region.siDo.length === 0}
+      >
+        확인
+      </SubmitButton>
     </R.Container>
   );
 };
