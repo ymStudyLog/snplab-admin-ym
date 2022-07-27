@@ -176,7 +176,7 @@ const Form = () => {
           type='text'
           name='region'
           placeholder='거주지역 선택'
-          value={`${region.siDo}, ${region.siGuGun}`}
+          value={`${region.siDo} ${region.siGuGun}`}
           onClick={() => {
             setShowRegionModal(true);
           }}
