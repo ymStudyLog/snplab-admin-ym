@@ -12,8 +12,6 @@ const Router = () => {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/form' element={<ApplicationForm />} />
-        <Route path='/privacypolicy' element={<PrivacyPolicy />} />
-        <Route path='/agreement' element={<PrivacyPolicy />} />
         <Route path='/admin' element={<Admin />} />
       </Routes>
     </BrowserRouter>

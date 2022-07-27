@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
 import {
   RadioStyledProps,
   ToggleStyledProps,
@@ -149,8 +148,7 @@ export const Stretcher = styled.div`
   justify-content: space-between;
 `;
 
-//routing 버튼 & submit 버튼
-export const LinkButton = styled(Link)`
+export const LinkButton = styled.button`
   padding: 0 5px;
   display: flex;
   align-items: center;

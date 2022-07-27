@@ -11,9 +11,6 @@ import Confirm from '../modal/Confirm';
 import { SubmitButton } from '../../styles/template';
 import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
 
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리
-//TODO : typescript 처리
-//TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게
 const transportations = ['버스', '지하철', '택시', 'KTX/기차', '도보', '자전거', '전동킥보드', '자가용'];
 
 interface IFormInputs {
@@ -241,7 +238,7 @@ const Form = () => {
               </FormStyle.DataToggle>
               개인정보 처리방침 고지(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/privacypolicy'>
+            <FormStyle.LinkButton>
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
@@ -260,7 +257,7 @@ const Form = () => {
               </FormStyle.DataToggle>
               제3자 정보제공 동의(필수)
             </FormStyle.DataToggleContainer>
-            <FormStyle.LinkButton to='/agreement'>
+            <FormStyle.LinkButton>
               <MdArrowForwardIos />
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
