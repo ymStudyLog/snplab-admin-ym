@@ -2,7 +2,7 @@ import React from 'react';
 // import { regionState } from '../../store/atom';
 // import { useRecoilState } from 'recoil';
 import { RegionDataType, SiDoDataType } from '../../types/Region.type';
-import * as R from './Region.styled';
+import * as R from '../../styles/Region.styled';
 import { MdClose } from 'react-icons/md';
 import { SubmitButton } from '../../styles/template';
 import { regionService, getRegionData } from '../../api/api';
@@ -24,7 +24,7 @@ const Region = ({ setShowRegionModal }: any) => {
     //if (region.siDo === siDo) return;
     setRegion((prevRegion) => ({ ...prevRegion, siDo }));
     console.log(regionData);
-    setSiGuGun(Object.values(regionData)[index]);
+    // setSiGuGun(Object.values(regionData)[index]);
     //console.log(region);
   };
 

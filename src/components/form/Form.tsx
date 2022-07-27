@@ -1,19 +1,18 @@
-import React from 'react';
-import { MdArrowForwardIos } from 'react-icons/md';
-import { BsCheckCircle, BsCheck } from 'react-icons/bs';
-import ModalBackground from '../modal/ModalBackground';
-import FormInput from './FormInput';
-import { useForm, FormProvider } from 'react-hook-form';
-import { applyService, postApplicantsData } from '../../api/api';
-import * as FormStyle from '../../styles/Form.styled';
-import Region from '../modal/Region';
-import Confirm from '../modal/Confirm';
-import { SubmitButton } from '../../styles/template';
-import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
-
-//TODO : 리팩토링 = radio,policy,checkbox 이랑 onclick 함수들 hooks화 | useState => atom 처리할거 처리 + typescipt
-//TODO : Form -> 개인정보 페이지 이동했다 돌아오면 정보 그대로 있게
-const transportations = ['버스', '지하철', '택시', 'KTX/기차', '도보', '자전거', '전동킥보드', '자가용'];
+import React from "react";
+import { MdArrowForwardIos } from "react-icons/md";
+import { BsCheckCircle, BsCheck } from "react-icons/bs";
+import ModalBackground from "../modal/ModalBackground";
+import FormInput from "./FormInput";
+import { useForm, FormProvider } from "react-hook-form";
+import { applyService, postApplicantsData } from "../../api/api";
+import * as FormStyle from "../../styles/Form.styled";
+import Region from "../modal/Region";
+import Confirm from "../modal/Confirm";
+import { SubmitButton } from "../../styles/template";
+import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
+import transportations from "../../asset/transportaions";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { radioState, radioInitialState } from "../../store/radioAtom";
 
 interface IFormInputs {
   name: string;
@@ -47,21 +46,19 @@ const Form = () => {
   //  React.useEffect(()=>{
   //   postApplicantsData(applyService)
   //  })
+  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] =
+    React.useState<boolean>(false);
 
-  const [radio, setRadio] = React.useState<RadioState>({
-    female: false,
-    male: false,
-  });
-
+  const setRadio = useSetRecoilState(radioInitialState);
+  const radio = useRecoilValue<RadioState>(radioState);
   const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
   });
-
-  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
-  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
-
-  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
+  const [checkbox, setCheckbox] = React.useState<CheckboxState>(
+    new Array(8).fill(false)
+  );
   const handleClick = (checkbox: CheckboxState, index: number) => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
@@ -88,11 +85,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor='female'
             selected={radio.female}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, female: true, male: false };
-              });
-            }}
+            onClick={() => setRadio("female")}
           >
             <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='female' value='여' />
             <BsCheckCircle size={24} />
@@ -101,11 +94,7 @@ const Form = () => {
           <FormStyle.RadioLabel
             htmlFor='male'
             selected={radio.male}
-            onClick={() => {
-              setRadio((prevState: RadioState) => {
-                return { ...prevState, male: true, female: false };
-              });
-            }}
+            onClick={() => setRadio("male")}
           >
             <FormStyle.NoneDisplayInput {...register('gender')} type='radio' name='gender' id='male' value='남' />
             <BsCheckCircle size={24} />

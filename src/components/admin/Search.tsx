@@ -14,11 +14,9 @@ const SEARCH_QUERY = {
   거주지: "&region_like=",
 };
 
-//TODO : 드롭다운 바깥 클릭시 닫힘 구현
 const Search = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const inputEl = React.useRef<HTMLInputElement>(null);
-  // const dropdownEl = React.useRef<HTMLLIElement>(null);
   const filter = React.useRef("");
   const query = React.useRef("");
 

@@ -21,7 +21,7 @@ export const getSiDoData = async <T>(service: AxiosInstance): Promise<T> => {
 /* api get database 불러오기
  * applyService.get(`{tab 특정기간}{검색창에 검색한 내용}`)
  */
-export const getApplicantsData = async <T>(service: AxiosInstance, tab: string = '?submitdate_gte=2022-07-01&submitdate_lte=2022-07-31', search: string = ''): Promise<T> => {
+export const getApplicantsData = async <T>(service: AxiosInstance, tab: string = '?submitdate_gte=2022.07.01&submitdate_lte=2022.07.31', search: string = ''): Promise<T> => {
   const response: AxiosResponse<T> = await service.get(`${tab}${search}`);
   return response.data;
 };
@@ -31,7 +31,7 @@ export const getApplicantsData = async <T>(service: AxiosInstance, tab: string =
 id : number, => 고유 id 생성하는 법 찾기 useRef?
 name : string,
 gender : string,
-birthday : string,
+birthday : string, (YYYY.MM.DD)
 region: [
   string,
   string
@@ -41,7 +41,7 @@ email : string,
 transportation: string[],
 agreement: boolean,
 pass: boolean
-submitdate: string
+submitdate: string (YYYY.MM.DD)
  } 
  */
 export const postApplicantsData = async <T>(service: AxiosInstance, data: any): Promise<T> => {
