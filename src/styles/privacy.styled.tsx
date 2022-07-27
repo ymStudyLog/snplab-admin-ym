@@ -1,4 +1,14 @@
-import styled from "styled-components"
+import styled from "styled-components";
+
+export const PrivacyContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
 
 export const PrivacyHeader = styled.div`
   display: flex;
