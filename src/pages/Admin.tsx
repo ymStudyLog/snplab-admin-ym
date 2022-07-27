@@ -1,9 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import Search from '../components/admin/Search';
-import { useRecoilValue } from 'recoil';
-import { searchQuery } from '../store/atom';
+import React from "react";
+import styled from "styled-components";
+import Search from "../components/admin/Search";
+import { useRecoilValue } from "recoil";
+import { searchQuery } from "../store/atom";
+import GetItem from "../components/admin/GetItem";
 //import Header from '../components/admin/Header';
+
 
 type Props = {};
 
@@ -13,11 +15,13 @@ const Admin = (props: Props) => {
 
   return (
     <AdminContainer>
+      <Search />
       <Header>메인</Header>
       <ContentsContainer>
         <Sidebar />
         <Contents>
           <Title>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</Title>
+          <GetItem />
         </Contents>
       </ContentsContainer>
     </AdminContainer>

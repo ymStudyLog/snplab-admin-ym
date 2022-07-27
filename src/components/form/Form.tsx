@@ -27,31 +27,58 @@ interface IFormInputs {
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
-      gender: 'femail',
-      transportation: '',
+      gender: "",
+      transportation: "",
       agreement: false,
     },
-    mode: 'onBlur',
+    mode: "onChange",
+
   });
   const {
     register,
     formState: { errors, isDirty, isValid },
   } = methods;
 
+  const [formData, setFormData] = React.useState({
+    id: 0,
+    name: "",
+    gender: "",
+    birthday: "",
+    region: [],
+    contact: 0,
+    email: "",
+    transportation: [],
+    agreement: false,
+    pass: false,
+    submitdate: "",
+  });
+
+  const { id } = formData;
+
   const onSubmit = (data: IFormInputs) => {
     console.log(data);
-    postApplicantsData(applyService, data);
+    postApplicantsData(applyService, {
+      id: id,
+      name: data.name,
+      gender: data.gender,
+      birthday: data.birthday,
+      region: "",
+      contact: data.contact,
+      email: data.email,
+      transportation: data.transportation,
+      agreement: true,
+      pass: "",
+      submitdate: new Date().toLocaleDateString(),
+    });
   };
 
-  //  React.useEffect(()=>{
-  //   postApplicantsData(applyService)
-  //  })
   const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] =
     React.useState<boolean>(false);
 
   const setRadio = useSetRecoilState(radioInitialState);
   const radio = useRecoilValue<RadioState>(radioState);
+  
   const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
@@ -63,7 +90,7 @@ const Form = () => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
-
+  console.log(methods.formState.isValid);
   return (
     <FormProvider {...methods}>
       <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
@@ -165,35 +192,53 @@ const Form = () => {
                   handleClick(checkbox, index);
                 }}
               >
-                <FormStyle.NoneDisplayInput
-                  {...register('transportation')}
-                  type='checkbox'
-                  name='transportation'
-                  id={transportation}
-                  value={transportation}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                  }}
-                />
-                {transportation}
-              </FormStyle.CheckBoxLabel>
-            );
-          })}
+                
+                  <FormStyle.NoneDisplayInput
+                    {...register("transportation", { required: true })}
+                    type="checkbox"
+                    name="transportation"
+                    id={transportation}
+                    value={transportation}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                    }}
+                  />
+                  {transportation}
+                </FormStyle.CheckBoxLabel>
+              );
+            }
+          )}
+
         </FormStyle.CheckBoxContainer>
 
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
             <FormStyle.ButtonLabel
-              // {...register("agreement", {
-              //   required: true,
-              // })}
               agreement={policy.privacy && policy.thirdparty}
             >
               {/* input의 value값으로는 boolean을 줄수 없음 */}
+              {/* <input
+                style={{ display: "none" }}
+                type="checkbox"
+                {...register("agreement")}
+                name="agreement"
+                value="true"
+                onClick={() => {
+                  setPolicy((prevState: PolicyState) => {
+                    return {
+                      ...prevState,
+                      privacy: !policy.privacy,
+                      thirdparty: !policy.thirdparty,
+                    };
+                  });
+                }}
+              /> */}
               <FormStyle.NoneDisplayInput
-                type='button'
-                name='agreement'
-                value='true'
+                type="checkbox"
+                {...register("agreement", { required: true })}
+                name="agreement"
+                value="true"
+
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
                     return {
