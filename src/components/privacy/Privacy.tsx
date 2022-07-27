@@ -1,16 +1,14 @@
-import React from "react";
-import { MdArrowBackIos } from "react-icons/md";
-import { introduction, mainContent } from "../../asset/privacypolicy";
-import { Link } from "react-router-dom";
-import { MobileSizeContainer } from "../../styles/template";
-import * as Privacy from "../../styles/privacy.styled";
+import React from 'react';
+import { MdArrowBackIos } from 'react-icons/md';
+import { introduction, mainContent } from '../../asset/privacypolicy';
+import { MobileSizeContainer } from '../../styles/template';
+import * as Privacy from '../../styles/privacy.styled';
 
 const PrivacyTemplate = ({ setShowPrivacyModal }: any) => {
   return (
     <MobileSizeContainer>
       <Privacy.PrivacyContainer>
         <Privacy.PrivacyHeader>
-          {/* Link 따로 스타일 들어간거 없음 */}
           <div>
             <Privacy.GoBackButton
               onClick={(e) => {

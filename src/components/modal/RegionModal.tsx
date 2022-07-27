@@ -1,13 +1,13 @@
-import React from "react";
-import { regionState } from "../../store/atom";
-import { useRecoilState } from "recoil";
-import { RegionDataType, RegionAtomType } from "../../types/Region.type";
-import * as R from "../../styles/Region.styled";
-import { MdClose } from "react-icons/md";
-import { SubmitButton } from "../../styles/template";
-import { regionService, getRegionData } from "../../api/api";
+import React from 'react';
+import { regionState } from '../../store/atom';
+import { useRecoilState } from 'recoil';
+import { RegionDataType, RegionAtomType } from '../../types/Region.type';
+import * as R from '../../styles/RegionModal.styled';
+import { MdClose } from 'react-icons/md';
+import { SubmitButton } from '../../styles/template';
+import { regionService, getRegionData } from '../../api/api';
 
-const Region = ({ setShowRegionModal }: any) => {
+const RegionModal = ({ setShowRegionModal }: any) => {
   const [regionData, setRegionData] = React.useState<RegionDataType>({});
   const [region, setRegion] = useRecoilState<RegionAtomType>(regionState);
   const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
@@ -62,15 +62,11 @@ const Region = ({ setShowRegionModal }: any) => {
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
-      <SubmitButton
-        type="button"
-        onClick={goBackToForm}
-        disabled={region.siGuGun.length === 0 || region.siDo.length === 0}
-      >
+      <SubmitButton type='button' onClick={goBackToForm} disabled={region.siGuGun.length === 0 || region.siDo.length === 0}>
         확인
       </SubmitButton>
     </R.Container>
   );
 };
 
-export default Region;
+export default RegionModal;
