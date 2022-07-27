@@ -5,6 +5,8 @@ import { useRecoilValue } from 'recoil';
 import { searchQuery } from '../store/atom';
 import GetItem from '../components/admin/GetItem';
 import CSV from '../components/admin/CSV';
+import TabPanel from '../components/admin/TabPanel';
+import PaginationRounded from '../components/admin/PaginationRounded';
 
 const Admin = () => {
   const search = useRecoilValue(searchQuery); //getApplicationData에 넣을 search 인자값
@@ -12,15 +14,25 @@ const Admin = () => {
 
   return (
     <>
-      <Header>메인</Header>
+      <Header>
+        <HeaderText>메인</HeaderText>
+      </Header>
       <ContentsContainer>
         <Sidebar />
         <Contents>
-          <Title>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</Title>
+          <ContentsTitle>
+            <TitleText>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</TitleText>
+          </ContentsTitle>
           <SearchCSVContainer>
             <Search />
             <CSV />
           </SearchCSVContainer>
+          <TabsContainer>
+            <TabPanel></TabPanel>
+          </TabsContainer>
+          <PaginationsContainer>
+            <PaginationRounded />
+          </PaginationsContainer>
         </Contents>
       </ContentsContainer>
     </>
@@ -37,7 +49,10 @@ const Header = styled.nav`
   display: flex;
   align-items: center;
   font-size: 20px;
-  padding-left: 20px;
+`;
+
+const HeaderText = styled.div`
+  margin-left: 30px;
 `;
 
 const ContentsContainer = styled.div`
@@ -51,7 +66,7 @@ const Sidebar = styled.div`
   flex: 1;
   min-width: 200px;
   height: 100%;
-  background: var(--color-gray);
+  background: var(--color-sidebar);
 `;
 
 const Contents = styled.div`
@@ -59,13 +74,14 @@ const Contents = styled.div`
   flex: 9;
   width: 100%;
   height: 100%;
-  //display: flex;
 `;
 
-const Title = styled.div`
-  //justify-content: flex-start;
-  margin-top: 50px;
-  margin-left: 30px;
+const ContentsTitle = styled.div`
+  width: 100%;
+`;
+
+const TitleText = styled.div`
+  margin: 30px;
   font-size: 30px;
   font-weight: bold;
 `;
@@ -73,4 +89,21 @@ const Title = styled.div`
 const SearchCSVContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+  width: 95%;
+`;
+
+const TabsContainer = styled.div`
+  width: 95%;
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PaginationsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
