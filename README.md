@@ -109,11 +109,12 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
  ┃ ┃ ┣ 📜Form.tsx
  ┃ ┃ ┗ 📜FormInput.tsx
  ┃ ┣ 📂modal
- ┃ ┃ ┣ 📜Confirm.tsx
- ┃ ┃ ┣ 📜ModalAgreeBackground.tsx
+ ┃ ┃ ┣ 📜ConfirmModal.tsx
  ┃ ┃ ┣ 📜ModalBackground.tsx
  ┃ ┃ ┣ 📜ModalPortal.tsx
- ┃ ┃ ┗ 📜Region.tsx
+ ┃ ┃ ┣ 📜PrivacyModal.tsx
+ ┃ ┃ ┣ 📜RegionModal.tsx
+ ┃ ┃ ┗ 📜ThirdPartyModal.tsx
  ┃ ┣ 📂privacy
  ┃ ┃ ┣ 📜Privacy.tsx
  ┃ ┃ ┗ 📜ThirdParty.tsx
@@ -128,11 +129,11 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
  ┃ ┗ 📜radioAtom.tsx
  ┣ 📂styles
  ┃ ┣ 📜Admin.styled.tsx
- ┃ ┣ 📜Confirm.styled.tsx
+ ┃ ┣ 📜ConfirmModal.styled.tsx
  ┃ ┣ 📜Form.styled.tsx
  ┃ ┣ 📜globalStyles.tsx
  ┃ ┣ 📜Privacy.styled.tsx
- ┃ ┣ 📜Region.styled.tsx
+ ┃ ┣ 📜RegionModal.styled.tsx
  ┃ ┣ 📜Search.styled.tsx
  ┃ ┗ 📜template.tsx
  ┣ 📂types

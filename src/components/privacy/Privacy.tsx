@@ -2,7 +2,7 @@ import React from 'react';
 import { MdArrowBackIos } from 'react-icons/md';
 import { introduction, mainContent } from '../../asset/privacypolicy';
 import { MobileSizeContainer } from '../../styles/template';
-import * as Privacy from '../../styles/privacy.styled';
+import * as Privacy from '../../styles/Privacy.styled';
 
 const PrivacyTemplate = ({ setShowPrivacyModal }: any) => {
   return (

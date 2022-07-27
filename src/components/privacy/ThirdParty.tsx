@@ -1,9 +1,8 @@
 import React from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import { introduction, mainContent } from "../../asset/privacypolicy";
-import { Link } from "react-router-dom";
 import { MobileSizeContainer } from "../../styles/template";
-import * as Privacy from "../../styles/privacy.styled";
+import * as Privacy from "../../styles/Privacy.styled";
 
 const ThirdPartyTemplate = ({ setShowThirdpartyModal }: any) => {
   return (

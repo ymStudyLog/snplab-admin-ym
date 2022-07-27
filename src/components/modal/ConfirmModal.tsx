@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as C from '../../styles/ConfirmModal.styled';
 
