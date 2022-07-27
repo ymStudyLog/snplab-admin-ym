@@ -18,25 +18,15 @@ import { RegionAtomType } from "../../types/Region.type";
 import PrivacyTemplate from "../privacy/Privacy";
 import ModalAgreeBackground from "../modal/ModalAgreeBackground";
 import ThirdPartyTemplate from "../privacy/ThirdParty";
+import { IFormInputs } from "../../types/FormInput.type";
 
-interface IFormInputs {
-  name: string;
-  birthday: number;
-  contact: number;
-  email: string;
-  gender: string;
-  region: [];
-  transportation: any;
-  agreement: boolean;
-}
-
-//TODO : interface 정리, 주석 정리, 코드 순서 정리
 const Form = () => {
   const methods = useForm<IFormInputs>({
     defaultValues: {
       gender: "",
       transportation: "",
       agreement: false,
+      pass : false,
     },
     mode: "onChange",
   });
@@ -73,7 +63,7 @@ const Form = () => {
       email: data.email,
       transportation: data.transportation,
       agreement: true,
-      pass: "",
+      pass: false,
       submitdate: new Date().toLocaleDateString(),
     });
   };
@@ -101,10 +91,8 @@ const Form = () => {
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
 
-  // 거주지역 정보
   const region = useRecoilValue<RegionAtomType>(regionState);
   console.log(region);
-  //거주지 리코일 리셋 함수
   const resetRegionData = useResetRecoilState(regionState);
 
   return (

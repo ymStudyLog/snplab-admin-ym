@@ -16,9 +16,6 @@ export const getSiDoData = async <T>(service: AxiosInstance): Promise<T> => {
   return response.data;
 };
 
-/* api get database 불러오기
- * applyService.get(`{tab 특정기간}{검색창에 검색한 내용}`)
- */
 export const getApplicantsData = async <T>(
   service: AxiosInstance,
   tab: string = "?submitdate_gte=2022. 7. 01.&submitdate_lte=2022. 7. 31.",
@@ -45,8 +42,7 @@ transportation: string[],
 agreement: boolean,
 pass: boolean
 submitdate: string
-} 
-*/
+} */
 export const postApplicantsData = async <T>(
   service: AxiosInstance,
   data: any

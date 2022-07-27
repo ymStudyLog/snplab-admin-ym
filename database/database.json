@@ -16,8 +16,8 @@
         "지하철"
       ],
       "agreement": true,
-      "pass": true,
-      "submitdate": "2022-07-21"
+      "pass": false,
+      "submitdate": "2022. 7. 27."
     },
     {
       "id": 2,
@@ -36,7 +36,7 @@
       ],
       "agreement": true,
       "pass": false,
-      "submitdate": "2022-08-21"
+      "submitdate": "2022. 7. 1."
     },
     {
       "id": 3,
@@ -56,35 +56,10 @@
       ],
       "agreement": true,
       "pass": false,
-      "submitdate": "2022-09-21"
+      "submitdate": "2022. 8. 10."
     },
     {
-      "gender": "여",
-      "transportation": [
-        "버스"
-      ],
-      "agreement": false,
-      "name": "김슬기",
-      "birthday": "1957.01.06",
-      "contact": "01012345676",
-      "email": "sseul9447@gmail.com",
-      "id": 4
-    },
-    {
-      "gender": "여",
-      "transportation": [
-        "지하철",
-        "전동킥보드"
-      ],
-      "agreement": false,
-      "name": "김슬기",
-      "birthday": "1957.01.06",
-      "contact": "01012345676",
-      "email": "sseul9447@gmail.com",
-      "id": 5
-    },
-    {
-      "id": 6,
+      "id": 4,
       "name": "가나다",
       "gender": "여",
       "birthday": "1994.04.07",
@@ -96,11 +71,11 @@
         "지하철"
       ],
       "agreement": true,
-      "pass": "",
-      "submitdate": "2022. 7. 27."
+      "pass": false,
+      "submitdate": "2022. 8. 15."
     },
     {
-      "id": 7,
+      "id": 5,
       "name": "하하하",
       "gender": "여",
       "birthday": "1999.02.02",
@@ -112,7 +87,39 @@
         "택시"
       ],
       "agreement": true,
-      "pass": "",
+      "pass": true,
+      "submitdate": "2022. 9. 27."
+    },
+    {
+      "id": 6,
+      "name": "땡땡떙",
+      "gender": "여",
+      "birthday": "1985.01.15",
+      "region": "서울특별시 강서구",
+      "contact": "01012345676",
+      "email": "sseul9447@gmail.com",
+      "transportation": [
+        "지하철",
+        "택시"
+      ],
+      "agreement": true,
+      "pass": true,
+      "submitdate": "2022. 9. 27."
+    },
+    {
+      "id": 7,
+      "name": "안안안",
+      "gender": "남",
+      "birthday": "1111.11.11",
+      "region": " ",
+      "contact": "01033335555",
+      "email": "tttt@gmail.com",
+      "transportation": [
+        "도보",
+        "자전거"
+      ],
+      "agreement": true,
+      "pass": false,
       "submitdate": "2022. 7. 27."
     }
   ],
