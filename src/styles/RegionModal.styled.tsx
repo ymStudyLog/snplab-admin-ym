@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 550px;
+  min-height: 550px;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-white);
   display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const HeaderContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 70px;
+  min-height: 55px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -40,7 +40,7 @@ export const ContentContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 500px;
-  //margin: 15px 0;
+  margin: 10px 0;
 `;
 
 export const MenuTitleContainer = styled.div`
@@ -48,18 +48,18 @@ export const MenuTitleContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
 `;
 
 export const MenuTitle = styled.div`
   font-size: 20px;
   font-weight: bold;
-  padding-left: 10px;
+  padding-left: 30px;
 `;
 
 export const MenuListContainer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 450px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -70,13 +70,13 @@ export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 400px;
+  height: 450px;
   min-width: 80px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   overflow-y: auto;
-  margin: 10px 0;
+  //margin: 15px 0;
 `;
 
 export const MenuList = styled.li`
@@ -85,11 +85,5 @@ export const MenuList = styled.li`
   font-size: 18px;
   width: 100%;
   text-align: center;
-  height: 30px;
-  margin: 10px 0;
-
-  /* &:hover {
-    background-color: var(--color-hover)
-    transition: background 0.3s ease-in;
-  } */
+  margin: 15px 0;
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as C from '../../styles/Confirm.styled';
+import * as C from '../../styles/ConfirmModal.styled';
 
-const Confirm = ({ setShowConfirmModal }: any) => {
+const ConfirmModal = () => {
   const navigate = useNavigate();
 
   return (
@@ -19,4 +19,4 @@ const Confirm = ({ setShowConfirmModal }: any) => {
   );
 };
 
-export default Confirm;
+export default ConfirmModal;
