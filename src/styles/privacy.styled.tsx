@@ -1,7 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PrivacyContainer = styled.div`
-  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 999;
+  width: 350px;
   height: 100%;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-white);
