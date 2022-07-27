@@ -20,9 +20,3 @@ const FormInput = ({ placeholder, name, options }: Props) => {
 
 export default FormInput;
 
-//TODO! 수정해야함
-FormInput.defaultProps = {
-  type: 'text',
-  label: '',
-  value: '',
-};

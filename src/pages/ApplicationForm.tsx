@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { PageTemplate, MobileSizeContainer } from '../styles/template';
 import Form from '../components/form/Form';

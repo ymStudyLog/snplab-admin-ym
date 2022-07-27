@@ -31,7 +31,6 @@ const GetItem = (props: Props) => {
       setClientData(data);
     });
   }, [tab, search]);
-  console.log(search);
 
   const handleClickCheckBtn = (id: number | undefined) => {
     setClientData(

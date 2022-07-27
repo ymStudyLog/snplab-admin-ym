@@ -6,8 +6,6 @@ import FormInput from './FormInput';
 import { useForm, FormProvider } from 'react-hook-form';
 import { applyService, postApplicantsData } from '../../api/api';
 import * as FormStyle from '../../styles/Form.styled';
-import RegionModal from '../modal/RegionModal';
-import ConfirmModal from '../modal/ConfirmModal';
 import { SubmitButton } from '../../styles/template';
 import { RadioState, PolicyState, CheckboxState } from '../../types/Form.type';
 import transportations from '../../asset/transportaions';
@@ -15,11 +13,41 @@ import { useRecoilValue, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { radioState, radioInitialState } from '../../store/radioAtom';
 import { regionState } from '../../store/atom';
 import { RegionAtomType } from '../../types/Region.type';
-import PrivacyModal from '../../components/modal/PrivacyModal';
-import ThirdPartyModal from '../../components/modal/ThirdPartyModal';
+import RegionModal from '../modal/RegionModal';
+import PrivacyModal from '../modal/PrivacyModal';
+import ThirdPartyModal from '../modal/ThirdPartyModal';
+import ConfirmModal from '../modal/ConfirmModal';
 import { IFormInputs } from "../../types/FormInput.type";
 
 const Form = () => {
+  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
+  const [showPrivacyModal, setShowPrivacyModal] = React.useState<boolean>(false);
+  const [showThirdpartyModal, setShowThirdpartyModal] = React.useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
+  const setRadio = useSetRecoilState(radioInitialState);
+  const radio = useRecoilValue<RadioState>(radioState);
+  const [policy, setPolicy] = React.useState<PolicyState>({
+    privacy: false,
+    thirdparty: false,
+  });
+  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
+  const region = useRecoilValue<RegionAtomType>(regionState);
+  const resetRegionData = useResetRecoilState(regionState);
+  const [formData, setFormData] = React.useState({
+    id: 0,
+    name: '',
+    gender: '',
+    birthday: '',
+    region: [],
+    contact: 0,
+    email: '',
+    transportation: [],
+    agreement: false,
+    pass: false,
+    submitdate: '',
+  });
+  const { id } = formData;
+
   const methods = useForm<IFormInputs>({
     defaultValues: {
       gender: '',
@@ -34,24 +62,7 @@ const Form = () => {
     formState: { errors, isDirty, isValid },
   } = methods;
 
-  const [formData, setFormData] = React.useState({
-    id: 0,
-    name: '',
-    gender: '',
-    birthday: '',
-    region: [],
-    contact: 0,
-    email: '',
-    transportation: [],
-    agreement: false,
-    pass: false,
-    submitdate: '',
-  });
-
-  const { id } = formData;
-
   const onSubmit = (data: IFormInputs) => {
-    console.log(data);
     postApplicantsData(applyService, {
       id: id,
       name: data.name,
@@ -67,33 +78,15 @@ const Form = () => {
     });
   };
 
-  const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
-  const [showPrivacyModal, setShowPrivacyModal] = React.useState<boolean>(false);
-  const [showThirdpartyModal, setShowThirdpartyModal] = React.useState<boolean>(false);
-  const [showConfirmModal, setShowConfirmModal] = React.useState<boolean>(false);
-
-  const setRadio = useSetRecoilState(radioInitialState);
-  const radio = useRecoilValue<RadioState>(radioState);
-
-  const [policy, setPolicy] = React.useState<PolicyState>({
-    privacy: false,
-    thirdparty: false,
-  });
-  const [checkbox, setCheckbox] = React.useState<CheckboxState>(new Array(8).fill(false));
-  const handleClick = (checkbox: CheckboxState, index: number) => {
+  const onClick = (checkbox: CheckboxState, index: number) => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
-
-  const region = useRecoilValue<RegionAtomType>(regionState);
-  console.log(region);
-  const resetRegionData = useResetRecoilState(regionState);
 
   return (
     <FormProvider {...methods}>
       <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
         <FormStyle.DataTitle>이름</FormStyle.DataTitle>
-
         <FormInput
           placeholder='홍길동'
           name='name'
@@ -104,7 +97,6 @@ const Form = () => {
         />
         {errors?.name?.type === 'required' && <p>이름을 입력해주세요</p>}
         {errors?.name?.type === 'pattern' && <p>한글을 입력해주세요</p>}
-
         <FormStyle.DataTitle>성별</FormStyle.DataTitle>
         <FormStyle.RadioContainer>
           <FormStyle.RadioLabel htmlFor='female' selected={radio.female} onClick={() => setRadio('female')}>
@@ -118,9 +110,7 @@ const Form = () => {
             남자
           </FormStyle.RadioLabel>
         </FormStyle.RadioContainer>
-
         <FormStyle.DataTitle>생년월일</FormStyle.DataTitle>
-
         <FormInput
           placeholder='YYYY.MM.DD'
           name='birthday'
@@ -132,9 +122,7 @@ const Form = () => {
         />
         {errors?.birthday?.type === 'required' && <p>생년월일을 입력해주세요</p>}
         {errors?.birthday?.type === 'pattern' && <p>YYYY.MM.DD형식으로 입력해주세요</p>}
-
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
-
         <FormStyle.DataInput
           {...register('region', { required: true })}
           type='text'
@@ -151,15 +139,11 @@ const Form = () => {
             <RegionModal setShowRegionModal={setShowRegionModal} />
           </ModalBackground>
         )}
-
         <FormStyle.DataTitle>연락처</FormStyle.DataTitle>
-
         <FormInput placeholder="'-'제외하고입력" name={'contact'} options={{ required: true, maxLength: 11, pattern: /^[0-9]{11}/g }} />
         {errors?.contact?.type === 'required' && <p>연락처를 입력해주세요</p>}
         {errors?.contact?.type === 'pattern' && <p>'-'제외하고 숫자만 입력해주세요</p>}
-
         <FormStyle.DataTitle>이메일</FormStyle.DataTitle>
-
         <FormInput
           placeholder="'@', '.com'포함해주세요"
           name={'email'}
@@ -183,7 +167,7 @@ const Form = () => {
                 key={index}
                 selected={checkbox[index]}
                 onClick={() => {
-                  handleClick(checkbox, index);
+                  onClick(checkbox, index);
                 }}
               >
                 <FormStyle.NoneDisplayInput
@@ -201,7 +185,6 @@ const Form = () => {
             );
           })}
         </FormStyle.CheckBoxContainer>
-
         <FormStyle.DataTitleRow>
           <FormStyle.DataToggleContainer>
             <FormStyle.ButtonLabel agreement={policy.privacy && policy.thirdparty}>
@@ -225,7 +208,6 @@ const Form = () => {
             이용약관 모두 동의
           </FormStyle.DataToggleContainer>
         </FormStyle.DataTitleRow>
-
         <FormStyle.Positioner>
           <FormStyle.Stretcher>
             <FormStyle.DataToggleContainer>
@@ -288,7 +270,6 @@ const Form = () => {
             </FormStyle.LinkButton>
           </FormStyle.Stretcher>
         </FormStyle.Positioner>
-
         <SubmitButton
           type='submit'
           disabled={!isDirty || !isValid}
