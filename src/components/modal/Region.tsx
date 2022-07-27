@@ -24,7 +24,7 @@ const Region = ({ setShowRegionModal }: any) => {
     //if (region.siDo === siDo) return;
     setRegion((prevRegion) => ({ ...prevRegion, siDo }));
     console.log(regionData);
-    // setSiGuGun(Object.values(regionData)[index]);
+    //setSiGuGun(Object.values(regionData)[index]);
     //console.log(region);
   };
 
