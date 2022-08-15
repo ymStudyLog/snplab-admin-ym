@@ -56,7 +56,7 @@ npm run server
 
 1. 지원 폼
 
- - 폼은 <form>과 <input>으로 구현
+ - 폼은 form 태그과 input 태그로 구현
  - 거주지역 선택 정보입력과 지원완료 후 뜨는 메세지는 모달로 구현
  - 유효성 검사 및 폼데이터 제출은 react-hook-form 사용
  - 제출 버튼은 disabled 속성을 사용해서 유효성 검사 모두 통과시 true, 통과하지 못하면 false 값을 주어 활성화 여부 구현
