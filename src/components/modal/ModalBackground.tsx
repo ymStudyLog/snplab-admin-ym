@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { ModalProps } from "../../types/ModalProps.type";
+import { ModalType } from "../../types/modaType";
 import ModalPortal from "./ModalPortal";
 
-const ModalBackground = ({ children }: ModalProps) => {
+const ModalBackground = ({ children }: ModalType) => {
   return (
     <ModalPortal>
       <Background>{children}</Background>

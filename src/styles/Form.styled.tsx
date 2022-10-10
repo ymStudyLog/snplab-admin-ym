@@ -1,10 +1,27 @@
 import styled, { css } from "styled-components";
-import {
-  RadioStyledProps,
-  ToggleStyledProps,
-  CheckboxStyledProps,
-  ButtonStyledProps,
-} from "../types/Form.type";
+
+type RadioStyledProps = {
+  selected: boolean;
+  children: React.ReactNode;
+  htmlFor: string;
+  onClick: () => void;
+};
+type CheckboxStyledProps = {
+  htmlFor: string;
+  key: number;
+  children: React.ReactNode;
+  selected: boolean;
+  onClick: () => void;
+};
+type ToggleStyledProps = {
+  agreement: boolean;
+  children: JSX.Element;
+  onClick: () => void;
+};
+type ButtonStyledProps = {
+  agreement: boolean;
+  children: React.ReactNode;
+};
 
 export const StyledForm = styled.form`
   position: relative;

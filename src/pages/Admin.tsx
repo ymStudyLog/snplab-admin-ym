@@ -1,36 +1,42 @@
-import Search from '../components/admin/Search';
-import CSV from '../components/admin/CSV';
-import FullWidthTabs from '../components/admin/FullWidthTabs';
-import PaginationRounded from '../components/admin/PaginationRounded';
-import * as A from "../styles/Admin.styled";
+import styled from "styled-components";
+import Search from "../components/admin/Search";
+import CSV from "../components/admin/CSV";
+import FullWidthTabs from "../components/admin/FullWidthTabs";
+import { Header, Sidebar, Content } from "../layout/Admin.layout";
 
 const Admin = () => {
   return (
-    <>
-      <A.Header>
-        <A.HeaderText>메인</A.HeaderText>
-      </A.Header>
-      <A.ContentsContainer>
-        <A.Sidebar />
-        <A.Contents>
-          <A.ContentsTitle>
-            <A.TitleText>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</A.TitleText>
-          </A.ContentsTitle>
-          <A.SearchCSVContainer>
-            <Search />
-            <CSV />
-          </A.SearchCSVContainer>
-          <A.TabsContainer>
-            <FullWidthTabs />
-          </A.TabsContainer>
-          <A.PaginationsContainer>
-            <PaginationRounded />
-          </A.PaginationsContainer>
-        </A.Contents>
-      </A.ContentsContainer>
-    </>
+    <Container>
+      <Header>
+        <span>메인</span>
+      </Header>
+      <Sidebar />
+      <Content>
+        <Title>AI 학습용 교통 데이터 수집을 위한 크라우드 워커 지원 현황</Title>
+        <SearchCSVContainer>
+          <Search />
+          <CSV />
+        </SearchCSVContainer>
+        <FullWidthTabs />
+      </Content>
+    </Container>
   );
 };
 
 export default Admin;
 
+const Container = styled.div`
+  display: flex;
+`;
+
+const Title = styled.h1`
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+const SearchCSVContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+`;

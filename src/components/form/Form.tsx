@@ -7,18 +7,28 @@ import { useForm, FormProvider } from "react-hook-form";
 import { applyService, postApplicantsData } from "../../api/api";
 import * as FormStyle from "../../styles/Form.styled";
 import { SubmitButton } from "../../styles/template";
-import { RadioState, PolicyState, CheckboxState } from "../../types/Form.type";
+import {
+  RadioState,
+  PolicyState,
+  CheckboxState,
+  IFormInputs,
+} from "../../types/formType";
 import transportations from "../../asset/transportaions";
 import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
-import { radioState, radioInitialState } from "../../store/radioAtom";
-import { regionState } from "../../store/atom";
-import { RegionAtomType } from "../../types/Region.type";
+import {
+  regionState,
+  selectedGender,
+  genderInitialState,
+} from "../../store/atom";
+import { RegionAtomType } from "../modal/RegionModal";
 import RegionModal from "../modal/RegionModal";
 import PrivacyModal from "../modal/PrivacyModal";
 import ThirdPartyModal from "../modal/ThirdPartyModal";
 import ConfirmModal from "../modal/ConfirmModal";
-import { IFormInputs } from "../../types/FormInput.type";
 
+//TODO 하나의 폼이긴 한데 페이지가 너무 방대해서 각 input 마다 파일 분리해보기
+//거주지역, 성별 값 useEffect 언마운트 반환값으로 reset 함수 넣어주기
+//일단 reset 함수 없앴는데도 여전히 거주지역 데이터는 들어오지 않고 있음
 const Form = () => {
   const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
   const [showPrivacyModal, setShowPrivacyModal] =
@@ -27,8 +37,8 @@ const Form = () => {
     React.useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] =
     React.useState<boolean>(false);
-  const setRadio = useSetRecoilState(radioInitialState);
-  const radio = useRecoilValue<RadioState>(radioState);
+  const setRadio = useSetRecoilState(genderInitialState);
+  // const radio = useRecoilValue<RadioState>(radioState);
   const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
@@ -37,8 +47,11 @@ const Form = () => {
     new Array(8).fill(false)
   );
   const region = useRecoilValue<RegionAtomType>(regionState);
-  const resetRegionData = useResetRecoilState(regionState);
-  const [formData, setFormData] = React.useState({
+  // const resetRegionData = useResetRecoilState(regionState);
+  const radio = useRecoilValue<RadioState>(selectedGender);
+
+  //이값은 무엇인가... 뭔지 알고 만든걸까? 어디서 또 그대로 복사 붙여넣기 한건 아닌가 궁금해진다.
+  const [formData, setFormData] = React.useState({ 
     id: 0,
     name: "",
     gender: "",
@@ -52,7 +65,7 @@ const Form = () => {
     submitdate: "",
   });
   const { id } = formData;
-
+//
   const methods = useForm<IFormInputs>({
     defaultValues: {
       gender: "",
@@ -87,6 +100,13 @@ const Form = () => {
     checkbox.splice(index, 1, !checkbox[index]);
     setCheckbox(checkbox.splice(0, 8).concat(checkbox));
   };
+
+  // React.useEffect(() => {
+  //   return () => {
+  //     resetRegionData();
+  //     //TODO 언마운트시 성별 값도 reset하기 
+  //   };
+  // }, []);
 
   return (
     <FormProvider {...methods}>
@@ -152,19 +172,19 @@ const Form = () => {
           <p>YYYY.MM.DD형식으로 입력해주세요</p>
         )}
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
-        {/* <FormStyle.DataInput
-          {...register('region', { required: true })}
-          type='text'
-          name='region'
-          placeholder='거주지역 선택'
+        <FormStyle.DataInput
+          {...register("region", { required: true })}
+          type="text"
+          name="region"
+          placeholder="거주지역 선택"
           value={`${region.siDo} ${region.siGuGun}`}
           onClick={() => {
             setShowRegionModal(true);
           }}
           readOnly
-        /> */}
+        />
 
-        <FormInput
+        {/* <FormInput
           placeholder="거주지역"
           onClick={() => {
             setShowRegionModal(true);
@@ -174,7 +194,7 @@ const Form = () => {
           options={{
             required: true,
           }}
-        />
+        /> */}
         {showRegionModal && (
           <ModalBackground>
             <RegionModal setShowRegionModal={setShowRegionModal} />
@@ -330,7 +350,6 @@ const Form = () => {
           disabled={!isDirty || !isValid}
           onClick={() => {
             setShowConfirmModal(true);
-            resetRegionData();
           }}
         >
           지원하기

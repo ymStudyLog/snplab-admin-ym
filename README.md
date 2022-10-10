@@ -86,68 +86,7 @@ typescript json-server recoil styled-components styled-reset react-hook-form rea
 | [이유미](https://github.com/ymStudyLog) | 검색 창 구현, 검색어 입력할 filter 드롭다운 구현 |
 | [김연진](https://github.com/yunjink)    | admin 페이지 레이아웃, 탭과 페이지네이션은 mui 사용 |
 
-## 7. 프로젝트 구조
-
-```
-📦database
- ┣ 📜database.json
-📦src
- ┣ 📂api
- ┃ ┗ 📜api.ts
- ┣ 📂asset
- ┃ ┣ 📜logo-snplab.png
- ┃ ┣ 📜privacypolicy.ts
- ┃ ┗ 📜transportations.ts
- ┣ 📂components
- ┃ ┣ 📂admin
- ┃ ┃ ┣ 📜CSV.tsx
- ┃ ┃ ┣ 📜FullWidthTabs.tsx
- ┃ ┃ ┣ 📜GetItem.tsx
- ┃ ┃ ┣ 📜PaginationRounded.tsx
- ┃ ┃ ┗ 📜Search.tsx
- ┃ ┣ 📂form
- ┃ ┃ ┣ 📜Form.tsx
- ┃ ┃ ┗ 📜FormInput.tsx
- ┃ ┣ 📂modal
- ┃ ┃ ┣ 📜ConfirmModal.tsx
- ┃ ┃ ┣ 📜ModalBackground.tsx
- ┃ ┃ ┣ 📜ModalPortal.tsx
- ┃ ┃ ┣ 📜PrivacyModal.tsx
- ┃ ┃ ┣ 📜RegionModal.tsx
- ┃ ┃ ┗ 📜ThirdPartyModal.tsx
- ┃ ┣ 📂privacy
- ┃ ┃ ┣ 📜Privacy.tsx
- ┃ ┃ ┗ 📜ThirdParty.tsx
- ┣ 📂pages
- ┃ ┣ 📜Admin.tsx
- ┃ ┣ 📜ApplicationForm.tsx
- ┃ ┗ 📜Landing.tsx
- ┣ 📂router
- ┃ ┗ 📜Router.tsx
- ┣ 📂store
- ┃ ┣ 📜atom.tsx
- ┃ ┗ 📜radioAtom.tsx
- ┣ 📂styles
- ┃ ┣ 📜Admin.styled.tsx
- ┃ ┣ 📜ConfirmModal.styled.tsx
- ┃ ┣ 📜Form.styled.tsx
- ┃ ┣ 📜globalStyles.tsx
- ┃ ┣ 📜Privacy.styled.tsx
- ┃ ┣ 📜RegionModal.styled.tsx
- ┃ ┣ 📜Search.styled.tsx
- ┃ ┗ 📜template.tsx
- ┣ 📂types
- ┃ ┣ 📜Apply.type.tsx
- ┃ ┣ 📜CSV.type.tsx
- ┃ ┣ 📜Form.type.tsx
- ┃ ┣ 📜FormInput.type.tsx
- ┃ ┣ 📜ModalProps.type.tsx
- ┃ ┣ 📜Region.type.tsx
- ┃ ┗ 📜TabPanel.type.tsx
- ┗ 📜index.tsx
-```
-
-## 8. 제작과정 
+## 7. 제작과정 
 
 <슬기>
 제작 과정을 기록한 블로그 링크 : https://velog.io/@sgsg9447/Admin-Project-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A2%85%EB%A3%8C-%ED%9A%8C%EA%B3%A0 (추후 블로그 내용은 정리 예정)

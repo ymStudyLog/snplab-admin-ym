@@ -1,14 +1,18 @@
-import React from 'react';
-import { regionState } from '../../store/atom';
-import { useRecoilState } from 'recoil';
-import { RegionDataType, RegionAtomType } from '../../types/Region.type';
-import * as R from '../../styles/RegionModal.styled';
-import { MdClose } from 'react-icons/md';
-import { SubmitButton } from '../../styles/template';
-import { regionService, getRegionData } from '../../api/api';
+import React from "react";
+import { regionState } from "../../store/atom";
+import { useRecoilState } from "recoil";
+import * as R from "../../styles/RegionModal.styled";
+import { MdClose } from "react-icons/md";
+import { SubmitButton } from "../../styles/template";
+import { regionService, getRegionData } from "../../api/api";
+
+type RegionDataType = {
+  [key: string]: string[];
+};
+export type RegionAtomType = { siDo: string; siGuGun: string };
 
 const RegionModal = ({ setShowRegionModal }: any) => {
-  const [regionData, setRegionData] = React.useState<RegionDataType>({});
+  const [regionData, setRegionData] = React.useState<RegionDataType>({}); //TODO 여기에서 regionData가 거주지역 데이터인거 같은데 이거 먼저 잘 들어오고 있는지 확인하기
   const [region, setRegion] = useRecoilState<RegionAtomType>(regionState);
   const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
 
@@ -62,7 +66,11 @@ const RegionModal = ({ setShowRegionModal }: any) => {
           </R.Menu>
         </R.MenuListContainer>
       </R.ContentContainer>
-      <SubmitButton type='button' onClick={goBackToForm} disabled={region.siGuGun.length === 0 || region.siDo.length === 0}>
+      <SubmitButton
+        type="button"
+        onClick={goBackToForm}
+        disabled={region.siGuGun.length === 0 || region.siDo.length === 0}
+      >
         확인
       </SubmitButton>
     </R.Container>

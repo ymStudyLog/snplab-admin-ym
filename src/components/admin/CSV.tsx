@@ -1,8 +1,8 @@
 import React from "react";
-import { CSVLink } from "react-csv";
 import styled from "styled-components";
+import { CSVLink } from "react-csv";
+import { DataType } from "../../types/dataType";
 import { applyService, getApplicantsData } from "../../api/api";
-import { CSVStateType } from "../../types/CSV.type";
 
 const CSV = () => {
   const headers = [
@@ -17,9 +17,9 @@ const CSV = () => {
     { label: "거주지", key: "region" },
     { label: "당첨여부", key: "pass" },
   ];
-  const [csvData, setCsvData] = React.useState<CSVStateType[]>([]);
+  const [csvData, setCsvData] = React.useState<DataType[]>([]);
   React.useEffect(() => {
-    getApplicantsData<CSVStateType[]>(applyService).then((data) => {
+    getApplicantsData<DataType[]>(applyService).then((data) => {
       setCsvData(data);
     });
   }, []);
