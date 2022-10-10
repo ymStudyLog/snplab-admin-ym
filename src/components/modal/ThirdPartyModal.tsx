@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
-import { ModalProps } from '../../types/ModalProps.type';
+import { ModalType } from '../../types/modaType';
 import ThirdPartyTemplate from '../privacy/ThirdParty';
 
-type ThirdPartyModalProps = {
-  children: ModalProps;
+type ThirdPartyModalType = {
+  children: ModalType;
   setShowThirdpartyModal: any;
 };
 
-const ThirdPartyModal = (props: ThirdPartyModalProps) => {
+const ThirdPartyModal = (props: ThirdPartyModalType) => {
   return (
     <ModalPortal>
       <ThirdPartyModalContainer>

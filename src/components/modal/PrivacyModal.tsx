@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
-import { ModalProps } from '../../types/ModalProps.type';
+import { ModalType } from '../../types/modaType';
 import PrivacyTemplate from '../privacy/Privacy';
 
-type PrivacyModalProps = {
-  children: ModalProps;
+type PrivacyModalType = {
+  children: ModalType;
   setShowPrivacyModal: any;
 };
 
-const PrivacyModal = (props: PrivacyModalProps) => {
+const PrivacyModal = (props: PrivacyModalType) => {
   return (
     <ModalPortal>
       <PrivacyModalContainer>

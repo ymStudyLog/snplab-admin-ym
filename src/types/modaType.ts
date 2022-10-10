@@ -1,3 +1,3 @@
-export type ModalProps = {
+export type ModalType = {
   children?: React.ReactNode;
 };
