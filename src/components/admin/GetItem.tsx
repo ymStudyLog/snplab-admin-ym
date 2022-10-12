@@ -4,11 +4,7 @@ import { searchQuery } from "../../store/atom";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
-import {
-  applyService,
-  getApplicantsData,
-  patchApplicantsById,
-} from "../../api/api";
+import { getApplicantsData, patchApplicantsById } from "../../api/api";
 import { GrCheckbox, GrCheckboxSelected } from "react-icons/gr";
 import { DataType } from "../../types/dataType";
 
@@ -22,16 +18,16 @@ const GetItem = (props: Props) => {
   const [clientData, setClientData] = React.useState<DataType[]>([]);
 
   React.useEffect(() => {
-    getApplicantsData<DataType[]>(applyService, query, search).then((data) => {
+    getApplicantsData<DataType[]>(query, search).then((data) => {
       setClientData(data);
     });
   }, [query, search]);
 
-  const handleClickCheckBtn = (id: number | undefined) => {
+  const handleClickCheckBtn = (id: number) => {
     setClientData(
       clientData.map((item) => {
         if (item.id === id) {
-          patchApplicantsById(applyService, item.id!, { pass: !item.pass });
+          patchApplicantsById(item.id, { pass: !item.pass });
           return { ...item, pass: !item.pass };
         } else return { ...item };
       })

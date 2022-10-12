@@ -4,31 +4,24 @@ import { BsCheckCircle, BsCheck } from "react-icons/bs";
 import ModalBackground from "../modal/ModalBackground";
 import FormInput from "./FormInput";
 import { useForm, FormProvider } from "react-hook-form";
-import { applyService, postApplicantsData } from "../../api/api";
+import { postApplicantsData } from "../../api/api";
 import * as FormStyle from "../../styles/Form.styled";
 import { SubmitButton } from "../../styles/template";
-import {
-  RadioState,
-  PolicyState,
-  CheckboxState,
-  IFormInputs,
-} from "../../types/formType";
+import { RadioState, PolicyState, CheckboxState } from "../../types/formType";
 import transportations from "../../asset/transportaions";
 import { useRecoilValue, useSetRecoilState, useResetRecoilState } from "recoil";
 import {
-  regionState,
+  selectedRegion,
   selectedGender,
   genderInitialState,
 } from "../../store/atom";
-import { RegionAtomType } from "../modal/RegionModal";
 import RegionModal from "../modal/RegionModal";
 import PrivacyModal from "../modal/PrivacyModal";
 import ThirdPartyModal from "../modal/ThirdPartyModal";
 import ConfirmModal from "../modal/ConfirmModal";
+import { FormType } from "../../types/dataType";
 
 //TODO 하나의 폼이긴 한데 페이지가 너무 방대해서 각 input 마다 파일 분리해보기
-//거주지역, 성별 값 useEffect 언마운트 반환값으로 reset 함수 넣어주기
-//일단 reset 함수 없앴는데도 여전히 거주지역 데이터는 들어오지 않고 있음
 const Form = () => {
   const [showRegionModal, setShowRegionModal] = React.useState<boolean>(false);
   const [showPrivacyModal, setShowPrivacyModal] =
@@ -37,8 +30,7 @@ const Form = () => {
     React.useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] =
     React.useState<boolean>(false);
-  const setRadio = useSetRecoilState(genderInitialState);
-  // const radio = useRecoilValue<RadioState>(radioState);
+  //policy 값에 따라 validate가 결정되어야되는데 클릭 여부에 따라 결정되는 중 => 수정 요망
   const [policy, setPolicy] = React.useState<PolicyState>({
     privacy: false,
     thirdparty: false,
@@ -46,30 +38,26 @@ const Form = () => {
   const [checkbox, setCheckbox] = React.useState<CheckboxState>(
     new Array(8).fill(false)
   );
-  const region = useRecoilValue<RegionAtomType>(regionState);
-  // const resetRegionData = useResetRecoilState(regionState);
-  const radio = useRecoilValue<RadioState>(selectedGender);
+  const handleCheckbox = (checkbox: CheckboxState, index: number) => {
+    checkbox.splice(index, 1, !checkbox[index]);
+    setCheckbox(checkbox.splice(0, 8).concat(checkbox));
+  };
 
-  //이값은 무엇인가... 뭔지 알고 만든걸까? 어디서 또 그대로 복사 붙여넣기 한건 아닌가 궁금해진다.
-  const [formData, setFormData] = React.useState({ 
-    id: 0,
-    name: "",
-    gender: "",
-    birthday: "",
-    region: [],
-    contact: 0,
-    email: "",
-    transportation: [],
-    agreement: false,
-    pass: false,
-    submitdate: "",
-  });
-  const { id } = formData;
-//
-  const methods = useForm<IFormInputs>({
+  const siDoSiGuGun = useRecoilValue<string[]>(selectedRegion);
+  const resetRegionData = useResetRecoilState(selectedRegion);
+  
+  const radio = useRecoilValue<RadioState>(selectedGender);
+  const setRadio = useSetRecoilState(genderInitialState);
+
+  const methods = useForm<FormType>({
     defaultValues: {
+      name: "",
       gender: "",
-      transportation: "",
+      birthday: "",
+      region: [],
+      contact: "",
+      email: "",
+      transportation: [],
       agreement: false,
       pass: false,
     },
@@ -77,16 +65,16 @@ const Form = () => {
   });
   const {
     register,
+    handleSubmit,
     formState: { errors, isDirty, isValid },
   } = methods;
 
-  const onSubmit = (data: IFormInputs) => {
-    postApplicantsData(applyService, {
-      id: id,
+  const onSubmit = (data: FormType) => {
+    postApplicantsData({
       name: data.name,
       gender: data.gender,
       birthday: data.birthday,
-      region: data.region,
+      region: siDoSiGuGun,
       contact: data.contact,
       email: data.email,
       transportation: data.transportation,
@@ -96,26 +84,21 @@ const Form = () => {
     });
   };
 
-  const onClick = (checkbox: CheckboxState, index: number) => {
-    checkbox.splice(index, 1, !checkbox[index]);
-    setCheckbox(checkbox.splice(0, 8).concat(checkbox));
-  };
-
-  // React.useEffect(() => {
-  //   return () => {
-  //     resetRegionData();
-  //     //TODO 언마운트시 성별 값도 reset하기 
-  //   };
-  // }, []);
+  React.useEffect(() => {
+    return () => {
+      resetRegionData();
+      setRadio("");
+    };
+  }, []);
 
   return (
     <FormProvider {...methods}>
-      <FormStyle.StyledForm onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormStyle.StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormStyle.DataTitle>이름</FormStyle.DataTitle>
         <FormInput
-          placeholder="홍길동"
           name="name"
-          options={{
+          placeholder="홍길동"
+          validOptions={{
             required: true,
             pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,5}$/,
           }}
@@ -157,9 +140,9 @@ const Form = () => {
         </FormStyle.RadioContainer>
         <FormStyle.DataTitle>생년월일</FormStyle.DataTitle>
         <FormInput
-          placeholder="YYYY.MM.DD"
           name="birthday"
-          options={{
+          placeholder="YYYY.MM.DD"
+          validOptions={{
             required: true,
             maxLength: 10,
             pattern: /^(([0-9]+).{4}([0-9]+).{2}([0-9]+){2})/g,
@@ -172,39 +155,31 @@ const Form = () => {
           <p>YYYY.MM.DD형식으로 입력해주세요</p>
         )}
         <FormStyle.DataTitle>거주지역</FormStyle.DataTitle>
-        <FormStyle.DataInput
-          {...register("region", { required: true })}
-          type="text"
+        <FormInput
           name="region"
           placeholder="거주지역 선택"
-          value={`${region.siDo} ${region.siGuGun}`}
+          validOptions={{ required: true }}
+          value={JSON.stringify(siDoSiGuGun)}
           onClick={() => {
             setShowRegionModal(true);
           }}
           readOnly
         />
-
-        {/* <FormInput
-          placeholder="거주지역"
-          onClick={() => {
-            setShowRegionModal(true);
-          }}
-          value={`${region.siDo} ${region.siGuGun}`}
-          name="region"
-          options={{
-            required: true,
-          }}
-        /> */}
         {showRegionModal && (
           <ModalBackground>
             <RegionModal setShowRegionModal={setShowRegionModal} />
           </ModalBackground>
         )}
+        {errors?.region?.type === "required" && <p>거주지역을 선택해주세요</p>}
         <FormStyle.DataTitle>연락처</FormStyle.DataTitle>
         <FormInput
+          name="contact"
           placeholder="'-'제외하고입력"
-          name={"contact"}
-          options={{ required: true, maxLength: 11, pattern: /^[0-9]{11}/g }}
+          validOptions={{
+            required: true,
+            maxLength: 11,
+            pattern: /^[0-9]{11}/g,
+          }}
         />
         {errors?.contact?.type === "required" && <p>연락처를 입력해주세요</p>}
         {errors?.contact?.type === "pattern" && (
@@ -212,9 +187,9 @@ const Form = () => {
         )}
         <FormStyle.DataTitle>이메일</FormStyle.DataTitle>
         <FormInput
+          name="email"
           placeholder="'@', '.com'포함해주세요"
-          name={"email"}
-          options={{
+          validOptions={{
             required: true,
             maxLength: undefined,
             pattern: /^[\w.]+@[\w.]+\.[A-Za-z]{2,3}$/i,
@@ -239,7 +214,7 @@ const Form = () => {
                   key={index}
                   selected={checkbox[index]}
                   onClick={() => {
-                    onClick(checkbox, index);
+                    handleCheckbox(checkbox, index);
                   }}
                 >
                   <FormStyle.NoneDisplayInput
@@ -267,7 +242,7 @@ const Form = () => {
                 type="checkbox"
                 {...register("agreement", { required: true })}
                 name="agreement"
-                value="true"
+                value={policy.privacy && policy.thirdparty ? "true" : "false"}
                 onClick={() => {
                   setPolicy((prevState: PolicyState) => {
                     return {
