@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CSVLink } from "react-csv";
 import { DataType } from "../../types/dataType";
-import { applyService, getApplicantsData } from "../../api/api";
+import { getApplicantsData } from "../../api/api";
 
 const CSV = () => {
   const headers = [
@@ -18,8 +18,9 @@ const CSV = () => {
     { label: "당첨여부", key: "pass" },
   ];
   const [csvData, setCsvData] = React.useState<DataType[]>([]);
+  //TODO 보고있던 tab과 search가 여기에도 넘어와서 getApplicantsData 인자로 넘어가야됨
   React.useEffect(() => {
-    getApplicantsData<DataType[]>(applyService).then((data) => {
+    getApplicantsData<DataType[]>("tab","search").then((data) => {
       setCsvData(data);
     });
   }, []);

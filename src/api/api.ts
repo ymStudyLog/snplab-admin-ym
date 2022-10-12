@@ -1,61 +1,34 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
+import { DataType, FormType } from "../types/dataType";
 
 const BASE_URL = "http://localhost:8000";
 
-export const applyService = axios.create({ baseURL: `${BASE_URL}/applicants` });
-export const regionService = axios.create({ baseURL: `${BASE_URL}/region` });
-export const siDoService = axios.create({ baseURL: `${BASE_URL}/siDoList` });
-
-export const getRegionData = async <T>(service: AxiosInstance): Promise<T> => {
-  const response: AxiosResponse<T> = await service.get("");
+const snplabService = axios.create({ baseURL: `${BASE_URL}/region` });
+export const getRegionData = async <T>(): Promise<T> => {
+  const response: AxiosResponse<T> = await snplabService.get("");
   return response.data;
 };
 
-export const getSiDoData = async <T>(service: AxiosInstance): Promise<T> => {
-  const response: AxiosResponse<T> = await service.get("");
-  return response.data;
-};
-
+const applicantsService = axios.create({ baseURL: `${BASE_URL}/applicants` });
 export const getApplicantsData = async <T>(
-  service: AxiosInstance,
   tab: string = "?submitdate_gte=2022. 7. 01.&submitdate_lte=2022. 7. 31.",
   search: string = ""
 ): Promise<T> => {
-
-  const response: AxiosResponse<T> = await service.get(`${tab}${search}`);
+  const response: AxiosResponse<T> = await applicantsService.get(`${tab}${search}`);
   return response.data;
 };
 
-
-/* data 형식 = {
-id : number,
-name : string,
-gender : string,
-birthday : string,
-region: [
-  string,
-  string
-],
-contact : number | string,
-email : string,
-transportation: string[],
-agreement: boolean,
-pass: boolean
-submitdate: string
-} */
 export const postApplicantsData = async <T>(
-  service: AxiosInstance,
-  data: any
+  data: FormType
 ): Promise<T> => {
-  const response: AxiosResponse<T> = await service.post("", data);
+  const response: AxiosResponse<T> = await applicantsService.post("", data);
   return response.data;
 };
 
 export const patchApplicantsById = async <T>(
-  service: AxiosInstance,
   id: number,
   data: { pass: boolean }
 ): Promise<T> => {
-  const response: AxiosResponse<T> = await service.patch(`/${id}`, data);
+  const response: AxiosResponse<T> = await applicantsService.patch(`/${id}`, data);
   return response.data;
 };

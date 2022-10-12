@@ -1,32 +1,38 @@
 import React from "react";
-import { regionState } from "../../store/atom";
+import { selectedRegion } from "../../store/atom";
 import { useRecoilState } from "recoil";
 import * as R from "../../styles/RegionModal.styled";
 import { MdClose } from "react-icons/md";
 import { SubmitButton } from "../../styles/template";
-import { regionService, getRegionData } from "../../api/api";
+import { getRegionData } from "../../api/api";
 
 type RegionDataType = {
   [key: string]: string[];
 };
-export type RegionAtomType = { siDo: string; siGuGun: string };
 
+//제출 안하고 모달 나가면 값 초기화
 const RegionModal = ({ setShowRegionModal }: any) => {
-  const [regionData, setRegionData] = React.useState<RegionDataType>({}); //TODO 여기에서 regionData가 거주지역 데이터인거 같은데 이거 먼저 잘 들어오고 있는지 확인하기
-  const [region, setRegion] = useRecoilState<RegionAtomType>(regionState);
+  const [regionData, setRegionData] = React.useState<RegionDataType>({});
+  const [siDoSiGuGun, setSiDoSiGuGun] =
+    useRecoilState<string[]>(selectedRegion);
   const [siGuGun, setSiGuGun] = React.useState<string[]>([]);
-
+  
   const onClickSiDo = (siDo: string, index: number) => {
-    setRegion((prevRegion) => ({ ...prevRegion, siDo }));
+    [...siDoSiGuGun].length === 0
+      ? setSiDoSiGuGun((prevRegion) => [...prevRegion].concat(siDo))
+      : setSiDoSiGuGun([siDo]);
     setSiGuGun(Object.values(regionData)[index]);
   };
-
   const onClickSiGuGun = (siGuGun: string) => {
-    setRegion((prevRegion) => ({ ...prevRegion, siGuGun }));
+    [...siDoSiGuGun].length === 1
+      ? setSiDoSiGuGun((prevRegion) => [...prevRegion].concat(siGuGun))
+      : setSiDoSiGuGun((prevRegion) =>
+          [...prevRegion].splice(0, 1).concat(siGuGun)
+        );
   };
 
   React.useEffect(() => {
-    getRegionData<RegionDataType>(regionService).then((data) => {
+    getRegionData<RegionDataType>().then((data) => {
       setRegionData(data);
     });
   }, []);
@@ -69,7 +75,7 @@ const RegionModal = ({ setShowRegionModal }: any) => {
       <SubmitButton
         type="button"
         onClick={goBackToForm}
-        disabled={region.siGuGun.length === 0 || region.siDo.length === 0}
+        disabled={siDoSiGuGun.length < 2}
       >
         확인
       </SubmitButton>

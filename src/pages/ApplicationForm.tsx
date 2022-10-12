@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { PageTemplate, MobileSizeContainer } from '../styles/template';
 import Form from '../components/form/Form';
 
-type Props = {};
-
-const ApplicationForm = (props: Props) => {
+const ApplicationForm = () => {
   return (
     <PageTemplate>
       <MobileSizeContainer>

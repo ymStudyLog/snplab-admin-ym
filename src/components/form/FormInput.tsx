@@ -2,22 +2,26 @@ import { useFormContext } from "react-hook-form";
 import * as FormStyle from "../../styles/Form.styled";
 
 type Props = {
-  placeholder: string;
   name: string;
-  options: any;
+  placeholder: string;
+  validOptions: any;
+  value?: string | number | readonly string[] | undefined;
   onClick?: () => void;
-  value?: string;
+  readOnly? : boolean;
 };
 
-const FormInput = ({ placeholder, name, options, onClick, value }: Props) => {
+const FormInput = (props: Props) => {
+  const { placeholder, name, validOptions, value, onClick, readOnly } = props;
   const { register } = useFormContext();
 
   return (
     <FormStyle.DataInput
+      {...register(name, validOptions)}
+      name={name}
       placeholder={placeholder}
-      onClick={onClick}
       value={value}
-      {...register(name, options)}
+      onClick={onClick}
+      readOnly={readOnly}
     />
   );
 };

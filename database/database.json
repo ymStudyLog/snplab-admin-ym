@@ -60,26 +60,32 @@
     },
     {
       "id": 4,
-      "name": "가나다",
+      "name": "피카츄",
       "gender": "여",
-      "birthday": "1994.04.07",
-      "region": "",
+      "birthday": "1999.02.02",
+      "region": [
+        "서울특별시",
+        "강남구"
+      ],
       "contact": "01012345676",
       "email": "sseul9447@gmail.com",
       "transportation": [
-        "버스",
-        "지하철"
+        "지하철",
+        "택시"
       ],
       "agreement": true,
-      "pass": false,
-      "submitdate": "2022. 8. 15."
+      "pass": true,
+      "submitdate": "2022. 9. 27."
     },
     {
       "id": 5,
-      "name": "하하하",
+      "name": "파이리",
       "gender": "여",
-      "birthday": "1999.02.02",
-      "region": "서울특별시 강남구",
+      "birthday": "1985.01.15",
+      "region": [
+        "서울특별시",
+        "강서구"
+      ],
       "contact": "01012345676",
       "email": "sseul9447@gmail.com",
       "transportation": [
@@ -92,114 +98,96 @@
     },
     {
       "id": 6,
-      "name": "땡땡떙",
-      "gender": "여",
-      "birthday": "1985.01.15",
-      "region": "서울특별시 강서구",
-      "contact": "01012345676",
-      "email": "sseul9447@gmail.com",
+      "name": "박명수",
+      "gender": "남",
+      "birthday": "1955.07.07",
+      "region": [
+        "충청남도",
+        "천안시"
+      ],
+      "contact": "01099996666",
+      "email": "audtn@mgai.com",
       "transportation": [
-        "지하철",
-        "택시"
+        "자가용"
       ],
       "agreement": true,
-      "pass": true,
-      "submitdate": "2022. 9. 27."
+      "pass": false,
+      "submitdate": "2022. 10. 11."
     },
     {
       "id": 7,
-      "name": "안안안",
-      "gender": "남",
-      "birthday": "1111.11.11",
-      "region": " ",
-      "contact": "01033335555",
-      "email": "tttt@gmail.com",
+      "name": "고오스",
+      "gender": "여",
+      "birthday": "1999.12.12",
+      "region": [
+        "서울특별시",
+        "강남구"
+      ],
+      "contact": "01044446666",
+      "email": "ewtatb@gmail.com",
       "transportation": [
-        "도보",
-        "자전거"
+        "버스",
+        "자가용"
       ],
       "agreement": true,
       "pass": false,
-      "submitdate": "2022. 7. 27."
+      "submitdate": "2022. 10. 12."
     },
     {
       "id": 8,
-      "name": "김연진",
+      "name": "꼬부기",
       "gender": "여",
-      "birthday": "1992/11/09",
-      "region": " ",
-      "contact": "01011111111",
-      "email": "chloeeekim1109@gmail.com",
+      "birthday": "2002.12.08",
+      "region": [
+        "강원도",
+        "삼척시"
+      ],
+      "contact": "01055551111",
+      "email": "ranta2g@aeb.com",
       "transportation": [
-        "버스",
-        "지하철"
+        "KTX/기차",
+        "자가용"
       ],
       "agreement": true,
-      "pass": "",
-      "submitdate": "2022. 7. 27."
+      "pass": false,
+      "submitdate": "2022. 10. 12."
     },
     {
       "id": 9,
-      "name": "김연진",
-      "gender": "",
-      "birthday": "1992/11/09",
-      "region": " ",
-      "contact": "01011111111",
-      "email": "eunyu@gmail.com",
-      "transportation": [
-        "버스"
-      ],
-      "agreement": true,
-      "pass": "",
-      "submitdate": "2022. 7. 27."
-    },
-    {
-      "id": 10,
-      "name": "김연진",
-      "gender": "",
-      "birthday": "1992/11/09",
-      "region": " ",
-      "contact": "01011111111",
-      "email": "chloeeekim1109@gmail.com",
-      "transportation": [
-        "지하철"
-      ],
-      "agreement": true,
-      "pass": "",
-      "submitdate": "2022. 7. 27."
-    },
-    {
-      "id": 11,
-      "name": "유튜브",
+      "name": "데덴네",
       "gender": "남",
-      "birthday": "1990.11.01",
-      "region": " ",
-      "contact": "01022225555",
-      "email": "dbxbqm@naver.com",
+      "birthday": "2012.12.17",
+      "region": [
+        "충청북도",
+        "충주시"
+      ],
+      "contact": "01044448888",
+      "email": "awbtwetn@gabe.com",
       "transportation": [
-        "택시",
+        "도보"
+      ],
+      "agreement": true,
+      "pass": false,
+      "submitdate": "2022. 10. 12."
+    },
+    {
+      "name": "코뿌리",
+      "gender": "남",
+      "birthday": "2001.10.14",
+      "region": [
+        "경상북도",
+        "구미시"
+      ],
+      "contact": "01077778888",
+      "email": "etbab@gaebt.com",
+      "transportation": [
         "KTX/기차",
-        "전동킥보드"
+        "자가용"
       ],
       "agreement": true,
       "pass": false,
-      "submitdate": "2022. 10. 11."
-    },
-    {
-      "id": 12,
-      "name": "뽀로로",
-      "gender": "남",
-      "birthday": "1988.03.25",
-      "region": " ",
-      "contact": "01044447777",
-      "email": "qhqhqh@gmail.com",
-      "transportation": [
-        "버스",
-        "지하철"
-      ],
-      "agreement": true,
-      "pass": false,
-      "submitdate": "2022. 10. 11."
+      "submitdate": "2022. 10. 12.",
+      "id": 10
     }
   ],
   "region": {
